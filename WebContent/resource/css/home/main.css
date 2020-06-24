@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 폰트적용 */
 
 @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
@@ -357,226 +359,7 @@ label[for] {
     }
 }
 
-
-/* 탑바 시작 */
-
-.top-bar {
-    height: 150px;
-    color: black;
-}
-
-.top-bar .logo {
-    font-size: 3rem;
-    padding: 20px;
-    mix-blend-mode: purple;
-    opacity: 1;
-}
-
-.top-bar .menu-box-1>ul>li>a {
-    font-weight: 200;
-    font-size: 1.4rem;
-    padding: 0 30px;
-}
-
-.top-bar .menu-box-1>ul>li:hover>a {
-    color: #0575e6;
-}
-
-.top-bar .menu-box-1 ul>li {
-    position: relative;
-}
-
-.top-bar .menu-box-1>ul ul {
-    background-color: white;
-    color: black;
-    display: none;
-    position: absolute;
-    z-index: 10;
-    top: 100%;
-    left: -2px;
-    width: 100%;
-}
-
-.top-bar .menu-box-1 ul>li:hover>ul {
-    display: block;
-    border: 2px solid #0575e6;
-    border-top-width: 0;
-}
-
-.top-bar .menu-box-1>ul ul>li>a {
-    font-weight: lighter;
-    text-align: center;
-    padding: 30px 0;
-}
-
-.top-bar .menu-box-1>ul ul>li:hover>a {
-    background: linear-gradient(to right, #0575e6, #021b79);
-    color: white;
-    animation: blink 1.5s ease-in-out infinite alternate;
-}
-
-.tbrln {
-    margin-top: -8px;
-    width: 100%;
-    height: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    background: linear-gradient(to right, #5593f7, #4769ff, #6fb1fc);
-    animation: blink 4s ease-in-out infinite alternate;
-}
-
-
-/* 탑바 끝 */
-
-
-/* 모바일 탑바 시작 */
-
-.mobile-top-bar {
-    background-color: white;
-    color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.mobile-top-bar .logo {
-    display: inline-block;
-    margin: 0 auto;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar {
-    width: 20px;
-    height: 20px;
-    background-color: none;
-    position: relative;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar>div {
-    position: absolute;
-    width: 100%;
-    height: 20%;
-    background: linear-gradient(to right, #0575e6, #021b79);
-    top: 0;
-    left: 0;
-    transition: top .2s .2s, transform .2s 0s, visibility 0s .2s;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar.active>div {
-    transition: top .2s 0s, transform .2s .2s, visibility 0s;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar>div:nth-child(2) {
-    top: 40%;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar>div:nth-child(3) {
-    top: 80%;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar.active>div {
-    top: 40%;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar.active>div:nth-child(1) {
-    transform: rotate(45deg);
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar.active>div:nth-child(2) {
-    visibility: hidden;
-}
-
-.mobile-top-bar .btn-toggle-mobile-side-bar.active>div:nth-child(3) {
-    transform: rotate(-45deg);
-}
-
-@media (max-width:799px) {
-    body {
-        padding-top: 80px;
-    }
-}
-
-
-/* 모바일 탑바 끝 */
-
-
-/* 모바일 사이드바 */
-
-.mobile-side-bar {
-    position: fixed;
-    background: white;
-    color: black;
-    top: 85px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.5s, opacity 0.5s;
-}
-
-.mobile-side-bar.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.mobile-side-bar>.menu-box-1 {
-    position: relative;
-}
-
-.mobile-side-bar>.menu-box-1>ul li {}
-
-.mobile-side-bar>.menu-box-1 ul>li>a {
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 20px;
-    font-weight: 200;
-}
-
-.mobile-side-bar>.menu-box-1 ul>li>a:not(:only-child)::after {
-    content: " +";
-}
-
-.mobile-side-bar>.menu-box-1 ul>li:hover>a:not(:only-child)::after {
-    content: " -";
-}
-
-.mobile-side-bar>.menu-box-1 ul>li:hover>a {
-    background: linear-gradient(to right, #0575e6, #4764ce);
-    opacity: .7;
-    color: white;
-    animation: blink 1.5s ease-in-out infinite alternate;
-}
-
-.mobile-side-bar>.menu-box-1>ul ul {
-    display: none;
-    background: linear-gradient(to right, #0575e6, #4764ce);
-    opacity: .9;
-}
-
-.mobile-side-bar>.menu-box-1 ul>li:hover>ul {
-    display: block;
-    animation: none;
-}
-
-.blinking {
-    animation: blink 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-
-/*- 본문에 넣어보기*/
+/*- 대문*/
 
 .index {
     font: 400 1em/1.5 "Neuton";
@@ -607,7 +390,7 @@ label[for] {
     margin: 0 auto;
     text-shadow: 0 0 80px rgba(255, 255, 255, .5);
     /* Clip Background Image */
-    background: url(img/animabackcround.png) repeat-y;
+    background: url(/blog/resource/img/animabackcround.png) repeat-y;
     -webkit-background-clip: text;
     background-clip: text;
     /* Animate Background Image */
@@ -629,6 +412,7 @@ label[for] {
         background-position: 100% 50%;
     }
 }
+
 
 
 /*-프로필*/

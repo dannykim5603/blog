@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 폰트적용 */
 
 @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
@@ -424,6 +426,8 @@ label[for] {
     background: linear-gradient(to right, #5593f7, #4769ff, #6fb1fc);
     animation: blink 4s ease-in-out infinite alternate;
 }
+
+
 /* 탑바 끝 */
 
 
@@ -520,13 +524,13 @@ label[for] {
     visibility: visible;
     opacity: 1;
 }
-.mobile-side-bar > .menu-box-1{
+
+.mobile-side-bar>.menu-box-1 {
     position: relative;
-    
 }
-.mobile-side-bar > .menu-box-1>ul li{
-    
-}
+
+.mobile-side-bar>.menu-box-1>ul li {}
+
 .mobile-side-bar>.menu-box-1 ul>li>a {
     font-size: 1.5rem;
     text-align: center;
@@ -572,5 +576,7 @@ label[for] {
         opacity: 1;
     }
 }
+
+
 
 
