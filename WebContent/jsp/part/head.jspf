@@ -34,8 +34,8 @@
 					<li><a href="/blog/home/main" class="height-100p flex flex-ai-c ">Home</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">Articles</a>
 						<ul>
-							<li><a class="block " href="#">WORKS</a></li>
-							<li><a class="block " href="#">DIARY</a></li>
+							<li><a class="block " href="/blog/home/articles/works">WORKS</a></li>
+							<li><a class="block " href="/blog/home/articles/diary">DIARY</a></li>
 						</ul></li>
 					<li><a href="/blog/home/aboutMe"
 						class="height-100p flex flex-ai-c ">About Me</a></li>
@@ -78,10 +78,8 @@
 				<li><a href="/blog/home/main" class="block">Home</a></li>
 				<li><a href="# " class="block">Articles</a>
 					<ul>
-						<li><a class="block " href="https://to2.kr/bfe"
-							target="blank">TISTORY</a></li>
-						<li><a class="block " href="https://to2.kr/brr"
-							target="blank">REPL.IT</a></li>
+						<li><a class="block " href="/blog/home/articles/works">WORKS</a></li>
+						<li><a class="block " href="/blog/home/articles/diary">DIARY</a></li>
 					</ul></li>
 				<li><a href="/blog/home/aboutMe" class="block"">About Me</a></li>
 				<li><a href=" # " class=" block "">SNS</a>
