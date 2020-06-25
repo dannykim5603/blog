@@ -10,34 +10,34 @@
 <!--  폰트어썸 불러오기 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-<link rel="stylesheet" href="/blog/resource/css/common.css" />
-<link rel="stylesheet" href="/blog/resource/css/home/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/home/main.css">
 
 <!--  제이쿼리 불러오기 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
-<script src="/blog/resource/js/common.js "></script>
-<script src="/blog/resource/js/home/main.js "></script>
+<script src="${pageContext.request.contextPath}/resource/js/common.js "></script>
+<script src="${pageContext.request.contextPath}/resource/js/home/main.js "></script>
 </head>
 
 <body>
 	<!-pc 탑바 ->
 	<div class="top-bar visible-on-md-up ">
-		<a href="/blog/s/home/main" class="logo flex flex-jc-c "> <span> <img
-				src="/blog/resource/img/unknownicon.png " alt width="250 "
+		<a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
+				src="${pageContext.request.contextPath}/resource/img/unknownicon.png " alt width="250 "
 				class="image blinking ">
 		</span>
 		</a>
 		<div class="con height-100p ">
 			<nav class="menu-box-1 flex flex-jc-c flex flex-ai-e">
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
-					<li><a href="/blog/s/home/main" class="height-100p flex flex-ai-c ">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c ">Home</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">Articles</a>
 						<ul>
-							<li><a class="block " href="/blog/s/home/articles/works">WORKS</a></li>
-							<li><a class="block " href="/blog/s/home/articles/diary">DIARY</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/works">WORKS</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/diary">DIARY</a></li>
 						</ul></li>
-					<li><a href="/blog/s/home/aboutMe"
+					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
 						class="height-100p flex flex-ai-c ">About Me</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">SNS</a>
 						<ul>
@@ -56,7 +56,7 @@
 
 	<!-모바일 탑바->
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
-		<a href="/blog/home/main "
+		<a href="${pageContext.request.contextPath}/home/main "
 			class="logo flex flex-ai-c absolute-center absolute-middle "> <a
 			href="# " class="btn-toggle-mobile-side-bar ">
 				<div></div>
@@ -64,7 +64,7 @@
 				<div></div>
 		</a>
 		</a> <a href="# " class="logo flex flex-jc-c "> <span> <img
-				src="/blog/resource/img/unknownicon.png" alt width="250 "
+				src="${pageContext.request.contextPath}/resource/img/unknownicon.png" alt width="250 "
 				class="image blinking ">
 		</span>
 		</a>
@@ -75,13 +75,13 @@
 	<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down ">
 		<nav class="menu-box-1 flex-grow-1 ">
 			<ul>
-				<li><a href="/blog/s/home/main" class="block">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
 				<li><a href="# " class="block">Articles</a>
 					<ul>
-						<li><a class="block " href="/blog/s/home/articles/works">WORKS</a></li>
-						<li><a class="block " href="/blog/s/home/articles/diary">DIARY</a></li>
+						<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/works">WORKS</a></li>
+						<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/diary">DIARY</a></li>
 					</ul></li>
-				<li><a href="/blog/home/aboutMe" class="block"">About Me</a></li>
+				<li><a href="${pageContext.request.contextPath}/home/aboutMe" class="block"">About Me</a></li>
 				<li><a href=" # " class=" block "">SNS</a>
 					<ul>
 						<li><a class="block " href="https://to2.kr/brs"

@@ -14,17 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+@WebServlet("/s/article/list")
 public class ArticleDoListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		response.setCharacterEncoding("text/html; charset=UTF-8");
 //
-//		String url = "jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
+//		String url = "jdbc:mysql://localhost:3306/${pageContext.request.contextPath)?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
 //		String user = "sbsst";
 //		String password = "sbs123414";
 //		String driverName = "com.mysql.cj.jdbc.Driver";

@@ -20,7 +20,7 @@
 <! 프로필>
 <div class="profile-box con flex visible-on-md-up">
 	<div class="profile-img flex flex-ai-c">
-		<img src="/blog/resource/img/profile.png" alt="" width="120">
+		<img src="${pageContext.request.contextPath}/resource/img/profile.png" alt="" width="120">
 	</div>
 	<div class="profile-txt">
 		<h1>DANNY KIM</h1>
