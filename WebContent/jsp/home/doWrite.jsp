@@ -3,7 +3,7 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 <div class="con">
-	<h1>어바웃 미</h1>
+	<h1>라잍</h1>
 </div>
 <%@ include file="/jsp/part/foot.jspf"%>
 
