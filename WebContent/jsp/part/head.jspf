@@ -34,7 +34,7 @@
 					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c ">Home</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">Articles</a>
 						<ul>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/works">WORKS</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list">LIST</a></li>
 							<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/diary">DIARY</a></li>
 						</ul></li>
 					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
@@ -78,7 +78,7 @@
 				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
 				<li><a href="# " class="block">Articles</a>
 					<ul>
-						<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/works">WORKS</a></li>
+						<li><a class="block " href="${pageContext.request.contextPath}/s/article/list">LIST</a></li>
 						<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/diary">DIARY</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/home/aboutMe" class="block"">About Me</a></li>

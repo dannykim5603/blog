@@ -92,8 +92,8 @@ public class ArticleDao {
 		sb.append(String.format("SET regDate = '%s' ", article.getRegDate()));
 		sb.append(String.format(", `title` = '%s' ", article.getTitle()));
 		sb.append(String.format(", `body` = '%s' ", article.getBody()));
-		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
-		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
+//		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
+//		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
 
 		return dbConnection.insert(sb.toString());
 	}

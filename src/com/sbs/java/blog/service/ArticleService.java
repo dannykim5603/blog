@@ -37,11 +37,11 @@ public class ArticleService {
 	public Board getBoard(int id) {
 		return articleDao.getBoard(id);
 	}
-
-	public int write(int boardId, int memberId, String title, String body) {
-		Article article = new Article(boardId, memberId, title, body);
-		return articleDao.save(article);
-	}
+//
+//	public int write(int boardId, int memberId, String title, String body) {
+//		Article article = new Article(boardId, memberId, title, body);
+//		return articleDao.save(article);
+//	}
 
 	public List<Article> getArticles() {
 		return articleDao.getArticles();

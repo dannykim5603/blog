@@ -126,7 +126,9 @@ label[for] {
 .text-align-right {
     text-align: right;
 }
-
+.text-align-left {
+	text-align: left;
+}
 .line-height-0 {
     line-height: 0;
 }

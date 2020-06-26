@@ -44,7 +44,7 @@ public class BuildService {
 				html += "<tr>";
 				html += "<td>" + article.getId() + "</td>";
 				html += "<td>" + article.getRegDate() + "</td>";
-				html += "<td>" + article.getMemberId() + "</td>";
+//				html += "<td>" + article.getMemberId() + "</td>";
 				html += "<td><a href=\"" + article.getId() + ".html\">" + article.getTitle() + "</a></div>";
 				html += "</tr>";
 			}
@@ -89,7 +89,7 @@ public class BuildService {
 			html += "<tr>";
 			html += "<td>" + article.getId() + "</td>";
 			html += "<td>" + article.getRegDate() + "</td>";
-			html += "<td>" + article.getMemberId() + "</td>";
+//			html += "<td>" + article.getMemberId() + "</td>";
 			html += "<td><a href=\"" + "../article/" + article.getId() + ".html\">" + article.getTitle() + "</a></div>";
 			html += "</tr>";
 		}

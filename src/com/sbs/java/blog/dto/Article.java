@@ -2,9 +2,9 @@ package com.sbs.java.blog.dto;
 
 import java.util.Map;
 
-public class Article extends Dto {
-	private int boardId;
-	private int memberId;
+public class Article extends Dto{
+	private String updateDate;
+
 	private String title;
 	private String body;
 
@@ -12,36 +12,24 @@ public class Article extends Dto {
 
 	}
 
-	public Article(int boardId, int memberId, String title, String body) {
-		this.boardId = boardId;
-		this.memberId = memberId;
+	public Article( String title, String body) {
 		this.title = title;
 		this.body = body;
 	}
 
 	public Article(Map<String, Object> row) {
-		super((int) row.get("id"), (String) row.get("regDate"));
+		super(row);
+		this.updateDate = (String) row.get("updateDate");
 		this.title = (String) row.get("title");
-		this.body = (String) row.get("body");
-		this.memberId = (int) row.get("memberId");
-		this.boardId = (int) row.get("boardId");
-		
+		this.body = (String) row.get("body");		
 	}
-
-	public int getBoardId() {
-		return boardId;
+	
+	public String getUpdateDate() {
+		return updateDate;
 	}
-
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
-	}
-
-	public int getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
+	
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public String getTitle() {
@@ -62,8 +50,7 @@ public class Article extends Dto {
 
 	@Override
 	public String toString() {
-		return String.format("%n제목 : %s%n게시판 번호 : %s 회원 아이디 : %s%n게시 번호 : %s 게시 날짜 : %s%n내용 : %s%n%n ",title, boardId,
-				memberId, getId(), getRegDate(),  body);
+		return String.format("%n게시번호 : %d 제목 : %s%n게시 날짜 : %s 업데이트 날짜 : %s%n내용 : %s%n%n ",getId(), getTitle(), getRegDate(),getUpdateDate(), body);
 	}
 
 

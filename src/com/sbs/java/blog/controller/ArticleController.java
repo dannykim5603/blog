@@ -141,15 +141,15 @@ public class ArticleController extends Controller {
 			int num = Integer.parseInt(numS);
 			Article article = articleService.detail(num);
 			Factory.getSession().setCurrentArticle(article);
-			int id = article.getMemberId();
-			String memberName = Factory.getMemberService().getMember(id).getName();
+//			int id = article.getMemberId();
+//			String memberName = Factory.getMemberService().getMember(id).getName();
 			List<ArticleReply> replies = articleService.getArticleReplyByArticleId(article.getId());
 			int repliesCount = replies.size();
 
 			System.out.printf("\t===== 게시물 상세 =====%n%n");
 			System.out.printf("제목 : %s%n", article.getTitle());
-			System.out.printf("게시판 번호 : %d ", article.getBoardId());
-			System.out.printf("회원 아이디 : %s%n", memberName);
+//			System.out.printf("게시판 번호 : %d ", article.getBoardId());
+//			System.out.printf("회원 아이디 : %s%n", memberName);
 			System.out.printf("게시 번호 : %s ", article.getId());
 			System.out.printf("게시 날짜 : %s%n", article.getRegDate());
 			System.out.printf("내용 : %s%n", article.getBody());
@@ -192,13 +192,13 @@ public class ArticleController extends Controller {
 			int num = Integer.parseInt(numS);
 			Member member = Factory.getSession().getLoginedMember();
 			Article article = Factory.getArticleDao().detail(num);
-			if (article.getMemberId() == member.getId()) {
-				articleService.delete(num);
-				System.out.println(num + "번 게시물이 삭제되었습니다.");
-				System.out.printf("\t=== 게시물 삭제 끝 ===%n%n");
-			} else {
-				System.out.println("삭제 권한이 없습니다.");
-			}
+//			if (article.getMemberId() == member.getId()) {
+//				articleService.delete(num);
+//				System.out.println(num + "번 게시물이 삭제되었습니다.");
+//				System.out.printf("\t=== 게시물 삭제 끝 ===%n%n");
+//			} else {
+//				System.out.println("삭제 권한이 없습니다.");
+//			}
 		}
 	}
 
@@ -218,12 +218,12 @@ public class ArticleController extends Controller {
 
 			Member member = Factory.getSession().getLoginedMember();
 			Article article = Factory.getArticleDao().detail(num);
-			if (article.getMemberId() == member.getId()) {
-				articleService.modify(num, title, body);
-				System.out.printf("\t === 게시물 수정 끝 ===");
-			}
-		} else {
-			System.out.println("로그인이 필요한 서비스 입니다.");
+//			if (article.getMemberId() == member.getId()) {
+//				articleService.modify(num, title, body);
+//				System.out.printf("\t === 게시물 수정 끝 ===");
+//			}
+//		} else {
+//			System.out.println("로그인이 필요한 서비스 입니다.");
 		}
 	}
 
@@ -258,9 +258,9 @@ public class ArticleController extends Controller {
 
 			// 현재 로그인한 회원의 id 가져오기
 			int memberId = Factory.getSession().getLoginedMember().getId();
-			int newId = articleService.write(boardId, memberId, title, body);
+//			int newId = articleService.write(boardId, memberId, title, body);
 
-			System.out.printf("%d번 글이 생성되었습니다.\n", newId);
+//			System.out.printf("%d번 글이 생성되었습니다.\n", newId);
 			System.out.printf("%n\t=== 게시물 작성 끝 ===%n%n");
 		} else {
 			System.out.println("로그인이 필요한 서비스 입니다.");
