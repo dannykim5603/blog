@@ -30,27 +30,25 @@
 <div class="article-list-box-1 con table-box">
 	<table>
 	<colgroup>
-		<col width="50">
-		<col width="150">
-		<col width="150">
+		<col width="70">
+		<col width="70">
+		<col width="100">
 	</colgroup>
 		<thead>
-			<tr>
-				<th>ID</th>
-				<th>등록날짜</th>
-				<th>갱신날짜</th>
-				<th>제목</th>
-			</tr>
-		</thead>
-		<tbody>
 		<%for
 		(Article article : articles){ 
 		%>
 			<tr>
-				<td><%=article.getId()%></td>
-				<td><%=article.getRegDate()%></td>
-				<td><%=article.getUpdateDate()%></td>
-				<td class =" text-align-left "><a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
+				<th>ID</th>
+				<td><%=article.getId() %></td>
+				<th>제목</th>
+				<td><%=article.getTitle() %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>날짜</th>
+				<td colspan="3"><%=article.getRegDate()%></td>
 			</tr>
 			<%} %>
 		</tbody>
