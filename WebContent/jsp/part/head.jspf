@@ -8,17 +8,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unknown</title>
 <!--  css 불러오기 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/common.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/home/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/home/aboutMe.css">
 
 <!--  제이쿼리 불러오기 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
 <script src="${pageContext.request.contextPath}/resource/js/common.js "></script>
 <script src="${pageContext.request.contextPath}/resource/js/home/main.js "></script>
+<script src="${pageContext.request.contextPath}/resource/js/home/detail.js "></script>
+
+
 </head>
 
 <body>
@@ -82,7 +83,7 @@
 						<li><a class="block " href="${pageContext.request.contextPath}/s/article/list">LIST</a></li>
 						<li><a class="block " href="${pageContext.request.contextPath}/s/home/articles/diary">DIARY</a></li>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/home/aboutMe" class="block"">About Me</a></li>
+				<li><a href="${pageContext.request.contextPath}/home/aboutMe" class="block">About Me</a></li>
 				<li><a href=" # " class=" block "">SNS</a>
 					<ul>
 						<li><a class="block " href="https://to2.kr/brs"
