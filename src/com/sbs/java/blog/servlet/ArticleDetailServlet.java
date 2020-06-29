@@ -18,12 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.util.DBUtil;
 
 @WebServlet("/s/article/detail")
 public class ArticleDetailServlet extends HttpServlet {
-	private List<Article> getArticles(){
+	private Article getArticle(int id){
 
 		String url = "jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
 		String user = "sbsst";
@@ -36,20 +37,16 @@ public class ArticleDetailServlet extends HttpServlet {
 				
 		sql += String.format("SELECT *");
 		sql += String.format(" FROM article");
-		sql += String.format(" WHERE id =");
-
-		List<Article> articles = new ArrayList<>();
+		sql += String.format(" WHERE id = %s",id);
+		Article article = null;
 		
-
 		try {
 			Class.forName(driverName);
 			connection = DriverManager.getConnection(url, user, password);
 			
-			List<Map<String,Object>>rows = DBUtil.selectRows(connection, sql);
-			
-			for (Map<String, Object> row : rows) {
-				articles.add(new Article(row));
-			}
+		Map<String,Object>row = DBUtil.selectRow(connection, sql);
+		article = new Article(row);
+		
 		} catch (SQLException e) {
 			System.err.printf("[SQL 예외] : %s\n", e.getMessage());
 		} catch (ClassNotFoundException e) {
@@ -63,16 +60,16 @@ public class ArticleDetailServlet extends HttpServlet {
 				}
 			}
 		}
-		return articles;
+		return article;
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		
-		List<Article> articles = getArticles();
-		request.setAttribute("articles", articles);
-		request.getRequestDispatcher("/jsp/home/articleList.jsp").forward(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		Article article = getArticle(id);
+		request.setAttribute("article", article);
+		request.getRequestDispatcher("/jsp/home/detail.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

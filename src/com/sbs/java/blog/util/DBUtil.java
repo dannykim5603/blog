@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class DBUtil {
 	
-	public Map<String, Object> selectRow(Connection connection,String sql) {
+	public static Map<String, Object> selectRow(Connection connection,String sql) {
 		List<Map<String, Object>> rows = selectRows(connection,sql);
 		
 		if (rows.size() == 0) {

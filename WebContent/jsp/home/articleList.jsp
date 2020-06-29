@@ -15,7 +15,7 @@
 }
 
 .table-box>table th, .table-box>table td {
-	border: 1px solid rgb(98, 116, 216);
+	border: 2px double rgba(98, 116, 216, .7);
 	padding : 10px;
 }
 .article-list-box-1 td{
