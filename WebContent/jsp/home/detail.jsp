@@ -4,7 +4,9 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 
-
+<%
+	Article article = (Article) request.getAttribute("article");
+%>
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
@@ -31,7 +33,7 @@
 
 <!-- 토스트 UI 에디터, 자바스크립트 코어 -->
 <script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
 
 <!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
 <script
@@ -41,74 +43,26 @@
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
+<div class="con">
+	<h1><%=article.getTitle()%></h1>
 
-<style>
-.table-box>table {
-	width: 100%;
-	border-collapse: collapse;
-}
+	<div>
+		이모지 테스트 : 😀😁
+	</div>
 
-.table-box>table th, .table-box>table td {
-	border: 2px double rgba(98, 116, 216, .8);
-	padding: 10px;
-}
-
-.article-list-box-1 td {
-	text-align: center;
-}
-
-#original {
-	diplay: none;
-}
-</style>
-<%
-	Article article = (Article) request.getAttribute("article");
-%>
-<h2 class="con">아티클 리스트</h2>
-
-
-<h1>뷰어 1</h1>
-<div id="origin1">
-	#
-	<%=article.getTitle()%>
-	##
-	<%=article.getBody()%>
-	```php $a = 10; $b = 20; ```
-
-</div>
-<div id="viewer1"></div>
-
-
-<div class="article-list-box-1 con table-box" id="detailTable">
-	<table>
-		<colgroup>
-			<col width="100">
-			<col width="200">
-			<col width="150">
-		</colgroup>
-		<thead>
-			<tr>
-				<th style="background-color:#4769ff">ID</th>
-				<td><%=article.getId()%></td>
-				<th style="background-color:#4769ff">게시날짜</th>
-				<td><%=article.getRegDate()%></td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th style="background-color:#4769ff">제목</th>
-				<td colspan="3" align="center"><%=article.getTitle()%></td>
-			</tr>
-			<tr>
-				<th style="background-color:#4769ff">내용</th>
-
-				<td colspan="3" rowspan="3" align="center"><%=article.getBody()%></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="origin1" style= "display:none;" ><%=article.getBody()%></div>
+	<div id="viewer1"></div>
 	<script>
-	
+		var editor1__initialValue = $('#origin1').html();
+		var editor1 = new toastui.Editor({
+			el:document.querySelector('#viewer1'),
+			height:'600px',
+			initialValue:editor1__initialValue,
+			viewer:true,
+			plugins:[ toastui.Editor.plugin.codeSyntaxHighlight ]
+		});
 	</script>
 </div>
+
 <%@ include file="/jsp/part/foot.jspf"%>
 
