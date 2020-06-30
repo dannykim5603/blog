@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 html {
     font-family: "Roboto", "Noto Sans KR", sans-serif;
+    background-color:#F2CB05;
 }
 
 
@@ -375,6 +376,8 @@ label[for] {
 }
 
 .top-bar .menu-box-1>ul>li>a {
+	color: #0528F2;
+	opacity : .7;
     font-weight: 200;
     font-size: 1.4rem;
     padding: 0 30px;
@@ -390,7 +393,7 @@ label[for] {
 }
 
 .top-bar .menu-box-1>ul ul {
-    background-color: white;
+    background-color: #F2CB05;
     color: black;
     display: none;
     position: absolute;
@@ -413,9 +416,8 @@ label[for] {
 }
 
 .top-bar .menu-box-1>ul ul>li:hover>a {
-    background: linear-gradient(to right, #0575e6, #021b79);
-    color: white;
-    animation: blink 1.5s ease-in-out infinite alternate;
+    background: F2CB05;
+    color: 0528F2;
 }
 
 .tbrln {
@@ -424,8 +426,8 @@ label[for] {
     height: 5px;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(to right, #5593f7, #4769ff, #6fb1fc);
-    animation: blink 4s ease-in-out infinite alternate;
+    background: linear-gradient(to right, #0528F2, #0424D9, #021E73);
+	opacity : .7;
 }
 
 
@@ -435,9 +437,8 @@ label[for] {
 /* 모바일 탑바 시작 */
 
 .mobile-top-bar {
-    background-color: white;
+	background-color: #F2CB05;
     color: black;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -577,4 +578,5 @@ label[for] {
         opacity: 1;
     }
 }
+/* 배경*/
 

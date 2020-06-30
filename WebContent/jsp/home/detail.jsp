@@ -45,12 +45,9 @@
 
 <div class="con">
 	<h1><%=article.getTitle()%></h1>
+	<h2><%=article.getRegDate()%></h2>
 
-	<div>
-		이모지 테스트 : 😀😁
-	</div>
-
-	<div id="origin1" style= "display:none;" ><%=article.getBody()%></div>
+	<div id="origin1" style="display:none;"><%=article.getBody()%></div>
 	<div id="viewer1"></div>
 	<script>
 		var editor1__initialValue = $('#origin1').html();
@@ -59,7 +56,7 @@
 			height:'600px',
 			initialValue:editor1__initialValue,
 			viewer:true,
-			plugins:[ toastui.Editor.plugin.codeSyntaxHighlight ]
+			plugins:[toastui.Editor.plugin.codeSyntaxHighlight]
 		});
 	</script>
 </div>

@@ -18,8 +18,8 @@ public class ArticleDoWriteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 
-		String url = "jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
-		String user = "sbsst";
+		String url = "jdbc:mysql://site32.iu.gy:3306/site32?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
+		String user = "site32";
 		String password = "sbs123414";
 		String driverName = "com.mysql.cj.jdbc.Driver";
 

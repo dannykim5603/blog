@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="background-color:#F2CB05;">
 
 <head>
 <meta charset="UTF-8">
@@ -22,6 +22,8 @@
 </head>
 
 <body>
+<!-배경->
+
 	<!-pc 탑바 ->
 	<div class="top-bar visible-on-md-up ">
 		<a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
@@ -58,8 +60,8 @@
 	<!-모바일 탑바->
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
 		<a href="${pageContext.request.contextPath}/home/main "
-			class="logo flex flex-ai-c absolute-center absolute-middle "> <a
-			href="# " class="btn-toggle-mobile-side-bar ">
+			class="logo flex flex-ai-c absolute-center absolute-middle ">
+			 <a	href="# " class="btn-toggle-mobile-side-bar ">
 				<div></div>
 				<div></div>
 				<div></div>
@@ -95,5 +97,7 @@
 			</ul>
 		</nav>
 	</div>
+	
+	
 
 	
