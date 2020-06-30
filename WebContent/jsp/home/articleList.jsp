@@ -9,18 +9,28 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 <style>
+h2 {
+color: white;
+}
+
+.table-box {
+	color: #444958;
+}
 .table-box>table {
 	width: 100%;
 	border-collapse: collapse;
+	color: white;
+	font-size : .9rem;
 }
 
 .table-box>table th, .table-box>table td {
-	border: 2px double rgba(98, 116, 216, .7);
+	border: 2px double #444958;
 	padding : 10px;
 }
 .article-list-box-1 td{
 	text-align: center;
 }
+
 </style>
 <%
  List<Article> articles = (List<Article>)request.getAttribute("articles");

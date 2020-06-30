@@ -43,12 +43,12 @@
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-<div class="con">
+<div class="con" style = "background-color:white" >
 	<h1><%=article.getTitle()%></h1>
 	<h2><%=article.getRegDate()%></h2>
 
 	<div id="origin1" style="display:none;"><%=article.getBody()%></div>
-	<div id="viewer1"></div>
+	<div id="viewer1" ></div>
 	<script>
 		var editor1__initialValue = $('#origin1').html();
 		var editor1 = new toastui.Editor({
