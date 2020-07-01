@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.util.DBUtil;
 
-@WebServlet("/s/article/list")
-public class ArticleDoListServlet extends HttpServlet {
-	private List<Article> getArticles(){
+@WebServlet("/s/article/list3")
+public class ArticleList3Servlet extends HttpServlet {
+	private List<Article> getArticles( int pageNum){
 
 		String url = "jdbc:mysql://site32.iu.gy:3306/site32?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true";
 		String user = "site32";
@@ -31,12 +31,17 @@ public class ArticleDoListServlet extends HttpServlet {
 		String driverName = "com.mysql.cj.jdbc.Driver";
 
 		Connection connection = null;
+		int cateItem = 3;
+		int pageNumber = (pageNum * 5) - 5; 
 		
 		String sql = "";
 				
 		sql += String.format("SELECT *");
 		sql += String.format(" FROM article");
+		sql += String.format(" WHERE displayStatus = 1 AND");
+		sql += String.format(" cateItemId = %s",cateItem);
 		sql += String.format(" ORDER BY id DESC");
+		sql += String.format(" LIMIT %s,5",pageNumber);
 
 		List<Article> articles = new ArrayList<>();
 		
@@ -69,8 +74,8 @@ public class ArticleDoListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		
-		List<Article> articles = getArticles();
+		int pageNum = Integer.parseInt(request.getParameter("PageNum"));
+		List<Article> articles = getArticles(pageNum);
 		request.setAttribute("articles", articles);
 		request.getRequestDispatcher("/jsp/home/articleList.jsp").forward(request, response);
 	}

@@ -37,7 +37,10 @@
 					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c">Home</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list">LIST</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list1">일상/취미</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list2">공부계획</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list3">유튜브 링크</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list4">IT/일반</a></li>
 							<li><a class="block " href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
 						</ul></li>
 					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"

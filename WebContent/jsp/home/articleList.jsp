@@ -35,7 +35,7 @@ color: white;
 <%
  List<Article> articles = (List<Article>)request.getAttribute("articles");
 %>
-<h2 class="con">아티클 리스트</h2>
+<h2 class="con" style ="text-align: center"> LIST </h2>
 
 <div class="article-list-box-1 con table-box">
 	<table>
