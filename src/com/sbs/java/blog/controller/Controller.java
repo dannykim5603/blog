@@ -1,6 +1,9 @@
 package com.sbs.java.blog.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 // Controller
 public abstract class Controller {
-	public abstract void doAction(Request reqeust);
+	public abstract String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp); 
 }

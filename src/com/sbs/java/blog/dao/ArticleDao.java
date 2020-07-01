@@ -1,88 +1,22 @@
 package com.sbs.java.blog.dao;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sbs.java.blog.db.DBConnection;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.Board;
-import com.sbs.java.blog.factory.Factory;
+import com.sbs.java.blog.service.page;
+import com.sbs.java.blog.util.DBUtil;
 
 // Dao
 public class ArticleDao {
-	private DBConnection dbConnection;
+	private Connection dbConn;
 
-	public ArticleDao() {
-		dbConnection = Factory.getDBConnection();
-	}
-
-	public List<Article> getArticlesByBoardCode(String code) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("SELECT A.* "));
-		sb.append(String.format("FROM `article` AS A "));
-		sb.append(String.format("INNER JOIN `board` AS B "));
-		sb.append(String.format("ON A.boardId = B.id "));
-		sb.append(String.format("WHERE 1 "));
-		sb.append(String.format("AND B.`code` = '%s' ", code));
-		sb.append(String.format("ORDER BY A.id DESC "));
-
-		List<Article> articles = new ArrayList<>();
-		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
-
-		for (Map<String, Object> row : rows) {
-			articles.add(new Article(row));
-		}
-
-		return articles;
-	}
-
-	public List<Board> getBoards() {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("SELECT * "));
-		sb.append(String.format("FROM `board` "));
-		sb.append(String.format("WHERE 1 "));
-		sb.append(String.format("ORDER BY id DESC "));
-
-		List<Board> boards = new ArrayList<>();
-		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
-
-		for (Map<String, Object> row : rows) {
-			boards.add(new Board(row));
-		}
-
-		return boards;
-	}
-
-	public Board getBoardByCode(String code) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("SELECT * "));
-		sb.append(String.format("FROM `board` "));
-		sb.append(String.format("WHERE 1 "));
-		sb.append(String.format("AND `code` = '%s' ", code));
-
-		Map<String, Object> row = dbConnection.selectRow(sb.toString());
-
-		if (row.isEmpty()) {
-			return null;
-		}
-
-		return new Board(row);
-	}
-
-	public int saveBoard(Board board) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("INSERT INTO board "));
-		sb.append(String.format("SET regDate = '%s' ", board.getRegDate()));
-		sb.append(String.format(", `code` = '%s' ", board.getCode()));
-		sb.append(String.format(", `name` = '%s' ", board.getName()));
-
-		return dbConnection.insert(sb.toString());
+	public ArticleDao(Connection dbConn) {
+		this.dbConn = dbConn;
 	}
 
 	public int save(Article article) {
@@ -115,16 +49,23 @@ public class ArticleDao {
 		return new Board(row);
 	}
 
-	public List<Article> getArticles() {
+	public List<Article> getArticles(int page, int cateItemId) {
 		StringBuilder sb = new StringBuilder();
-
+		int itemsInAPage = 5;
+		int limitFrom = (page - 1)* itemsInAPage;
+		
 		sb.append(String.format("SELECT * "));
 		sb.append(String.format("FROM `article` "));
-		sb.append(String.format("WHERE 1 "));
+		sb.append(String.format("WHERE displayStatus = 1 "));
+		if (cateItemId != 0) {
+			sb.append(String.format("AND cateItemId = %d ",cateItemId));
+		}
 		sb.append(String.format("ORDER BY id DESC "));
+		sb.append(String.format("LIMIT %d, %d"),limitFrom,itemsInAPage);
 
 		List<Article> articles = new ArrayList<>();
-		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
+		
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, sb.toString());
 
 		for (Map<String, Object> row : rows) {
 			articles.add(new Article(row));

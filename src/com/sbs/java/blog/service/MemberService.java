@@ -1,14 +1,15 @@
 package com.sbs.java.blog.service;
 
+import java.sql.Connection;
+
 import com.sbs.java.blog.dao.MemberDao;
 import com.sbs.java.blog.dto.Member;
-import com.sbs.java.blog.factory.Factory;
 
 public class MemberService {
 	private MemberDao memberDao;
 
-	public MemberService() {
-		memberDao = Factory.getMemberDao();
+	public MemberService(Connection dbConn) {
+		memberDao = new MemberDao(dbConn);
 	}
 
 	public Member getMemberByLoginIdAndLoginPw(String loginId, String loginPw) {

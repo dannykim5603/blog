@@ -1,4 +1,5 @@
 package com.sbs.java.blog.dao;
+import java.sql.Connection;
 import java.util.Map;
 
 import com.sbs.java.blog.db.DBConnection;
@@ -6,10 +7,10 @@ import com.sbs.java.blog.dto.Member;
 import com.sbs.java.blog.factory.Factory;
 
 public class MemberDao {
-	private DBConnection dbConnection;
+	private Connection dbConn;
 
-	public MemberDao() {
-		dbConnection = Factory.getDBConnection();
+	public MemberDao(Connection dbConn) {
+		this.dbConn = dbConn;
 	}
 
 	public Member getMemberByLoginIdAndLoginPw(String loginId, String loginPw) {

@@ -1,18 +1,18 @@
 package com.sbs.java.blog.service;
 
+import java.sql.Connection;
 import java.util.List;
 
 import com.sbs.java.blog.dao.ArticleDao;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.Board;
-import com.sbs.java.blog.factory.Factory;
 
 public class ArticleService {
 	private ArticleDao articleDao;
 
-	public ArticleService() {
-		articleDao = Factory.getArticleDao();
+	public ArticleService(Connection dbConn) {
+		articleDao = new ArticleDao(dbConn);
 	}
 
 	public List<Article> getArticlesByBoardCode(String code) {
@@ -43,8 +43,8 @@ public class ArticleService {
 //		return articleDao.save(article);
 //	}
 
-	public List<Article> getArticles() {
-		return articleDao.getArticles();
+	public List<Article> getArticles(int page, int cateItemId) {
+		return articleDao.getArticles(page,cateItemId);
 	}
 
 	public void makeBoardIfNotExists(String name, String code) {

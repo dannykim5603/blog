@@ -83,6 +83,7 @@ color: white;
 			<%} %>
 		</tbody>
 	</table>
+	<%/* %>
 	<div class = "page">
 	<%int totalCount = (int)request.getAttribute("totalCount");%>
 	<%int itemsInAPage = 5; %>
@@ -97,7 +98,9 @@ color: white;
 			<li><a herf="">다음</a>
 		</ul>
 		<%} %>
+		<%*/ %>
 	</div>
+	
 </div>
 
 
