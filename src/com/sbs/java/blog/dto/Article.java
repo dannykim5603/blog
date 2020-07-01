@@ -6,6 +6,15 @@ public class Article extends Dto{
 	private String updateDate;
 	private String title;
 	private String body;
+	private String cateItemId;
+
+	public String getCateItemId() {
+		return cateItemId;
+	}
+
+	public void setCateItemId(String cateItemId) {
+		this.cateItemId = cateItemId;
+	}
 
 	public Article() {
 

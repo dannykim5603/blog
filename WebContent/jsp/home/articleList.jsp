@@ -31,9 +31,27 @@ color: white;
 	text-align: center;
 }
 
+.page {
+	text-align:center;
+	padding : 20px;
+}
+.page > ui{
+
+}
+.page > ul > li{
+	display:inline-block;	
+}
+.page > ul > li > a{
+
+}
+.page > ul > li:hover > a{
+
+}
+
 </style>
 <%
  List<Article> articles = (List<Article>)request.getAttribute("articles");
+	
 %>
 <h2 class="con" style ="text-align: center"> LIST </h2>
 
@@ -65,6 +83,21 @@ color: white;
 			<%} %>
 		</tbody>
 	</table>
+	<div class = "page">
+	<%int totalCount = (int)request.getAttribute("totalCount");%>
+	<%int itemsInAPage = 5; %>
+	<%int limitFrom = ((int)page -1)*itemsInAPage; %>
+	<%int totalPage = (int)Math.ceil(totalCount / itemsInAPage); %>
+	<%for
+		(int i = 1; i <= totalPage; i++){
+	%>
+		<ul>
+			<li><a herf="">이전</a>
+			<li><a href="${pageContext.request.contextPath}/s/article?cateItemId=${param.cateItemId}&page=<%=i%>"></a></li>
+			<li><a herf="">다음</a>
+		</ul>
+		<%} %>
+	</div>
 </div>
 
 
