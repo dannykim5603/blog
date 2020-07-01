@@ -23,26 +23,21 @@ public class ArticleController extends Controller {
 		case "list":
 			return actionList(req, resp);
 			
-		case "write":
-			actionWrite();
 		}
 		return "";
 		
 	}
 
-	private void actionWrite() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private String actionList(HttpServletRequest req, HttpServletResponse resp) {
 		int cateItemId = 0;
 		if (req.getParameter("cateItemId") != null) {
 		 cateItemId= Integer.parseInt(req.getParameter("cateItemId"));
 		}
-		int page = 0;
+		
+		int page = 1;
 		if (req.getParameter("page") != null) {
-		 page= Integer.parseInt(req.getParameter("cateItemId"));
+			page= Integer.parseInt(req.getParameter("cateItemId"));
 		}
 		
 		List<Article> articles = articleService.getArticles(page,cateItemId);
