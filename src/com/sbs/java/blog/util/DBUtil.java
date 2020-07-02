@@ -104,4 +104,36 @@ public class DBUtil {
 		}
 		return false;
 	}
+
+	public static int insert(Connection dbConn, String sql) {
+		int id = -1;
+
+		try {
+			Statement stmt = dbConn.createStatement();
+			stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			System.err.printf("[SQL 예외, SQL : %s] : %s\n", sql, e.getMessage());
+		}
+		return id;
+	}
+	
+	public int delete(Connection dbConn, String sql) {
+		int affectedRows = 0;
+
+		Statement stmt;
+		try {
+			stmt = dbConn.createStatement();
+			affectedRows = stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			System.err.printf("[SQL 예외, SQL : %s] : %s\n", sql, e.getMessage());
+		}
+
+		return affectedRows;
+	}
 }

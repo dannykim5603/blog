@@ -1,92 +1,65 @@
 package com.sbs.java.blog.util;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-// Util
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class Util {
-	// 현재날짜문장
-	public static String getNowDateStr() {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat Date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateStr = Date.format(cal.getTime());
-		return dateStr;
+
+	public static boolean empty(HttpServletRequest req, String paramName) {
+		String paramValue = req.getParameter(paramName);
+		return empty(paramValue);
 	}
 
-	// 파일에 내용쓰기
-	public static void writeFileContents(String filePath, int data) {
-		writeFileContents(filePath, data + "");
-	}
-
-	// 첫 문자 소문자화
-	public static String lcfirst(String str) {
-		String newStr = "";
-		newStr += str.charAt(0);
-		newStr = newStr.toLowerCase();
-
-		return newStr + str.substring(1);
-	}
-
-	// 파일이 존재하는지
-	public static boolean isFileExists(String filePath) {
-		File f = new File(filePath);
-		if (f.isFile()) {
+	public static boolean empty(Object obj) {
+		if (obj == null) {
 			return true;
 		}
+		if (obj instanceof String) {
+				return ((String)obj).trim().length()==0;
+		}
+		return true;
+	}
 
+	public static boolean isNum(HttpServletRequest req, String paramName) {
+		String paramValue = req.getParameter(paramName);
+		
+		return isNum(paramValue);
+	}
+
+	public static boolean isNum(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj instanceof Long) {
+			return true;
+		} else if (obj instanceof Integer) {
+			return true;
+		} else if (obj instanceof String) {
+			try {
+				Integer.parseInt((String)obj);
+				return true;
+			}catch(NumberFormatException e) {
+				return false;
+			}
+		}
 		return false;
 	}
 
-	// 파일내용 읽어오기
-	public static String getFileContents(String filePath) {
-		String rs = null;
+	public static int getInt(HttpServletRequest req, String paramName) {
+		return Integer.parseInt(req.getParameter(paramName));
+	}
+	public static void prinEx(String errName, HttpServletResponse resp, Exception e) {
 		try {
-			// 바이트 단위로 파일읽기
-			FileInputStream fileStream = null; // 파일 스트림
-
-			fileStream = new FileInputStream(filePath);// 파일 스트림 생성
-			// 버퍼 선언
-			byte[] readBuffer = new byte[fileStream.available()];
-			while (fileStream.read(readBuffer) != -1) {
-			}
-
-			rs = new String(readBuffer);
-
-			fileStream.close(); // 스트림 닫기
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-
-		return rs;
-	}
-
-	// 파일 쓰기
-	public static void writeFileContents(String filePath, String contents) {
-		BufferedOutputStream bs = null;
-		try {
-			bs = new BufferedOutputStream(new FileOutputStream(filePath));
-			bs.write(contents.getBytes()); // Byte형으로만 넣을 수 있음
-		} catch (Exception e) {
-			e.getStackTrace();
-		} finally {
-			try {
-				bs.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			resp.getWriter().append("<h1 style='color:red; font-weight:bold; text-align:left;'> [Error :" + errName + "]</h1>");
+			resp.getWriter().append("<pre style='text-align:left; font-weight:bold; font-size:1.3rem;'>");
+			e.printStackTrace(resp.getWriter());
+			resp.getWriter().append("</pre>");
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 
-	public static void makeDir(String dirPath) {
-		File dir = new File(dirPath);
-		if (!dir.exists()) {
-			dir.mkdir();
-		}
-	}
+
 }

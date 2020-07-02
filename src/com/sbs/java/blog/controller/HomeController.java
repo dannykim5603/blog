@@ -10,21 +10,21 @@ public class HomeController extends Controller {
 	public String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
 			switch (actionMethodName) {
 			case "main":
-				return main();
+				return main(req,resp);
 			
 			case "aboutMe":
-				return aboutMe();
+				return aboutMe(req,resp);
 			}
 		return "";
 			
 	}
 
-	private String aboutMe() {
-		return "home/aboutMe";
+	private String aboutMe(HttpServletRequest req, HttpServletResponse resp) {
+		return "home/aboutMe.jsp";
 	}
 
-	private String main() {
-		return "home/main";
+	private String main(HttpServletRequest req, HttpServletResponse resp) {
+		return "home/main.jsp";
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.service.ArticleService;
+import com.sbs.java.blog.util.Util;
 
 public class ArticleController extends Controller {
 	private ArticleService articleService;
@@ -25,19 +26,34 @@ public class ArticleController extends Controller {
 			
 		case "detail":
 			return actionDetail(req,resp);
+			
+		case "write":
+			return actionWrtie(req,resp);
 		}
 		return "";
 		
 	}
 
 
+	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("id"));
+		if (Util.empty(req,"id")) {
+			return "plain:id를 입력해주세요.";
+		}
+		if (Util.isNum(req,"id") == false) {
+			return "plain:id를 정수로 입력해 주세요.";
+		}
+		
+		int id = Util.getInt(req,"id");
 		Article article = articleService.detail(id);
 		
 		req.setAttribute("article", article);
 		
-		return "article/detail";
+		return "article/detail.jsp";
 	}
 
 	private String actionList(HttpServletRequest req, HttpServletResponse resp) {
@@ -66,7 +82,7 @@ public class ArticleController extends Controller {
 		
 		req.setAttribute("articles", articles);
 		
-		return "article/list";
+		return "article/list.jsp";
 	}
 
 		

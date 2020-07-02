@@ -8,7 +8,6 @@ import java.util.Map;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.Board;
-import com.sbs.java.blog.service.page;
 import com.sbs.java.blog.util.DBUtil;
 
 // Dao
@@ -40,7 +39,7 @@ public class ArticleDao {
 		sb.append(String.format("WHERE 1 "));
 		sb.append(String.format("AND `id` = '%d' ", id));
 
-		Map<String, Object> row = dbConn.selectRow(dbConn,sb.toString());
+		Map<String, Object> row = DBUtil.selectRow(dbConn,sb.toString());
 
 		if (row.isEmpty()) {
 			return null;
@@ -77,9 +76,11 @@ public class ArticleDao {
 	public Article detail(int num) {
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append(String.format("SELECT *"));
+		sql.append(String.format("SELECT *, '김동연' AS extra__writer "));
 		sql.append(String.format("FROM article "));
-		sql.append(String.format("WHERE id = " + num + ";"));
+		sql.append(String.format("WHERE 1 "));
+		sql.append(String.format("AND id = %d ", num ));
+		sql.append(String.format("AND displayStatus = 1 "));
 		
 		Map<String, Object> row= DBUtil.selectRow(dbConn, sql.toString());
 		Article article = new Article(row);
@@ -95,16 +96,16 @@ public class ArticleDao {
 		sql.append(String.format("`body` = '" + body + "' "));
 		sql.append(String.format("WHERE id = " + num + ";"));
 
-		dbConn.insert(dbConn,sql.toString());
+		DBUtil.insert(dbConn,sql.toString());
 	}
 
-	public void delete(int num) {
+	public int delete(int num) {
 		StringBuilder sql = new StringBuilder();
 
 		sql.append(String.format("DELETE FROM article "));
 		sql.append(String.format("WHERE id = " + num + ";"));
 		
-		dbConn.delete(dbConn,sql.toString());
+		return DBUtil.delete(dbConn,sql.toString());
 	}
 
 

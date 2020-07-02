@@ -16,15 +16,6 @@ public class Article extends Dto{
 		this.cateItemId = cateItemId;
 	}
 
-	public Article() {
-
-	}
-
-	public Article( String title, String body) {
-		this.title = title;
-		this.body = body;
-	}
-
 	public Article(Map<String, Object> row) {
 		super(row);
 		this.updateDate = (String) row.get("updateDate");
@@ -58,7 +49,7 @@ public class Article extends Dto{
 
 	@Override
 	public String toString() {
-		return String.format("%n게시번호 : %d 제목 : %s%n게시 날짜 : %s 업데이트 날짜 : %s%n내용 : %s%n%n ",getId(), getTitle(), getRegDate(),getUpdateDate(), body);
+		return String.format("%n게시번호 : %d 제목 : %s%n게시 날짜 : %s 업데이트 날짜 : %s%n내용 : %s%n%n "+super.toString(),getId(), getTitle(), getRegDate(),getUpdateDate(), body);
 	}
 
 
