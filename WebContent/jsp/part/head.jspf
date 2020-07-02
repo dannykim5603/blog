@@ -90,8 +90,8 @@
 							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=4&">IT/일반</a></li>
 							<li><a class="block " href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/home/aboutMe" class="block">About Me</a></li>
-				<li><a href=" # " class=" block "">SNS</a>
+				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe" class="block">About Me</a></li>
+				<li><a href=" # " class=" block ">SNS</a>
 					<ul>
 						<li><a class="block " href="https://to2.kr/brs"
 							target="blank">GITHUB</a></li>

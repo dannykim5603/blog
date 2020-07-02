@@ -80,5 +80,28 @@ public class DBUtil {
 
 		return rows;
 	}
+
+	public static int selectRowIntValue(Connection dbConn, String sql) {
+		Map<String,Object> row = selectRow(dbConn,sql);
+		for (String key : row.keySet()) {
+			return (int) row.get(key);
+		}
+		return -1;
+	}
 	
+	public static String selectRowStringValue(Connection dbConn, String sql) {
+		Map<String,Object> row = selectRow(dbConn,sql);
+		for (String key : row.keySet()) {
+			return (String) row.get(key);
+		}
+		return "";
+	}
+	
+	public static Boolean selectRowIntBooleanValue(Connection dbConn, String sql) {
+		Map<String,Object> row = selectRow(dbConn,sql);
+		for (String key : row.keySet()) {
+			return (int) row.get(key) == 1;
+		}
+		return false;
+	}
 }

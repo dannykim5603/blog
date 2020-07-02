@@ -43,20 +43,31 @@
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-<div class="con" style = "background-color:white" >
+<style>
+.article-box {
+	border: 2px double #444958;
+	margin-top: 20px;
+}
+
+.article-box>.article-table {
+	border: 2px solid #444958;
+}
+</style>
+
+
+<div class="con article-box" style="background-color: white">
 	<h1><%=article.getTitle()%></h1>
 	<h2><%=article.getRegDate()%></h2>
-
-	<div id="origin1" style="display:none;"><%=article.getBody()%></div>
-	<div id="viewer1" ></div>
+	<div id="origin1" style="display: none;"><%=article.getBody()%></div>
+	<div id="viewer1"></div>
 	<script>
 		var editor1__initialValue = $('#origin1').html();
 		var editor1 = new toastui.Editor({
-			el:document.querySelector('#viewer1'),
-			height:'600px',
-			initialValue:editor1__initialValue,
-			viewer:true,
-			plugins:[toastui.Editor.plugin.codeSyntaxHighlight]
+			el : document.querySelector('#viewer1'),
+			height : '600px',
+			initialValue : editor1__initialValue,
+			viewer : true,
+			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
 		});
 	</script>
 </div>

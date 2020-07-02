@@ -23,11 +23,22 @@ public class ArticleController extends Controller {
 		case "list":
 			return actionList(req, resp);
 			
+		case "detail":
+			return actionDetail(req,resp);
 		}
 		return "";
 		
 	}
 
+
+	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		Article article = articleService.detail(id);
+		
+		req.setAttribute("article", article);
+		
+		return "article/detail";
+	}
 
 	private String actionList(HttpServletRequest req, HttpServletResponse resp) {
 		int cateItemId = 0;
@@ -37,10 +48,21 @@ public class ArticleController extends Controller {
 		
 		int page = 1;
 		if (req.getParameter("page") != null) {
-			page= Integer.parseInt(req.getParameter("cateItemId"));
+			page= Integer.parseInt(req.getParameter("page"));
 		}
 		
-		List<Article> articles = articleService.getArticles(page,cateItemId);
+		int itemsInAPage = 10;
+		int totalCount = articleService.getArticlesCount(cateItemId);
+		int totalPage = (int)Math.ceil(totalCount / (double)itemsInAPage);
+		
+		String boardName = articleService.getBoardName(cateItemId);
+		
+		req.setAttribute("boardName", boardName);
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("page", page);
+		
+		List<Article> articles = articleService.getArticles(page,itemsInAPage,cateItemId);
 		
 		req.setAttribute("articles", articles);
 		
@@ -48,4 +70,4 @@ public class ArticleController extends Controller {
 	}
 
 		
-}
+}	

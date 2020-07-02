@@ -3,7 +3,7 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 <! 프로필>
-<div class="profile-box con flex visible-on-md-up">
+<div class="profile-box con flex visible-on-md-up" style ="background-color:white">
 	<div class="profile-img flex flex-ai-c">
 		<img src="${pageContext.request.contextPath}/resource/img/profile.png" alt="" width="120">
 	</div>
@@ -14,6 +14,6 @@
 			dannykim5603@gmail.com<br> Phone : 010-2209-5603
 		</p>
 	</div>
-</div>>
+</div>
 <%@ include file="/jsp/part/foot.jspf"%>
 

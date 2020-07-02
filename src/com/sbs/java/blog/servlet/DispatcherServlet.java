@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.java.blog.controller.ArticleController;
 import com.sbs.java.blog.controller.Controller;
+import com.sbs.java.blog.controller.HomeController;
 import com.sbs.java.blog.controller.MemberController;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.util.DBUtil;
@@ -65,6 +66,8 @@ public class DispatcherServlet extends HttpServlet {
 			case "member":
 				controller = new MemberController(dbConn);
 				break;
+			case "home":
+				controller = new HomeController();
 			}
 
 			if (controller != null) {

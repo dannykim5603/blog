@@ -29,7 +29,7 @@ public class ArticleDao {
 //		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
 //		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
 
-		return dbConnection.insert(sb.toString());
+		return DBUtil.insert(dbConn,sb.toString());
 	}
 
 	public Board getBoard(int id) {
@@ -40,7 +40,7 @@ public class ArticleDao {
 		sb.append(String.format("WHERE 1 "));
 		sb.append(String.format("AND `id` = '%d' ", id));
 
-		Map<String, Object> row = dbConnection.selectRow(sb.toString());
+		Map<String, Object> row = dbConn.selectRow(dbConn,sb.toString());
 
 		if (row.isEmpty()) {
 			return null;
@@ -49,11 +49,10 @@ public class ArticleDao {
 		return new Board(row);
 	}
 
-	public List<Article> getArticles(int page, int cateItemId) {
+	public List<Article> getArticles(int page, int itemsInAPage,int cateItemId) {
 		
 		String sql = "";
 
-		int itemsInAPage = 10;
 		int limitFrom = (page - 1) * itemsInAPage;
 
 		sql += String.format("SELECT * ");
@@ -75,6 +74,19 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public Article detail(int num) {
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(String.format("SELECT *"));
+		sql.append(String.format("FROM article "));
+		sql.append(String.format("WHERE id = " + num + ";"));
+		
+		Map<String, Object> row= DBUtil.selectRow(dbConn, sql.toString());
+		Article article = new Article(row);
+		
+		return article;
+	}
+	
 	public void modify(int num, String title, String body) {
 		StringBuilder sql = new StringBuilder();
 
@@ -83,7 +95,7 @@ public class ArticleDao {
 		sql.append(String.format("`body` = '" + body + "' "));
 		sql.append(String.format("WHERE id = " + num + ";"));
 
-		dbConnection.insert(sql.toString());
+		dbConn.insert(dbConn,sql.toString());
 	}
 
 	public void delete(int num) {
@@ -92,21 +104,9 @@ public class ArticleDao {
 		sql.append(String.format("DELETE FROM article "));
 		sql.append(String.format("WHERE id = " + num + ";"));
 		
-		dbConnection.delete(sql.toString());
+		dbConn.delete(dbConn,sql.toString());
 	}
 
-	public Article detail(int num) {
-		StringBuilder sql = new StringBuilder();
-
-		sql.append(String.format("SELECT *"));
-		sql.append(String.format("FROM article "));
-		sql.append(String.format("WHERE id = " + num + ";"));
-		
-		Map<String, Object> row= dbConnection.selectRow(sql.toString());
-		Article article = new Article(row);
-		
-			return article;
-	}
 
 	public int saveReply(ArticleReply articleReply) {
 		StringBuilder sb = new StringBuilder();
@@ -117,7 +117,7 @@ public class ArticleDao {
 		sb.append(String.format(", `memberId` = '%d' ", articleReply.getMemberId()));
 		sb.append(String.format(", `articleId` = '%d' ", articleReply.getArticleId()));
 
-		return dbConnection.insert(sb.toString());
+		return dbConn.insert(dbConn,sb.toString());
 	}
 
 	public List<ArticleReply> getArticleReplyByArticleId(int id) {
@@ -129,7 +129,7 @@ public class ArticleDao {
 		sb.append(String.format("ORDER BY id DESC "));
 
 		List<ArticleReply> articleReplies = new ArrayList<>();
-		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
+		List<Map<String, Object>> rows = dbConn.selectRows(dbConn,sb.toString());
 
 		for (Map<String, Object> row : rows) {
 			
@@ -146,7 +146,7 @@ public class ArticleDao {
 		sb.append(String.format("WHERE Id = '%d' ",id));
 		sb.append(String.format("ORDER BY id DESC "));
 
-		Map<String, Object> row = dbConnection.selectRow(sb.toString());
+		Map<String, Object> row = dbConn.selectRow(dbConn,sb.toString());
 
 		ArticleReply articleReply = new ArticleReply(row);
 
@@ -159,7 +159,7 @@ public class ArticleDao {
 		sql.append(String.format("DELETE FROM `articleReply` "));
 		sql.append(String.format("WHERE id = " + id + ";"));
 		
-		dbConnection.delete(sql.toString());
+		dbConn.delete(dbConn,sql.toString());
 	}
 
 	public void deleteBoardBycode(int id) {
@@ -167,7 +167,33 @@ public class ArticleDao {
 		
 		sql.append(String.format("DELETE FROM `board` "));
 		sql.append(String.format("WHERE id = %d ;",id));
-		dbConnection.delete(sql.toString());
+		dbConn.delete(dbConn,sql.toString());
 	}
 
+	public int getArticlesCount(int cateItemId) {
+		String sql = "";
+
+		sql += String.format("SELECT COUNT(*) AS cnt ");
+		sql += String.format("FROM article ");
+		sql += String.format("WHERE displayStatus = 1 ");
+		if (cateItemId != 0) {
+			sql += String.format("AND cateItemId = %d ", cateItemId);
+		}
+
+		int count = DBUtil.selectRowIntValue(dbConn, sql);
+		
+		return count;
+	}
+
+	public String getBoardName(int cateItemId) {
+		String sql = "";
+
+		sql += String.format("SELECT name ");
+		sql += String.format("FROM cateItem ");
+		sql += String.format("WHERE id = %d;",cateItemId);
+		
+		String name = DBUtil.selectRowStringValue(dbConn, sql);
+		
+		return name;
+	}
 }

@@ -1,0 +1,30 @@
+package com.sbs.java.blog.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HomeController extends Controller {
+	
+
+	@Override
+	public String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
+			switch (actionMethodName) {
+			case "main":
+				return main();
+			
+			case "aboutMe":
+				return aboutMe();
+			}
+		return "";
+			
+	}
+
+	private String aboutMe() {
+		return "home/aboutMe";
+	}
+
+	private String main() {
+		return "home/main";
+	}
+
+}

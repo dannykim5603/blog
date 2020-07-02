@@ -43,8 +43,8 @@ public class ArticleService {
 //		return articleDao.save(article);
 //	}
 
-	public List<Article> getArticles(int page, int cateItemId) {
-		return articleDao.getArticles(page,cateItemId);
+	public List<Article> getArticles(int page,int itemsInAPage, int cateItemId) {
+		return articleDao.getArticles(page,itemsInAPage,cateItemId);
 	}
 
 	public void makeBoardIfNotExists(String name, String code) {
@@ -92,4 +92,11 @@ public class ArticleService {
 		articleDao.deleteBoardBycode(id);
 	}
 
+	public int getArticlesCount(int cateItemId) {
+		return articleDao.getArticlesCount(cateItemId);
+	}
+
+	public String getBoardName(int cateItemId) {
+		return articleDao.getBoardName(cateItemId);
+	}
 }
