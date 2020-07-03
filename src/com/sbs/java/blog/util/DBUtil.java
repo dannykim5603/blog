@@ -123,7 +123,7 @@ public class DBUtil {
 		return id;
 	}
 	
-	public int delete(Connection dbConn, String sql) {
+	public static int delete(Connection dbConn, String sql) {
 		int affectedRows = 0;
 
 		Statement stmt;

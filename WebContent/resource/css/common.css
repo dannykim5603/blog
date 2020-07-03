@@ -557,9 +557,8 @@ label[for] {
 .mobile-side-bar>.menu-box-1 ul>li:hover>a {
     background-color :#20232b ;
     opacity: .7;
-    color: white;
-    animation: blink 1.5s ease-in-out infinite alternate;
-    font-size: .9rem;
+    color: crimson;
+    font-size: 1.1rem;
     font-weight: 100;
 }
 

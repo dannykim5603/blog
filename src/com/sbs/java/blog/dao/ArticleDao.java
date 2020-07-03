@@ -118,7 +118,7 @@ public class ArticleDao {
 		sb.append(String.format(", `memberId` = '%d' ", articleReply.getMemberId()));
 		sb.append(String.format(", `articleId` = '%d' ", articleReply.getArticleId()));
 
-		return dbConn.insert(dbConn,sb.toString());
+		return DBUtil.insert(dbConn,sb.toString());
 	}
 
 	public List<ArticleReply> getArticleReplyByArticleId(int id) {
@@ -130,7 +130,7 @@ public class ArticleDao {
 		sb.append(String.format("ORDER BY id DESC "));
 
 		List<ArticleReply> articleReplies = new ArrayList<>();
-		List<Map<String, Object>> rows = dbConn.selectRows(dbConn,sb.toString());
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn,sb.toString());
 
 		for (Map<String, Object> row : rows) {
 			
@@ -147,7 +147,7 @@ public class ArticleDao {
 		sb.append(String.format("WHERE Id = '%d' ",id));
 		sb.append(String.format("ORDER BY id DESC "));
 
-		Map<String, Object> row = dbConn.selectRow(dbConn,sb.toString());
+		Map<String, Object> row = DBUtil.selectRow(dbConn,sb.toString());
 
 		ArticleReply articleReply = new ArticleReply(row);
 
@@ -160,7 +160,7 @@ public class ArticleDao {
 		sql.append(String.format("DELETE FROM `articleReply` "));
 		sql.append(String.format("WHERE id = " + id + ";"));
 		
-		dbConn.delete(dbConn,sql.toString());
+		DBUtil.delete(dbConn,sql.toString());
 	}
 
 	public void deleteBoardBycode(int id) {
@@ -168,7 +168,7 @@ public class ArticleDao {
 		
 		sql.append(String.format("DELETE FROM `board` "));
 		sql.append(String.format("WHERE id = %d ;",id));
-		dbConn.delete(dbConn,sql.toString());
+		DBUtil.delete(dbConn,sql.toString());
 	}
 
 	public int getArticlesCount(int cateItemId) {

@@ -36,8 +36,7 @@ public class ArticleController extends Controller {
 
 
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return null;
+		return "article/doWrite";
 	}
 
 	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {

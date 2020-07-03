@@ -4,9 +4,9 @@
 <%@ include file="/jsp/part/head.jspf"%>
 
 <!대문>
-<div class="index con" style ="margin-top: 10%">
-	<p class="text-align-center">
-		welcome to <span> UNKNOWN </span> &mdash; enjoy your time &mdash;
+<div class="index con" style ="margin-top: 15%">
+	<p class="text-align-center con">
+		welcome to <span class = "con flex"> UNKNOWN </span> &mdash; enjoy your time &mdash;
 	</p>
 </div>
 

@@ -5,9 +5,11 @@ function MobileSideBar__init() {
         if ($(this).hasClass('active')) {
             $(this).removeClass('active');
             $('.mobile-side-bar').removeClass('active');
+            $('.index').removeClass('active');
         } else {
             $(this).addClass('active');
             $('.mobile-side-bar').addClass('active');
+            $('.index').addClass('active');
         }
     });
 }

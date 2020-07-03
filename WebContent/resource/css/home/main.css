@@ -401,6 +401,9 @@ label[for] {
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
 }
+.index.active {
+	visibility:hidden;
+}
 
 /* Animate Background Image */
 
