@@ -6,10 +6,12 @@ function MobileSideBar__init() {
             $(this).removeClass('active');
             $('.mobile-side-bar').removeClass('active');
             $('.index').removeClass('active');
+            $('.mobile-profile-box').removeClass('active');
         } else {
             $(this).addClass('active');
             $('.mobile-side-bar').addClass('active');
             $('.index').addClass('active');
+            $('.mobile-profile-box').addClass('active');
         }
     });
 }
