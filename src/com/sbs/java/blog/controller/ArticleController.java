@@ -1,88 +1,108 @@
 package com.sbs.java.blog.controller;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import com.sbs.java.blog.dto.Article;
-import com.sbs.java.blog.service.ArticleService;
+import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.util.Util;
 
 public class ArticleController extends Controller {
-	private ArticleService articleService;
-
-	public ArticleController(Connection dbConn) {
-		articleService = new ArticleService(dbConn);
+	public ArticleController(Connection dbConn, String actionMethodName, HttpServletRequest req,
+			HttpServletResponse resp) {
+		super(dbConn, actionMethodName, req, resp);
 	}
 
-	public String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
+	public void beforeAction() {
+		super.beforeAction();
+		// 이 메서드는 아티클 게시물 컨트롤러의 모든 액션이 실행되기 전에 실행된다.
+		// 필요 없다면 지워도 된다.
+	}
+
+	public String doAction() {
 		switch (actionMethodName) {
 		case "list":
 			return actionList(req, resp);
-			
+
 		case "detail":
-			return actionDetail(req,resp);
-			
+			return actionDetail(req, resp);
+
 		case "write":
-			return actionWrtie(req,resp);
+			return actionWrtie(req, resp);
 		}
 		return "";
-		
-	}
 
+	}
 
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
 		return "article/doWrite";
 	}
 
 	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {
-		if (Util.empty(req,"id")) {
-			return "plain:id를 입력해주세요.";
+		if (Util.empty(req, "id")) {
+			return "html:id를 입력해주세요.";
 		}
-		if (Util.isNum(req,"id") == false) {
-			return "plain:id를 정수로 입력해 주세요.";
+		if (Util.isNum(req, "id") == false) {
+			return "html:id를 정수로 입력해 주세요.";
 		}
-		
-		int id = Util.getInt(req,"id");
+
+		int id = Util.getInt(req, "id");
 		Article article = articleService.detail(id);
-		
+
 		req.setAttribute("article", article);
-		
+
 		return "article/detail.jsp";
 	}
 
 	private String actionList(HttpServletRequest req, HttpServletResponse resp) {
-		int cateItemId = 0;
-		if (req.getParameter("cateItemId") != null) {
-		 cateItemId= Integer.parseInt(req.getParameter("cateItemId"));
-		}
-		
 		int page = 1;
-		if (req.getParameter("page") != null) {
-			page= Integer.parseInt(req.getParameter("page"));
+
+		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
+			page = Util.getInt(req, "page");
+		}
+
+		int cateItemId = 0;
+
+		if (!Util.empty(req, "cateItemId") && Util.isNum(req, "cateItemId")) {
+			cateItemId = Util.getInt(req, "cateItemId");
 		}
 		
+		String cateItemName = "전체";
+		
+		if ( cateItemId != 0 ) {
+			CateItem cateItem = articleService.getCateItem(cateItemId);
+			cateItemName = cateItem.getName();
+		}
+		req.setAttribute("cateItemName", cateItemName);
+		
+
+		String searchKeywordType = "";
+
+		if (!Util.empty(req, "searchKeywordType")) {
+			searchKeywordType = Util.getString(req, "searchKeywordType");
+		}
+
+		String searchKeyword = "";
+
+		if (!Util.empty(req, "searchKeyword")) {
+			searchKeyword = Util.getString(req, "searchKeyword");
+		}
+
 		int itemsInAPage = 10;
-		int totalCount = articleService.getArticlesCount(cateItemId);
-		int totalPage = (int)Math.ceil(totalCount / (double)itemsInAPage);
-		
-		String boardName = articleService.getBoardName(cateItemId);
-		
-		req.setAttribute("boardName", boardName);
+		int totalCount = articleService.getArticlesCount(cateItemId, searchKeywordType, searchKeyword);
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
-		
-		List<Article> articles = articleService.getArticles(page,itemsInAPage,cateItemId);
-		
+
+		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId,
+				searchKeywordType, searchKeyword);
 		req.setAttribute("articles", articles);
-		
 		return "article/list.jsp";
 	}
-
-		
-}	
+}

@@ -3,24 +3,23 @@ package com.sbs.java.blog.service;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.sbs.java.blog.dao.ArticleDao;
 import com.sbs.java.blog.dto.Article;
-import com.sbs.java.blog.dto.ArticleReply;
-import com.sbs.java.blog.dto.Board;
+import com.sbs.java.blog.dto.CateItem;
 
-public class ArticleService {
+public class ArticleService extends Service {
 	private ArticleDao articleDao;
 
-	public ArticleService(Connection dbConn) {
-		articleDao = new ArticleDao(dbConn);
+	public ArticleService(Connection dbConn,HttpServletRequest req, HttpServletResponse resp) {
+		super(req, resp);
+		articleDao = new ArticleDao(dbConn,req, resp);
 	}
 
-	public Board getBoard(int id) {
-		return articleDao.getBoard(id);
-	}
-
-	public List<Article> getArticles(int page,int itemsInAPage, int cateItemId) {
-		return articleDao.getArticles(page,itemsInAPage,cateItemId);
+	public List<Article> getArticles(int page,int itemsInAPage, int cateItemId,String searchKeywordType, String searchKeyword) {
+		return articleDao.getArticles(page,itemsInAPage,cateItemId,searchKeywordType,searchKeyword);
 	}
 
 	public void modify(int num, String title, String body) {
@@ -35,18 +34,6 @@ public class ArticleService {
 		return articleDao.detail(num);
 	}
 
-	public int writeArticleReply(int articleId, int memberId, String body) {
-		ArticleReply articleReply = new ArticleReply(articleId, memberId, body);
-		return articleDao.saveReply(articleReply);
-	}
-
-	public List<ArticleReply> getArticleReplyByArticleId(int id) {
-		return articleDao.getArticleReplyByArticleId(id);
-	}
-
-	public ArticleReply getReplyById(int id) {
-		return articleDao.getArticleReplyById(id);
-	}
 
 	public void deleteReply(int id) {
 		articleDao.deleteReply(id);
@@ -56,11 +43,19 @@ public class ArticleService {
 		articleDao.deleteBoardBycode(id);
 	}
 
-	public int getArticlesCount(int cateItemId) {
-		return articleDao.getArticlesCount(cateItemId);
+	public int getArticlesCount(int cateItemId, String searchKeywordType, String searchKeyword) {
+		return articleDao.getArticlesCount(cateItemId,searchKeywordType,searchKeyword);
 	}
 
 	public String getBoardName(int cateItemId) {
 		return articleDao.getBoardName(cateItemId);
+	}
+
+	public List<CateItem> getCateItemsForPrint() {
+		return articleDao.getCateItemsForPrint();
+	}
+
+	public CateItem getCateItem(int cateItemId) {
+		return articleDao.getCateItem(cateItemId);
 	}
 }

@@ -52,9 +52,9 @@ h2 {
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
 int totalPage = (int) request.getAttribute("totalPage");
 int paramPage = (int) request.getAttribute("page");
-String boardName = (String) request.getAttribute("boardName");
+String cateItemName = (String) request.getAttribute("cateItemName");
 %>
-<h2 class="con" style="text-align: center"> ${boardName} 🤗 </h2>
+<h2 class="con" style="text-align: center"> <%=cateItemName%> 🤗 </h2>
 <h2 calss="con" style="text-align: center">총 게시물 수 : ${totalCount}</h2>
 <div class="article-list-box-1 con table-box">
 	<table>
@@ -79,8 +79,9 @@ String boardName = (String) request.getAttribute("boardName");
 				<td><%=article.getId()%></td>
 				<td><%=article.getRegDate()%></td>
 				<td><%=article.getUpdateDate()%></td>
-				<td class=" text-align-left "><a
-					href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></td>
+				<td class=" text-align-left ">
+					<a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
+				</td>
 			</tr>
 			<%
 				}
@@ -95,12 +96,23 @@ String boardName = (String) request.getAttribute("boardName");
 			for (int i = 1; i <= totalPage; i++) {
 		%>
 		<li class="<%=i == paramPage ? "current" : ""%>"><a
-			href="?cateItemId=${param.cateItemId}&page=<%=i%>" class="block"><%=i%></a></li>
+			href="?cateItemId=${param.cateItemId}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}&page=<%=i%>" class="block"><%=i%></a></li>
 		<%
 			}
 		%>
 	</ul>
 </div>
+
+<div class="con serch-box flex flex-jc-c">
+
+	<form action="${pageContext.request.contextPath}/s/article/list">
+		<input type="hidden" name="page" value="1" />
+		<input type="hidden" name="cateItemId" value="${param.cateItemId}" />
+		<input type="hidden" name="serchKeywordType" value="title" /> 
+		<input type="text" name="serchKeyword" value="${param.serchKeyword}" />
+		<button type="submit">검색</button>
+	</form>
+	
 </div>
 
 

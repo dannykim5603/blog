@@ -1,49 +1,69 @@
+<%@ page import="java.util.List"%>
+<%@ page import="com.sbs.java.blog.dto.CateItem"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	List<CateItem> cateItems = (List<CateItem>) request.getAttribute("cateItems");
+%>
 <!DOCTYPE html>
-<html lang="ko" style="background-color:#20232b;">
+<html lang="ko" style="background-color: #20232b;">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unknown</title>
 <!--  css 불러오기 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/home/main.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/home/aboutMe.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resource/css/common.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resource/css/home/main.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resource/css/home/aboutMe.css">
 
 <!--  제이쿼리 불러오기 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
 <script src="${pageContext.request.contextPath}/resource/js/common.js "></script>
-<script src="${pageContext.request.contextPath}/resource/js/home/main.js "></script>
+<script
+	src="${pageContext.request.contextPath}/resource/js/home/main.js "></script>
 
 
 </head>
 
 <body>
-<!-배경->
+	<!-배경->
 
 	<!-pc 탑바 ->
 	<div class="top-bar visible-on-md-up ">
-		<a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png" alt width="250" 
-				class="image blinking ">
+		<a href="${pageContext.request.contextPath}/s/home/main"
+			class="logo flex flex-jc-c "> <span> <img
+				src="${pageContext.request.contextPath}/resource/img/logo.png" alt =""
+				width="250" class="image blinking ">
 		</span>
 		</a>
 		<div class="con height-100p ">
 			<nav class="menu-box-1 flex flex-jc-c flex flex-ai-e">
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
-					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c">Home</a></li>
-					<li><a href="# " class="height-100p flex flex-ai-c">Articles</a>
+					<li><a href="${pageContext.request.contextPath}/s/home/main"
+						class="height-100p flex flex-ai-c">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=1&">일상/취미</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=2&">공부계획</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=3&">유튜브 링크</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=4&">IT/일반</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
-						</ul></li>
-					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
+						<%
+							for (CateItem cateItem : cateItems) {
+						%>
+						<li><a class="block "
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=<%=cateItem.getId()%>&"><%=cateItem.getName()%></a></li>
+						<% } %>
+						<li><a class="block "
+							href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
+					</ul>
+					</li>
+					<li><a
+						href="${pageContext.request.contextPath}/s/home/aboutMe"
 						class="height-100p flex flex-ai-c ">About Me</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">SNS</a>
 						<ul>
@@ -64,14 +84,13 @@
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
 		<a href="${pageContext.request.contextPath}/home/main "
 			class="logo flex flex-ai-c absolute-center absolute-middle ">
-			 <a	href="# " class="btn-toggle-mobile-side-bar ">
+		<a href="# " class="btn-toggle-mobile-side-bar ">
 				<div></div>
 				<div></div>
 				<div></div>
 		</a>
 		</a> <a href="# " class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png" alt width="250 "
-				class="image blinking ">
+				src="${pageContext.request.contextPath}/resource/img/logo.png" alt="" width="250 " class="image blinking ">
 		</span>
 		</a>
 	</div>
@@ -81,16 +100,24 @@
 	<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down ">
 		<nav class="menu-box-1 flex-grow-1 ">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
-				<li><a href="# " class="block">Articles</a>
-					<ul>
-						<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=1&">일상/취미</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=2&">공부계획</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=3&">유튜브 링크</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=4&">IT/일반</a></li>
-							<li><a class="block " href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
-					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe" class="block">About Me</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/main"
+					class="block">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
+						<ul>
+						<%
+							for (CateItem cateItem : cateItems) {
+						%>
+						<li><a class="block "
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=<%=cateItem.getId()%>&"><%=cateItem.getName()%></a></li>
+						<%
+							}
+						%>
+						<li><a class="block "
+							href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
+					</ul>
+					</li>
+				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
+					class="block">About Me</a></li>
 				<li><a href=" # " class=" block ">SNS</a>
 					<ul>
 						<li><a class="block " href="https://to2.kr/brs"
@@ -103,7 +130,3 @@
 			</ul>
 		</nav>
 	</div>
-	
-	
-
-	

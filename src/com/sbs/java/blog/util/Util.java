@@ -1,6 +1,7 @@
 package com.sbs.java.blog.util;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,7 +51,7 @@ public class Util {
 	public static int getInt(HttpServletRequest req, String paramName) {
 		return Integer.parseInt(req.getParameter(paramName));
 	}
-	public static void prinEx(String errName, HttpServletResponse resp, Exception e) {
+	public static void printEx(String errName, HttpServletResponse resp, Exception e) {
 		try {
 			resp.getWriter().append("<h1 style='color:red; font-weight:bold; text-align:left;'> [Error :" + errName + "]</h1>");
 			resp.getWriter().append("<pre style='text-align:left; font-weight:bold; font-size:1.3rem;'>");
@@ -61,5 +62,8 @@ public class Util {
 		}
 	}
 
-
+	public static String getString(HttpServletRequest req, String paramName) {
+		
+		return req.getParameter(paramName);
+	}
 }
