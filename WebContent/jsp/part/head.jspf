@@ -41,8 +41,8 @@
 	<div class="top-bar visible-on-md-up ">
 		<a href="${pageContext.request.contextPath}/s/home/main"
 			class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png" alt =""
-				width="250" class="image blinking ">
+				src="${pageContext.request.contextPath}/resource/img/logo.png"
+				alt="" width="250" class="image blinking ">
 		</span>
 		</a>
 		<div class="con height-100p ">
@@ -50,18 +50,21 @@
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
 					<li><a href="${pageContext.request.contextPath}/s/home/main"
 						class="height-100p flex flex-ai-c">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
+					<li><a
+						href="${pageContext.request.contextPath}/s/article/list"
+						class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
-						<%
-							for (CateItem cateItem : cateItems) {
-						%>
-						<li><a class="block "
-							href="${pageContext.request.contextPath}/s/article/list?cateItemId=<%=cateItem.getId()%>&"><%=cateItem.getName()%></a></li>
-						<% } %>
-						<li><a class="block "
-							href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
-					</ul>
-					</li>
+							<%
+								for (CateItem cateItem : cateItems) {
+							%>
+							<li><a class="block "
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=<%=cateItem.getId()%>&"><%=cateItem.getName()%></a></li>
+							<%
+								}
+							%>
+							<li><a class="block "
+								href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
+						</ul></li>
 					<li><a
 						href="${pageContext.request.contextPath}/s/home/aboutMe"
 						class="height-100p flex flex-ai-c ">About Me</a></li>
@@ -83,14 +86,15 @@
 	<!-모바일 탑바->
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
 		<a href="${pageContext.request.contextPath}/home/main "
-			class="logo flex flex-ai-c absolute-center absolute-middle ">
-		<a href="# " class="btn-toggle-mobile-side-bar ">
+			class="logo flex flex-ai-c absolute-center absolute-middle "> <a
+			href="# " class="btn-toggle-mobile-side-bar ">
 				<div></div>
 				<div></div>
 				<div></div>
 		</a>
 		</a> <a href="# " class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png" alt="" width="250 " class="image blinking ">
+				src="${pageContext.request.contextPath}/resource/img/logo.png"
+				alt="" width="250 " class="image blinking ">
 		</span>
 		</a>
 	</div>
@@ -102,8 +106,9 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/s/home/main"
 					class="block">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
-						<ul>
+				<li><a href="${pageContext.request.contextPath}/s/article/list"
+					class="height-100p flex flex-ai-c">Articles</a>
+					<ul>
 						<%
 							for (CateItem cateItem : cateItems) {
 						%>
@@ -114,8 +119,7 @@
 						%>
 						<li><a class="block "
 							href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
-					</ul>
-					</li>
+					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
 					class="block">About Me</a></li>
 				<li><a href=" # " class=" block ">SNS</a>

@@ -108,8 +108,8 @@ String cateItemName = (String) request.getAttribute("cateItemName");
 	<form action="${pageContext.request.contextPath}/s/article/list">
 		<input type="hidden" name="page" value="1" />
 		<input type="hidden" name="cateItemId" value="${param.cateItemId}" />
-		<input type="hidden" name="serchKeywordType" value="title" /> 
-		<input type="text" name="serchKeyword" value="${param.serchKeyword}" />
+		<input type="hidden" name="searchKeywordType" value="title" /> 
+		<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
 		<button type="submit">검색</button>
 	</form>
 	
