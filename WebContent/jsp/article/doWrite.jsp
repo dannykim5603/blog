@@ -27,20 +27,32 @@
 <!-- 토스트 UI 에디터, CSS 코어 -->
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-
 <h1 >글 작성 </h1>
-<div id="editor1"></div>
 
-<script>
-var editor1 = new toastui.Editor({
-	  el: document.querySelector('#editor1'),
-	  height: '600px',
-	  initialEditType: 'markdown',
-	  previewStyle: 'vertical',
-	  initialValue: "# 이곳에 글을 작성해 주세요.",
-	  plugins: [toastui.Editor.plugin.codeSyntaxHighlight]
-	});
+<div class="con article-box" style="background-color: white">
+<table>
+<thead>
+	<th>제목</th>
+	<td><span ></span></td>
+</thead>
+<tbody></tbody>
+</table>
+	
+	<h2><%=%></h2>
+	<div id="origin1"></div>
+	<div id="viewer1"></div>
+	<script>
+	var editor1 = new toastui.Editor({
+		  el: document.querySelector('#editor1'),
+		  height: '600px',
+		  initialEditType: 'markdown',
+		  previewStyle: 'vertical',
+		  initialValue: "# 이곳에 글을 작성해 주세요.",
+		  plugins: [toastui.Editor.plugin.codeSyntaxHighlight]
+		});
 	</script>
+</div>
+<div id="editor1"></div>
 
 
 <%@ include file="/jsp/part/foot.jspf"%>

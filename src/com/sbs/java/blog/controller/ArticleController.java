@@ -39,6 +39,15 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
+		Article article = null;
+		String title = req.getParameter("title");
+		article.setTitle(title);
+		String cateItemId = req.getParameter("cateItemId");
+		article.setCateItemId(cateItemId);
+		String body = req.getParameter("body");
+		article.setBody(body);
+		
+		
 		return "article/doWrite";
 	}
 

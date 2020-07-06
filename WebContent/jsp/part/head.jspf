@@ -92,7 +92,7 @@
 				<div></div>
 				<div></div>
 		</a>
-		</a> <a href="# " class="logo flex flex-jc-c "> <span> <img
+		</a> <a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
 				src="${pageContext.request.contextPath}/resource/img/logo.png"
 				alt="" width="250 " class="image blinking ">
 		</span>
@@ -107,7 +107,7 @@
 				<li><a href="${pageContext.request.contextPath}/s/home/main"
 					class="block">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/s/article/list"
-					class="height-100p flex flex-ai-c">Articles</a>
+					class="block">Articles</a>
 					<ul>
 						<%
 							for (CateItem cateItem : cateItems) {
