@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.CateItem;
@@ -42,7 +41,6 @@ public class ArticleController extends Controller {
 		String title = req.getParameter("title");
 		String cateItemId = req.getParameter("cateItemId");
 		String body = req.getParameter("body");
-		
 		
 		return "article/doWrite";
 	}

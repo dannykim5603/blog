@@ -14,6 +14,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sbs.java.blog.exception.SQLErrorException;
+
 public class DBUtil {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
@@ -66,25 +68,23 @@ public class DBUtil {
 				rows.add(row);
 			}
 		} catch (SQLException e) {
-			Util.printEx("[SQL 예외, SQL : " +sql, resp,e);
-			e.printStackTrace();
+			throw new SQLErrorException("SQL 예외, SQL :"+sql);
 		}finally {
-			if( stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					Util.printEx("SQL 예외, stmt 닫기",resp,e);
-				}
-			}
 			if ( rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					Util.printEx("SQL 예외, rs 닫기",resp,e);
+					throw new SQLErrorException("SQL 닫기, SQL :"+sql);
+				}
+			}
+			if( stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					throw new SQLErrorException("SQL 예외, stmt :"+sql);
 				}
 			}
 		}
-
 		return rows;
 	}
 

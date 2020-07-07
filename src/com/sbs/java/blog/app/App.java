@@ -82,6 +82,7 @@ public class App {
 
 	private void route(Connection dbConn,HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		resp.setContentType("text/html; charset=UTF-8");
+		req.setCharacterEncoding("UTF-8");
 		
 		String contextPath = req.getContextPath();
 		String requestURI = req.getRequestURI();
@@ -112,7 +113,7 @@ public class App {
 				String viewPath = "/jsp/" + actionResult;
 				req.getRequestDispatcher(viewPath).forward(req, resp);
 			} else if (actionResult.startsWith("html:")) {
-				resp.getWriter().append(actionResult.substring(6));
+				resp.getWriter().append(actionResult.substring(5));
 			} else {
 				resp.getWriter().append("처리할 수 없는 action 결과 입니다.");
 			}
