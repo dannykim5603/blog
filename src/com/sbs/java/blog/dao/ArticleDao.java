@@ -171,17 +171,17 @@ public class ArticleDao extends Dao{
 		return new CateItem(DBUtil.selectRow(dbConn, sql));
 	}
 
-	public void doWrite(int displayStatus, int cateItemId, String title, String body) {
+	public int doWrite(int displayStatus, int cateItemId, String title, String body) {
 		String sql = "";
 		
 		sql += String.format("INSERT INTO article ");
-		sql += String.format("SET regDate = NOW(), ");
-		sql += String.format("updateDate = NOW(), ");
-		sql += String.format("displayStatus = %d, ",displayStatus);
-		sql += String.format("cateItemId = %d, ",cateItemId);
-		sql += String.format("title = %s, ",title);
-		sql += String.format("body = %s ",body);
+		sql += String.format("SET regDate = NOW() ");
+		sql += String.format(", updateDate = NOW() ");
+		sql += String.format(", displayStatus = '%d' ",displayStatus);
+		sql += String.format(", cateItemId = '%d' ",cateItemId);
+		sql += String.format(", title = '%s' ",title);
+		sql += String.format(", body = '%s' ",body);
 		
-		DBUtil.insert(dbConn, sql);
+		return DBUtil.insert(dbConn, sql);
 	}
 }

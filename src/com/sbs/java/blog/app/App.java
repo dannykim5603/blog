@@ -14,7 +14,6 @@ import com.sbs.java.blog.controller.Controller;
 import com.sbs.java.blog.controller.HomeController;
 import com.sbs.java.blog.controller.MemberController;
 import com.sbs.java.blog.util.Util;
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
 
 public class App {
 	private HttpServletRequest req;

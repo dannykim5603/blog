@@ -40,69 +40,113 @@
 
 <!-- CSS -->
 <style>
+/*lib*/
 h1 {
-	margin:10px;
-	text-align:center;
-	color :white;	
+	margin: 10px;
+	text-align: center;
+	color: white;
 }
-.article-box {
+.form1 {
+	display:block;
+	width:100%;
+}
+.form1 .form-row{
+	align-items:center;
+	display:flex;
+}
+.form1 .form-row:not(:first-child){
+	margin-top:10px;
+}
+
+.form1 .form-row> .label{
+	width:100px;
+}
+.form1 .form-row> .input{
+	flex-grow:1;
+}
+.form1 .form-row> .input>input, .form1 .form-row> .input>textarea{
+	display:block;
+	width:100%;
+	box-sizing:border-box;
+	padding:10px;
+}
+.form1 .form-row> .input>select{
+	padding:10px;
+}
+.form1 .form-row> .input>textarea{
+	height:500px;
+}
+.form1 .form-row> .input> .last-box {
+	display:flex;
+}
+.form1 .form-row> .input> .last-box> .submit-box{
+	width:50%;
+	border-radius:15px;
+}
+.form1 .form-row> .input> .last-box> .cancel{
+	margin-top:10px;
+}
+
+/*cus*/
+@media (max-width : 700px) {
+	.form1 .form-row {
+		display:block;
+	}
+}
+.write-form-box{
 	color : white;
-}
-.article-box > .article-table {
-	border:double #444958;
-}
-.button {
-	display:flex;
-	justify-content: center;
-}
-
-.saveButton {
-	
-}
-.disCate {
-	margin:10px;
-	display:flex;
-	justify-content: center;
-}
-.titleInput {
-
+	margin-top:30px;
 }
 </style>
 
 <!--  글 작성  -->
 <h1>글 작성</h1>
 
-<div class="con article-box">
-	<table class="con article-table" style=" width: 600px; height:600px;">
-		<tbody>
-			<form method="POST" name=form1 action="write" encType="application/x-www-form-urlencoded">
-				<div class="disCate">
-					<div class="displayStatus">
-						게시물 공개 여부<select name="displayStatus">
-							<option value="1">공개</option>
-							<option value="0">비공개</option>
-						</select>
-					</div>
-					<div class="cateItemId">
-						카테고리<select name="cateItemId">
-							<%for (CateItem cateItem : cateItems){%>
-								<option value=<%=cateItem.getId() %>><%=cateItem.getName()%></option>
-							<%} %>
-						</select>
-					</div>
-				</div>
-				<tr class= "title" style="height:50px;">
-					<th>제목</th>
-					<td><input type="text" placeholder=" 제목 " name="title" 	height="45px" maxlength="20" value="${param.title}" class="form-control titleInput"style="width:98%; height:45px;"></td>
-				</tr>
-				<tr class = "body">
-					<th>내용</th>
-					<td><textarea rows="85" cols="15" placeholder=" 내용 " name="body" value="${param.body}" class="form-control"style="width:98%"></textarea></td>
-				</tr>
-			</form>
-		</tbody>
-	</table>
+<div class="write-form-box con">
+	<form action="doWrite" method="POST" class="write-form form1">
+		<div class="form-row">
+			<div class="label">공개 여부</div>
+			<div class="input">
+			<select name="displayStatus">
+				<option value="1">공개</option>
+				<option value="0">비공개</option>
+			</select>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="label">카테고리</div>
+			<div class="input">
+			<select name="cateItemId">
+				<%
+					for (CateItem cateItem : cateItems) {
+				%>
+				<option value=<%=cateItem.getId()%>><%=cateItem.getName()%></option>
+				<%
+					}
+				%>
+			</select>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="label">제목</div>
+			<div class="input">
+				<input name="title" type="text" placeholder="제목을 입력하세요."/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="label">내용</div>
+			<div class="input">
+				<textarea name="body" placeholder="내용을 입력하세요."></textarea>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="label">작성</div>
+			<div class="input last-box">
+				<input class="submit-box" style="width:50%;border-radius:15px;" type="submit" value="작성" />
+				<a style="border:3px solid #444958; border-radius:10px;"class ="cancel" href="list">취소</a>
+			</div>
+		</div>
+	</form>
 </div>
-<div class ="button"><button class="saveButton" type="submit" value="작성">작성</button></div>
 
 <%@ include file="/jsp/part/foot.jspf"%>

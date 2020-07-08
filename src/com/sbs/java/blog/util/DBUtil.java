@@ -105,11 +105,12 @@ public class DBUtil {
 
 	public static int insert(Connection dbConn, String sql) {
 		int id = -1;
-
+		Statement stmt=null;
+		ResultSet rs =null;
 		try {
-			Statement stmt = dbConn.createStatement();
+			stmt = dbConn.createStatement();
 			stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
-			ResultSet rs = stmt.getGeneratedKeys();
+			rs = stmt.getGeneratedKeys();
 
 			if (rs.next()) {
 				id = rs.getInt(1);
@@ -117,6 +118,22 @@ public class DBUtil {
 
 		} catch (SQLException e) {
 			System.err.printf("[SQL 예외, SQL : %s] : %s\n", sql, e.getMessage());
+		}
+		finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					throw new SQLErrorException("SQL 닫기, SQL :"+sql);
+				}
+			}
+			if(stmt!=null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					throw new SQLErrorException("SQL 예외, stmt :"+sql);
+				}
+			}
 		}
 		return id;
 	}

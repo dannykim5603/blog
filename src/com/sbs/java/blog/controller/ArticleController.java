@@ -32,38 +32,23 @@ public class ArticleController extends Controller {
 
 		case "write":
 			return actionWrtie(req, resp);
+		case "doWrite":
+			return actionDoWrite(req,resp);
 		}
 		return "";
 
 	}
-	private int actionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
-		int displayStatus = 0;
-		if(!Util.empty(req,"displayStatus") && Util.isNum(req, "displayStatus")) {
-			displayStatus = Util.getInt(req,"displayStatus");
-		}
+	private String actionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
+		String title = req.getParameter("title");
+		String body = req.getParameter("body");
+		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
+		int cateItemId = Util.getInt(req, "cateItemId");
 		
-		int cateItemId= 0;
-		if(!Util.empty(req, "cateItemId") && Util.isNum(req,"cateItemId")) {
-			cateItemId = Util.getInt(req, "cateItemId");
-		}
+		int id = articleService.doWrite(displayStatus, cateItemId, title, body);
 		
-		String title = "";
-		if(!Util.empty(req,"title")) {
-			title = Util.getString(req, "title");
-		}
-		
-		String body ="";
-		if(!Util.empty(req,"body")) {
-			body = Util.getString(req, "body");
-		}
-		
-		articleService.doWrite(displayStatus,cateItemId,title,body);
-		return 0;
+		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('list')</script>";
 	}
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
-		
-		
-		
 		return "article/write.jsp";
 	}
 

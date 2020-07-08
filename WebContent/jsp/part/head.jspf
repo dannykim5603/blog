@@ -51,6 +51,7 @@
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
 					<li><a href="${pageContext.request.contextPath}/s/home/main"
 						class="height-100p flex flex-ai-c">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/write">Write</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/s/article/list"
 						class="height-100p flex flex-ai-c">Articles</a>
@@ -63,8 +64,6 @@
 							<%
 								}
 							%>
-							<li><a class="block "
-								href="${pageContext.request.contextPath}/s/article/write">WRITE</a></li>
 						</ul></li>
 					<li><a
 						href="${pageContext.request.contextPath}/s/home/aboutMe"
@@ -107,6 +106,7 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/s/home/main"
 					class="block">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/article/write">Write</a></li>
 				<li><a href="${pageContext.request.contextPath}/s/article/list"
 					class="block">Articles</a>
 					<ul>
@@ -118,8 +118,6 @@
 						<%
 							}
 						%>
-						<li><a class="block "
-							href="${pageContext.request.contextPath}/s/article/write">WRITE</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
 					class="block">About Me</a></li>
