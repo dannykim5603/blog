@@ -36,30 +36,33 @@ public class ArticleController extends Controller {
 		return "";
 
 	}
-
+	private int actionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
+		int displayStatus = 0;
+		if(!Util.empty(req,"displayStatus") && Util.isNum(req, "displayStatus")) {
+			displayStatus = Util.getInt(req,"displayStatus");
+		}
+		
+		int cateItemId= 0;
+		if(!Util.empty(req, "cateItemId") && Util.isNum(req,"cateItemId")) {
+			cateItemId = Util.getInt(req, "cateItemId");
+		}
+		
+		String title = "";
+		if(!Util.empty(req,"title")) {
+			title = Util.getString(req, "title");
+		}
+		
+		String body ="";
+		if(!Util.empty(req,"body")) {
+			body = Util.getString(req, "body");
+		}
+		
+		articleService.doWrite(displayStatus,cateItemId,title,body);
+		return 0;
+	}
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
 		
-//		int displayStatus = 0;
-//		if(!Util.empty(req,"displayStatus") && Util.isNum(req, "displayStatus")) {
-//			displayStatus = Util.getInt(req,"displayStatus");
-//		}
-//		
-//		int cateItemId= 0;
-//		if(!Util.empty(req, "cateItemId") && Util.isNum(req,"cateItemId")) {
-//			cateItemId = Util.getInt(req, "cateItemId");
-//		}
-//		
-//		String title = "";
-//		if(!Util.empty(req,"title")) {
-//			title = Util.getString(req, "title");
-//		}
-//		
-//		String body ="";
-//		if(!Util.empty(req,"body")) {
-//			body = Util.getString(req, "body");
-//		}
-//		
-//		articleService.doWrite(displayStatus,cateItemId,title,body);
+		
 		
 		return "article/write.jsp";
 	}

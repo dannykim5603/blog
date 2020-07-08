@@ -11,20 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.sbs.java.blog.exception.SQLErrorException;
 
 public class DBUtil {
-	private HttpServletRequest req;
-	private HttpServletResponse resp;
-	public DBUtil(HttpServletRequest req, HttpServletResponse resp) {
-		this.req=req;
-		this.resp= resp;
-	}
 
-	public Map<String, Object> selectRow(Connection connection,String sql) {
+	public static Map<String, Object> selectRow(Connection connection,String sql) {
 		List<Map<String, Object>> rows = selectRows(connection,sql);
 		
 		if (rows.size() == 0) {
@@ -34,7 +25,7 @@ public class DBUtil {
 		return rows.get(0);
 	}
 	
-	public List<Map<String, Object>> selectRows(Connection connection,String sql) {
+	public static List<Map<String, Object>> selectRows(Connection connection,String sql) {
 		List<Map<String, Object>> rows = new ArrayList<>();
 
 		Statement stmt = null;
@@ -88,7 +79,7 @@ public class DBUtil {
 		return rows;
 	}
 
-	public int selectRowIntValue(Connection dbConn, String sql) {
+	public static int selectRowIntValue(Connection dbConn, String sql) {
 		Map<String,Object> row = selectRow(dbConn,sql);
 		for (String key : row.keySet()) {
 			return (int) row.get(key);
@@ -96,7 +87,7 @@ public class DBUtil {
 		return -1;
 	}
 	
-	public String selectRowStringValue(Connection dbConn, String sql) {
+	public static String selectRowStringValue(Connection dbConn, String sql) {
 		Map<String,Object> row = selectRow(dbConn,sql);
 		for (String key : row.keySet()) {
 			return (String) row.get(key);
@@ -104,7 +95,7 @@ public class DBUtil {
 		return "";
 	}
 	
-	public Boolean selectRowIntBooleanValue(Connection dbConn, String sql) {
+	public static Boolean selectRowIntBooleanValue(Connection dbConn, String sql) {
 		Map<String,Object> row = selectRow(dbConn,sql);
 		for (String key : row.keySet()) {
 			return (int) row.get(key) == 1;
@@ -112,7 +103,7 @@ public class DBUtil {
 		return false;
 	}
 
-	public int insert(Connection dbConn, String sql) {
+	public static int insert(Connection dbConn, String sql) {
 		int id = -1;
 
 		try {
@@ -130,7 +121,7 @@ public class DBUtil {
 		return id;
 	}
 	
-	public int delete(Connection dbConn, String sql) {
+	public static int delete(Connection dbConn, String sql) {
 		int affectedRows = 0;
 
 		Statement stmt;

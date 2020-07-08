@@ -49,7 +49,7 @@ h1 {
 	color : white;
 }
 .article-box > .article-table {
-	
+	border:double #444958;
 }
 .button {
 	display:flex;
@@ -73,7 +73,7 @@ h1 {
 <h1>글 작성</h1>
 
 <div class="con article-box">
-	<table class="con article-table" border="1" style="width: 600px; height:600px;">
+	<table class="con article-table" style=" width: 600px; height:600px;">
 		<tbody>
 			<form method="POST" name=form1 action="write" encType="application/x-www-form-urlencoded">
 				<div class="disCate">
