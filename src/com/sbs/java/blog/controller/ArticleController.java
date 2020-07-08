@@ -61,7 +61,7 @@ public class ArticleController extends Controller {
 //		
 //		articleService.doWrite(displayStatus,cateItemId,title,body);
 		
-		return "article/doWrite.jsp";
+		return "article/write.jsp";
 	}
 
 	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {

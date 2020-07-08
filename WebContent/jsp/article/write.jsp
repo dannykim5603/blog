@@ -75,7 +75,7 @@ h1 {
 <div class="con article-box">
 	<table class="con article-table" border="1" style="width: 600px; height:600px;">
 		<tbody>
-			<form method="post" name=form1 action="write" encType="application/x-www-form-urlencoded">
+			<form method="POST" name=form1 action="write" encType="application/x-www-form-urlencoded">
 				<div class="disCate">
 					<div class="displayStatus">
 						게시물 공개 여부<select name="displayStatus">
