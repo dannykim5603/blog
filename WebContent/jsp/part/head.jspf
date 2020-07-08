@@ -49,12 +49,10 @@
 		<div class="con height-100p ">
 			<nav class="menu-box-1 flex flex-jc-c flex flex-ai-e">
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
-					<li><a href="${pageContext.request.contextPath}/s/home/main"
-						class="height-100p flex flex-ai-c">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/s/article/write">Write</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/write" class="height-100p flex flex-ai-c">Write</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/s/article/list"
-						class="height-100p flex flex-ai-c">Articles</a>
+						href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
 							<%
 								for (CateItem cateItem : cateItems) {
@@ -104,9 +102,8 @@
 	<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down ">
 		<nav class="menu-box-1 flex-grow-1 ">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/s/home/main"
-					class="block">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/s/article/write">Write</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/article/write" class="block">Write</a></li>
 				<li><a href="${pageContext.request.contextPath}/s/article/list"
 					class="block">Articles</a>
 					<ul>
