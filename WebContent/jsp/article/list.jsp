@@ -33,7 +33,7 @@ h2 {
 	text-align: center;
 }
 .page-box{
-	padding-top:10px;
+	padding-top:25px;
 }
 .page-box>ul>li>a {
 	padding: 0 10px;
@@ -47,12 +47,16 @@ h2 {
 .page-box>ul>li.current>a {
 	color: crimson;
 }
+
+.search-box {
+	margin-top: 20px;
+}
 </style>
 <%
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
-int totalPage = (int) request.getAttribute("totalPage");
-int paramPage = (int) request.getAttribute("page");
-String cateItemName = (String) request.getAttribute("cateItemName");
+	int totalPage = (int) request.getAttribute("totalPage");
+	int paramPage = (int) request.getAttribute("page");
+	String cateItemName = (String) request.getAttribute("cateItemName");
 %>
 <h2 class="con" style="text-align: center"> <%=cateItemName%> 🤗 </h2>
 <h2 calss="con" style="text-align: center">총 게시물 수 : ${totalCount}</h2>
@@ -103,7 +107,7 @@ String cateItemName = (String) request.getAttribute("cateItemName");
 	</ul>
 </div>
 
-<div class="con serch-box flex flex-jc-c">
+<div class="con search-box flex flex-jc-c">
 
 	<form action="${pageContext.request.contextPath}/s/article/list">
 		<input type="hidden" name="page" value="1" />

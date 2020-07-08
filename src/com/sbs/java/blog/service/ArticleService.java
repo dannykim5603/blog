@@ -58,4 +58,8 @@ public class ArticleService extends Service {
 	public CateItem getCateItem(int cateItemId) {
 		return articleDao.getCateItem(cateItemId);
 	}
+
+	public void doWrite(int displayStatus, int cateItemId, String title, String body) {
+		articleDao.doWrite(displayStatus,cateItemId,title,body);
+	}
 }

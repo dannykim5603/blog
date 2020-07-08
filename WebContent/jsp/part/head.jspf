@@ -64,7 +64,7 @@
 								}
 							%>
 							<li><a class="block "
-								href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
+								href="${pageContext.request.contextPath}/s/article/write">WRITE</a></li>
 						</ul></li>
 					<li><a
 						href="${pageContext.request.contextPath}/s/home/aboutMe"
@@ -119,7 +119,7 @@
 							}
 						%>
 						<li><a class="block "
-							href="${pageContext.request.contextPath}/s/article/doWrite">WRITE</a></li>
+							href="${pageContext.request.contextPath}/s/article/write">WRITE</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
 					class="block">About Me</a></li>

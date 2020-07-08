@@ -30,8 +30,10 @@
 
 <style>
 .article-box {
-	border: 2px double #444958;
+	border: 2px solid #444958;
+	border-radius: 0px 80px;
 	margin-top: 20px;
+	padding: 30px;
 }
 
 .article-box>.article-table {
