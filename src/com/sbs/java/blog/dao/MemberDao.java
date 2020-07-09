@@ -1,13 +1,10 @@
 package com.sbs.java.blog.dao;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-import com.sbs.java.blog.dto.Article;
-import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.util.DBUtil;
+import com.sbs.java.blog.util.SecSql;
 
 // Dao
 public class MemberDao extends Dao{
@@ -18,18 +15,18 @@ public class MemberDao extends Dao{
 	}
 
 	public int join(String loginId, String loginPw, String email, String name, String nickname) {
-		String sql = "";
+		SecSql secSql = new SecSql();
 		
-		sql += String.format("INSERT INTO member");
-		sql += String.format(" SET regDate = NOW()");
-		sql += String.format(", loginId = '%s'",loginId);
-		sql += String.format(", loginPw = '%s'",loginPw);
-		sql += String.format(", email = '%s'",email);
-		sql += String.format(", name = '%s'", name);
-		sql += String.format(", nickname = '%s'",nickname);
+		secSql.append("INSERT INTO member");
+		secSql.append(" SET regDate = NOW()");
+		secSql.append(", loginId = '%s'",loginId);
+		secSql.append(", loginPw = '%s'",loginPw);
+		secSql.append(", email = '%s'",email);
+		secSql.append(", name = '%s'", name);
+		secSql.append(", nickname = '%s'",nickname);
 		
 		
-		return DBUtil.insert(dbConn, sql);
+		return DBUtil.insert(dbConn, secSql);
 	}
 
 	public Boolean checkPw(String pw1, String pw2) {
@@ -44,10 +41,14 @@ public class MemberDao extends Dao{
 		String sql = "";
 		
 		sql += String.format("SELECT * FROM member");
-		sql += String.format("WHERE id ='%s",loginId);
+		sql += String.format(" WHERE loginId ='%s'" ,loginId);
 		
-		return null;
+		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
+		// 계정이 없으면 false
+		if (row.isEmpty()) {
+			return false; 
+		}
+		//계정이 있으면 true
+		return true;
 	}
-
-	
 }

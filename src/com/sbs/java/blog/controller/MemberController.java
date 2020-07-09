@@ -28,9 +28,8 @@ public class MemberController extends Controller {
 			return actionDoJoin(req, resp);
 
 		case "login":
-			return actionLogin(req,resp);
-			
-			
+			return actionLogin(req, resp);
+
 		}
 		return "";
 	}
@@ -47,11 +46,13 @@ public class MemberController extends Controller {
 		String nickname = req.getParameter("nickname");
 
 		Boolean idcheck = memberService.CheckId(loginId);
-		if (idcheck = true) {
-		int memberId = memberService.Join(loginId, loginPw, email, name, nickname);
-		return "html:<script> alert('" + nickname + " 회원님 " + memberId
-				+ "번째 회원가입을 환영합니다.'); location.replace('login')</script>";}
-		return "html:<script> alert('이미 존재하는 아이디 입니다.');</script>";
+		// 계정이 있으면 true 계정이 없으면 false
+		if (idcheck == false) {
+			int memberId = memberService.Join(loginId, loginPw, email, name, nickname);
+			return "html:<script> alert('" + nickname + " 회원님 " + memberId
+					+ "번째 회원이 되신 것을 환영합니다.'); location.replace('login')</script>";
+		}
+		return "html:<script> alert('이미 존재하는 아이디 입니다.'); location.replace('join')</script>";
 	}
 
 	private String actionJoin(HttpServletRequest req, HttpServletResponse resp) {

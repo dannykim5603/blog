@@ -8,6 +8,7 @@ import java.util.Map;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.util.DBUtil;
+import com.sbs.java.blog.util.SecSql;
 
 // Dao
 public class ArticleDao extends Dao{
@@ -17,18 +18,18 @@ public class ArticleDao extends Dao{
 		this.dbConn = dbConn;
 	}
 
-	public int save(Article article) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("INSERT INTO article "));
-		sb.append(String.format("SET regDate = '%s' ", article.getRegDate()));
-		sb.append(String.format(", `title` = '%s' ", article.getTitle()));
-		sb.append(String.format(", `body` = '%s' ", article.getBody()));
-//		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
-//		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
-
-		return DBUtil.insert(dbConn,sb.toString());
-	}
+//	public int save(Article article) {
+//		StringBuilder sb = new StringBuilder();
+//
+//		sb.append(String.format("INSERT INTO article "));
+//		sb.append(String.format("SET regDate = '%s' ", article.getRegDate()));
+//		sb.append(String.format(", `title` = '%s' ", article.getTitle()));
+//		sb.append(String.format(", `body` = '%s' ", article.getBody()));
+////		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
+////		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
+//
+//		return DBUtil.insert(dbConn,sb.toString());
+//	}
 
 
 	public List<Article> getArticles(int page, int itemsInAPage,int cateItemId, String searchKeywordType, String searchKeyword) {
@@ -71,16 +72,16 @@ public class ArticleDao extends Dao{
 		return new Article(DBUtil.selectRow(dbConn,sql.toString()));
 	}
 	
-	public void modify(int num, String title, String body) {
-		StringBuilder sql = new StringBuilder();
-
-		sql.append(String.format("UPDATE article "));
-		sql.append(String.format("SET title = '" + title + "', "));
-		sql.append(String.format("`body` = '" + body + "' "));
-		sql.append(String.format("WHERE id = " + num + ";"));
-
-		DBUtil.insert(dbConn,sql.toString());
-	}
+//	public void modify(int num, String title, String body) {
+//		StringBuilder sql = new StringBuilder();
+//
+//		sql.append(String.format("UPDATE article "));
+//		sql.append(String.format("SET title = '" + title + "', "));
+//		sql.append(String.format("`body` = '" + body + "' "));
+//		sql.append(String.format("WHERE id = " + num + ";"));
+//
+//		DBUtil.insert(dbConn,sql.toString());
+//	}
 
 	public int delete(int num) {
 		StringBuilder sql = new StringBuilder();
@@ -172,7 +173,18 @@ public class ArticleDao extends Dao{
 	}
 
 	public int doWrite(int displayStatus, int cateItemId, String title, String body) {
-		String sql = "";
+		SecSql secSql = new SecSql();
+		
+		secSql.append("INSERT INTO article ");
+		secSql.append("SET regDate = NOW() ");
+		secSql.append(", updateDate = NOW() ");
+		secSql.append(", displayStatus = ? ",displayStatus);
+		secSql.append(", cateItemId = ? ",cateItemId);
+		secSql.append(", title = ? ",title);
+		secSql.append(", body = ? ",body);
+		
+		/*
+		 * String sql = "";
 		
 		sql += String.format("INSERT INTO article ");
 		sql += String.format("SET regDate = NOW() ");
@@ -181,7 +193,7 @@ public class ArticleDao extends Dao{
 		sql += String.format(", cateItemId = '%d' ",cateItemId);
 		sql += String.format(", title = '%s' ",title);
 		sql += String.format(", body = '%s' ",body);
-		
-		return DBUtil.insert(dbConn, sql);
+		*/
+		return DBUtil.insert(dbConn, secSql);
 	}
 }

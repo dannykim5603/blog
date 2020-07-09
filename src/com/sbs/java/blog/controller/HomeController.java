@@ -15,20 +15,20 @@ public class HomeController extends Controller {
 	public String doAction() {
 			switch (actionMethodName) {
 			case "main":
-				return main(req,resp);
+				return main();
 			
 			case "aboutMe":
-				return aboutMe(req,resp);
+				return aboutMe();
 			}
 		return "";
 			
 	}
 
-	private String aboutMe(HttpServletRequest req, HttpServletResponse resp) {
+	private String aboutMe() {
 		return "home/aboutMe.jsp";
 	}
 
-	private String main(HttpServletRequest req, HttpServletResponse resp) {
+	private String main() {
 		return "home/main.jsp";
 	}
 

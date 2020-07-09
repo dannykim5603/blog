@@ -13,6 +13,8 @@ import com.sbs.java.blog.controller.ArticleController;
 import com.sbs.java.blog.controller.Controller;
 import com.sbs.java.blog.controller.HomeController;
 import com.sbs.java.blog.controller.MemberController;
+import com.sbs.java.blog.controller.TestController;
+import com.sbs.java.blog.exception.SQLErrorException;
 import com.sbs.java.blog.util.Util;
 
 public class App {
@@ -66,6 +68,8 @@ public class App {
 			route(dbConn,req,resp);
 		} catch (SQLException e) {
 			Util.printEx("SQL예외 (커넥션 열기)", resp, e);
+		} catch (SQLErrorException e) {
+			Util.printEx(e.getMessage(), resp, e.getOrigin());
 		} catch (Exception e) {
 			Util.printEx("기타예외", resp, e);
 		} finally {
@@ -102,6 +106,10 @@ public class App {
 			break;
 		case "home":
 			controller = new HomeController(dbConn,actionMethodName,req,resp);
+			break;
+		case "test":
+			controller = new TestController(dbConn,actionMethodName,req,resp);
+			break;
 		}
 
 		if (controller != null) {

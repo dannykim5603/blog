@@ -18,10 +18,6 @@ public class ArticleService extends Service {
 		return articleDao.getArticles(page,itemsInAPage,cateItemId,searchKeywordType,searchKeyword);
 	}
 
-	public void modify(int num, String title, String body) {
-		articleDao.modify(num,title,body);
-	}
-
 	public void delete(int num) {
 		articleDao.delete(num);
 	}

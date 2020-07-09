@@ -1,6 +1,7 @@
 package com.sbs.java.blog.util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -59,20 +60,20 @@ public class DBUtil {
 				rows.add(row);
 			}
 		} catch (SQLException e) {
-			throw new SQLErrorException("SQL 예외, SQL :"+sql);
+			throw new SQLErrorException("SQL 예외, SQL :"+sql, e);
 		}finally {
 			if ( rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 닫기, SQL :"+sql);
+					throw new SQLErrorException("SQL 닫기, SQL :"+sql, e);
 				}
 			}
 			if( stmt != null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 예외, stmt :"+sql);
+					throw new SQLErrorException("SQL 예외, stmt :"+sql, e);
 				}
 			}
 		}
@@ -103,13 +104,13 @@ public class DBUtil {
 		return false;
 	}
 
-	public static int insert(Connection dbConn, String sql) {
+	public static int insert(Connection dbConn, SecSql sql) {
 		int id = -1;
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs =null;
 		try {
-			stmt = dbConn.createStatement();
-			stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt = sql.getPreparedStatement(dbConn);
+			stmt.executeUpdate();
 			rs = stmt.getGeneratedKeys();
 
 			if (rs.next()) {
@@ -124,14 +125,14 @@ public class DBUtil {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 닫기, SQL :"+sql);
+					throw new SQLErrorException("SQL 닫기, SQL :"+sql,e);
 				}
 			}
 			if(stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 예외, stmt :"+sql);
+					throw new SQLErrorException("SQL 예외, stmt :"+sql,e);
 				}
 			}
 		}
