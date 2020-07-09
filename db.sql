@@ -1,3 +1,6 @@
+#케릭터 set 설정
+SET NAMES utf8mb4;
+
 DROP DATABASE IF EXISTS site32;
 CREATE DATABASE site32;
 USE site32;
@@ -31,14 +34,11 @@ SET regDate = NOW(),
 #2. 공부계획/유튜브 링크
 #3. 공부중 모르는것들\
 
-#케릭터 set 설정
-SET NAMES utf8mb4;
-
-
 SELECT * FROM cateItem;
 SELECT * FROM article;
+SELECT * FROM MEMBER;
 
-DROP TABLE article;
+DROP TABLE `member`;
 #게시물 테이블 생성
 CREATE TABLE article(
 	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -49,3 +49,16 @@ CREATE TABLE article(
 	`title` CHAR(100) NOT NULL,
 	`body` TEXT NOT NULL
 );
+#멤버 테이블 생성
+CREATE TABLE `member`(
+	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	loginId CHAR(100) NOT NULL,
+	loginPw CHAR(255) NOT NULL,
+	`name` CHAR(50) NOT NULL,
+	`nickname` CHAR(70) NOT NULL,
+	email CHAR(250) NOT NULL
+);
+
+ALTER TABLE `member`
+ADD email CHAR(250) NOT NULL;

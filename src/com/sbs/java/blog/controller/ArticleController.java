@@ -32,8 +32,10 @@ public class ArticleController extends Controller {
 
 		case "write":
 			return actionWrtie(req, resp);
+			
 		case "doWrite":
 			return actionDoWrite(req,resp);
+			
 		}
 		return "";
 

@@ -361,6 +361,14 @@ label[for] {
         display: none;
     }
 }
+/* 로그인 블록 */
+.login-block {
+	border : 1px double #444958;
+	display: flex;
+	
+	
+}
+
 
 
 /*대문*/
