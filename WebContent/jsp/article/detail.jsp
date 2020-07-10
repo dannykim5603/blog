@@ -45,6 +45,7 @@
 <div class="con article-box" style="background-color: white">
 	<h1><%=article.getTitle()%></h1>
 	<h2><%=article.getRegDate()%></h2>
+	<h3>조회수 : <%=article.getHit()%></h3>
 	<script type= "text/x-template" id="origin1"><%=article.getBody()%></script>
 	<div id="viewer1"></div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>

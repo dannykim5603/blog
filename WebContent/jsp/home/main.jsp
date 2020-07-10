@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
-<!로그인 창>
-<div class="login-block">
-	<h1>ID</h1>
-	<h1>PW</h1>
-	<div>로그인</div>
-</div>
+
 <!대문>
 <div class="index con" style ="margin-top: 15%">
 	<p class="text-align-center con">

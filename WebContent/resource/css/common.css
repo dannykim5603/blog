@@ -444,7 +444,25 @@ label[for] {
 	background: linear-gradient(to right, #444958, #414654, #393D4A);
 	opacity: .7;
 }
-
+.member-bar {
+	display:flex;
+	justify-content: flex-end;
+	
+}
+.member-bar > button {
+	margin : 10px;
+	color:white;
+	background-color:#444958;
+	border:white;
+}
+.member-bar > .login-button {
+	
+	
+}
+.member-bar > .join-button {
+	
+	
+}
 /* 탑바 끝 */
 
 /* 모바일 탑바 시작 */
@@ -579,21 +597,38 @@ label[for] {
 	display: block;
 	animation: none;
 }
+.mobile-member-bar {
+	display:flex;
+	justify-content: flex-end;
+	align-self:flex-end;
+}
+.mobile-member-bar > button {
+	margin : 10px;
+	color:white;
+	background-color:#444958;
+	border:white;
+}
+.mobile-member-bar > .login-button {
+	
+	
+}
+.mobile-member-bar > .join-button {
+	
+	
+}
 
 .blinking {
 	animation: blink 1.5s ease-in-out infinite alternate;
 }
 
-@
-keyframes blink { 0% {
-	opacity: 0;
+@keyframes blink {
+	0% { opacity: 0; }
+	100% { opacity : 1; }
 }
-100%
-{
-opacity
-:
- 
-1;
-}
-}
+
+/*
+@keyframes blink {
+	0% { opacity: 0; }
+	100% { opacity : 1; }
+} */
 /* 배경*/

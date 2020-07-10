@@ -19,10 +19,6 @@ public class MemberService extends Service {
 		return memberDao.join(loginId,loginPw,email,name,nickname);
 	}
 
-	public Boolean CheckPwConfirm(String pw1, String pw2) {
-		return memberDao.checkPw(pw1,pw2);
-	}
-
 	public Boolean CheckId(String loginId) {
 		return memberDao.checkId(loginId);
 	}

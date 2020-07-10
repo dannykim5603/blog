@@ -63,6 +63,9 @@ public class ArticleController extends Controller {
 		}
 
 		int id = Util.getInt(req, "id");
+		
+		articleService.increaseHit(id);
+		
 		Article article = articleService.detail(id);
 
 		req.setAttribute("article", article);

@@ -84,17 +84,22 @@ h1 {
 	height: 500px;
 }
 
-.form1 .form-row>.input>.last-box {
+.form1 .form-row>.last-box {
 	display: flex;
 }
 
-.form1 .form-row>.input>.last-box>.submit-box {
+.form1 .form-row>.last-box>.submit-box {
 	width: 50%;
 	border-radius: 15px;
 }
 
-.form1 .form-row>.input>.last-box>.cancel {
-	margin-top: 10px;
+.form1 .form-row>.last-box>.cancel {
+	background-color : white;
+	color:black;
+	font-weight:400;
+	radius : 15px;
+	padding : 0px 40px;
+	padding-top:5px;
 }
 
 /*cus*/
@@ -151,12 +156,10 @@ h1 {
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">작성</div>
+			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"
-					type="submit" value="작성" /> <a
-					style="border: 3px solid #444958; border-radius: 10px;"
-					class="cancel" href="list">취소</a>
+				<input class="submit-box" style="width: 50%; border-radius: 15px;" type="submit" value="작성" />
+				<a style="border: 3px solid #444958; border-radius: 15px;" class="cancel" href="list">취소</a>
 			</div>
 		</div>
 	</form>

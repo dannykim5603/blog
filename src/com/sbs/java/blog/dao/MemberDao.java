@@ -19,31 +19,23 @@ public class MemberDao extends Dao{
 		
 		secSql.append("INSERT INTO member");
 		secSql.append(" SET regDate = NOW()");
-		secSql.append(", loginId = '%s'",loginId);
-		secSql.append(", loginPw = '%s'",loginPw);
-		secSql.append(", email = '%s'",email);
-		secSql.append(", name = '%s'", name);
-		secSql.append(", nickname = '%s'",nickname);
+		secSql.append(", loginId = ?",loginId);
+		secSql.append(", loginPw = ?",loginPw);
+		secSql.append(", email = ?",email);
+		secSql.append(", name = ?", name);
+		secSql.append(", nickname = ?",nickname);
 		
 		
 		return DBUtil.insert(dbConn, secSql);
 	}
 
-	public Boolean checkPw(String pw1, String pw2) {
-		System.out.println(pw1+"<-pw1 pw2->"+pw2);
-		if (pw1.equals(pw2)) {
-			return true;
-		}
-		return false;
-	}
-
 	public Boolean checkId(String loginId) {
-		String sql = "";
+		SecSql secSql = new SecSql();
 		
-		sql += String.format("SELECT * FROM member");
-		sql += String.format(" WHERE loginId ='%s'" ,loginId);
+		secSql.append("SELECT * FROM member");
+		secSql.append(" WHERE loginId ='%s'" ,loginId);
 		
-		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
+		Map<String,Object> row = DBUtil.selectRow(dbConn, secSql);
 		// 계정이 없으면 false
 		if (row.isEmpty()) {
 			return false; 
