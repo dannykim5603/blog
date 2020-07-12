@@ -191,4 +191,9 @@ public class ArticleDao extends Dao{
 
 		DBUtil.update(dbConn, sql);
 	}
+
+	public Article getArticleById(int id) {
+		SecSql secSql = new SecSql();
+		return null;
+	}
 }

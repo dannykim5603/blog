@@ -32,24 +32,57 @@ public class ArticleController extends Controller {
 
 		case "write":
 			return actionWrtie(req, resp);
-			
+
 		case "doWrite":
-			return actionDoWrite(req,resp);
-			
+			return actionDoWrite(req, resp);
+
+		case "modify":
+			return actionModify(req, resp);
+
+		case "doModify":
+			return actionDoModify(req, resp);
+
+		case "delete":
+			return actionDelete(req, resp);
+
 		}
 		return "";
-
 	}
+
+	private String actionDelete(HttpServletRequest req, HttpServletResponse resp) {
+
+		return null;
+	}
+
+	private String actionDoModify(HttpServletRequest req, HttpServletResponse resp) {
+		String title = req.getParameter("title");
+		String body = req.getParameter("body");
+		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
+		int cateItemId = Util.getInt(req, "cateItemId");
+
+		return null;
+	}
+
+	private String actionModify(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Util.getInt(req, "id");
+
+		Article article = articleService.detail(id);
+
+		req.setAttribute("article", article);
+		return "article/modify.jsp";
+	}
+
 	private String actionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
 		int cateItemId = Util.getInt(req, "cateItemId");
-		
+
 		int id = articleService.doWrite(displayStatus, cateItemId, title, body);
-		
+
 		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('list')</script>";
 	}
+
 	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
 		return "article/write.jsp";
 	}
@@ -63,9 +96,9 @@ public class ArticleController extends Controller {
 		}
 
 		int id = Util.getInt(req, "id");
-		
+
 		articleService.increaseHit(id);
-		
+
 		Article article = articleService.detail(id);
 
 		req.setAttribute("article", article);
@@ -85,15 +118,14 @@ public class ArticleController extends Controller {
 		if (!Util.empty(req, "cateItemId") && Util.isNum(req, "cateItemId")) {
 			cateItemId = Util.getInt(req, "cateItemId");
 		}
-		
+
 		String cateItemName = "전체";
-		
-		if ( cateItemId != 0 ) {
+
+		if (cateItemId != 0) {
 			CateItem cateItem = articleService.getCateItem(cateItemId);
 			cateItemName = cateItem.getName();
 		}
 		req.setAttribute("cateItemName", cateItemName);
-		
 
 		String searchKeywordType = "";
 
@@ -115,8 +147,8 @@ public class ArticleController extends Controller {
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
 
-		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId,
-				searchKeywordType, searchKeyword);
+		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId, searchKeywordType,
+				searchKeyword);
 		req.setAttribute("articles", articles);
 		return "article/list.jsp";
 	}
