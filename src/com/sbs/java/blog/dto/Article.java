@@ -11,7 +11,7 @@ public class Article extends Dto{
 
 	public Article(Map<String, Object> row) {
 		super(row);
-		
+		this.cateItemId = (int) row.get("cateItemId");
 		this.updateDate = (String) row.get("updateDate");
 		this.title = (String) row.get("title");
 		this.body = (String) row.get("body");		

@@ -73,6 +73,7 @@ h2 {
 				<th>등록날짜</th>
 				<th>갱신날짜</th>
 				<th>제목</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -86,6 +87,7 @@ h2 {
 				<td class=" text-align-left ">
 					<a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
 				</td>
+				<td><%=article.getHit() %></td>
 			</tr>
 			<%
 				}

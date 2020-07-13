@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.java.blog.dto.Article;
+import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.util.Util;
 
@@ -45,8 +46,20 @@ public class ArticleController extends Controller {
 		case "delete":
 			return actionDelete(req, resp);
 
+		case "writeArticleReply":
+			return actionWriteArticleReply(req,resp);
 		}
 		return "";
+	}
+
+	private String actionWriteArticleReply(HttpServletRequest req, HttpServletResponse resp) {
+		int id = Integer.parseInt(req.getParameter("articleId"));
+		Article article = articleService.getArticleById(id);
+		String articleReply = req.getParameter("body");
+		articleService.doWriteArticleReply(articleReply);
+		
+		return "html:<script> alert(댓글이 등록되었습니다.);.location.replace('detail?id="+article.getId()+"'";
+		
 	}
 
 	private String actionDelete(HttpServletRequest req, HttpServletResponse resp) {
@@ -59,11 +72,20 @@ public class ArticleController extends Controller {
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
 		int cateItemId = Util.getInt(req, "cateItemId");
-
+		int id = Util.getInt(req, "id");
+		
+		articleService.doModify(title,body,displayStatus,cateItemId,id);
 		return null;
 	}
 
 	private String actionModify(HttpServletRequest req, HttpServletResponse resp) {
+		if (Util.empty(req, "id")) {
+			return "html:id를 입력해주세요.";
+		}
+		if (Util.isNum(req, "id") == false) {
+			return "html:id를 숫자로 입력해 주세요.";
+		}
+
 		int id = Util.getInt(req, "id");
 
 		Article article = articleService.detail(id);
@@ -92,7 +114,7 @@ public class ArticleController extends Controller {
 			return "html:id를 입력해주세요.";
 		}
 		if (Util.isNum(req, "id") == false) {
-			return "html:id를 정수로 입력해 주세요.";
+			return "html:id를 숫자로 입력해 주세요.";
 		}
 
 		int id = Util.getInt(req, "id");
@@ -102,7 +124,10 @@ public class ArticleController extends Controller {
 		Article article = articleService.detail(id);
 
 		req.setAttribute("article", article);
+		
+		List<ArticleReply> articleReplies = articleService.getArticleReplyByArticleId(id);
 
+		req.setAttribute("articleReply", articleReplies);
 		return "article/detail.jsp";
 	}
 

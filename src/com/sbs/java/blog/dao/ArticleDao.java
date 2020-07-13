@@ -70,17 +70,6 @@ public class ArticleDao extends Dao{
 		return new Article(DBUtil.selectRow(dbConn,secSql));
 	}
 	
-//	public void modify(int num, String title, String body) {
-//		StringBuilder sql = new StringBuilder();
-//
-//		sql.append(String.format("UPDATE article "));
-//		sql.append(String.format("SET title = '" + title + "', "));
-//		sql.append(String.format("`body` = '" + body + "' "));
-//		sql.append(String.format("WHERE id = " + num + ";"));
-//
-//		DBUtil.insert(dbConn,sql.toString());
-//	}
-
 	public int delete(int num) {
 		SecSql secSql = new SecSql();
 
@@ -195,5 +184,32 @@ public class ArticleDao extends Dao{
 	public Article getArticleById(int id) {
 		SecSql secSql = new SecSql();
 		return null;
+	}
+
+	public int modify(String title, String body, int displayStatus, int cateItemId, int id) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("UPDATE article ");
+		secSql.append(",SET title = ? ",title);
+		secSql.append(",body = ? ",body);
+		secSql.append(",updateDate = NOW() ");
+		secSql.append(",cateItemId = ? ",cateItemId);
+		secSql.append(",displayStatus = ? ",displayStatus);
+		secSql.append(",id = ? ",id);
+		
+		return DBUtil.update(dbConn,secSql);
+	}
+
+	public void writeArticleReply(String articleReply) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("INSERT INTO articleReply");
+		secSql.append(" ,SET regDate = NOW()");
+		secSql.append(" ,updateDate = NOW()");
+		secSql.append(" ,body = ?",articleReply);
+		secSql.append(" ,nickname = danny");
+		secSql.append(" ,memberId = danny");
+		secSql.append(" ,articleId = ?");
+		
 	}
 }

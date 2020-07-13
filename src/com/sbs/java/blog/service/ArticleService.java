@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sbs.java.blog.dao.ArticleDao;
 import com.sbs.java.blog.dto.Article;
+import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
 
 public class ArticleService extends Service {
@@ -61,5 +62,18 @@ public class ArticleService extends Service {
 
 	public Article getArticleById(int id) {
 		return articleDao.getArticleById(id);
+	}
+
+	public int doModify(String title, String body, int displayStatus, int cateItemId,int id) {
+		return articleDao.modify(title,body,displayStatus,cateItemId,id);
+	}
+
+	public void doWriteArticleReply(String articleReply) {
+		articleDao.writeArticleReply(articleReply);
+	}
+
+	public List<ArticleReply> getArticleReplyByArticleId(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
