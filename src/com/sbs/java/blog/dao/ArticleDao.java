@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.CateItem;
+import com.sbs.java.blog.dto.Member;
 import com.sbs.java.blog.util.DBUtil;
 import com.sbs.java.blog.util.SecSql;
 
@@ -181,35 +182,41 @@ public class ArticleDao extends Dao{
 		DBUtil.update(dbConn, sql);
 	}
 
-	public Article getArticleById(int id) {
-		SecSql secSql = new SecSql();
-		return null;
-	}
-
 	public int modify(String title, String body, int displayStatus, int cateItemId, int id) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("UPDATE article ");
-		secSql.append(",SET title = ? ",title);
-		secSql.append(",body = ? ",body);
-		secSql.append(",updateDate = NOW() ");
-		secSql.append(",cateItemId = ? ",cateItemId);
-		secSql.append(",displayStatus = ? ",displayStatus);
-		secSql.append(",id = ? ",id);
+		secSql.append("SET title = ? ",title);
+		secSql.append(", body = ? ",body);
+		secSql.append(", updateDate = NOW() ");
+		secSql.append(", cateItemId = ? ",cateItemId);
+		secSql.append(", displayStatus = ? ",displayStatus);
+		secSql.append(", id = ? ",id);
 		
 		return DBUtil.update(dbConn,secSql);
 	}
 
-	public void writeArticleReply(String articleReply) {
+	public Article getArticleById(int id) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT * FROM article ");
+		secSql.append("WHERE id = ?",id);
+		
+		Article article = new Article(DBUtil.selectRow(dbConn, secSql));
+		return article;
+	}
+	
+	public void writeArticleReply(String articleReply, Member member, int articleId) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("INSERT INTO articleReply");
-		secSql.append(" ,SET regDate = NOW()");
-		secSql.append(" ,updateDate = NOW()");
-		secSql.append(" ,body = ?",articleReply);
-		secSql.append(" ,nickname = danny");
-		secSql.append(" ,memberId = danny");
-		secSql.append(" ,articleId = ?");
+		secSql.append(", SET regDate = NOW()");
+		secSql.append(", updateDate = NOW()");
+		secSql.append(", body = ?",articleReply);
+		secSql.append(", nickname = ?", member.getNickname());
+		secSql.append(", memberId = ?", member.getId());
+		secSql.append(", articleId = ?",articleId);
 		
+		DBUtil.insert(dbConn, secSql);
 	}
 }

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.sbs.java.blog.dto.Member;
 
 public class MemberController extends Controller {
 	public MemberController(Connection dbConn, String actionMethodName, HttpServletRequest req,
@@ -29,13 +29,27 @@ public class MemberController extends Controller {
 
 		case "login":
 			return actionLogin(req, resp);
-
+		
+		case "doLogin":
+			return actionDoLogin(req,resp);
 		}
 		return "";
 	}
 
+	private String actionDoLogin(HttpServletRequest req, HttpServletResponse resp) {
+		String loginId = req.getParameter("loginId");
+		String loginPw = req.getParameter("loginPw");
+		
+		Member member = new Member (memberService.getMemberByIdNPw(loginId,loginPw));
+		System.out.println(member);
+		
+		session.setAttribute("loginedMemberId", member.getId());
+		
+		return  "html:<script> location.replace('../home/main')</script>";
+	}
+
 	private String actionLogin(HttpServletRequest req, HttpServletResponse resp) {
-		return "html:<h1>hi</h1>";
+		return "member/login.jsp";
 	}
 
 	private String actionDoJoin(HttpServletRequest req, HttpServletResponse resp) {
@@ -50,7 +64,7 @@ public class MemberController extends Controller {
 		if (idcheck == false) {
 			int memberId = memberService.Join(loginId, loginPw, email, name, nickname);
 			return "html:<script> alert('" + nickname + " 회원님 " + memberId
-					+ "번째 회원이 되신 것을 환영합니다.'); location.replace('login')</script>";
+					+ "번째 회원이 되신 것을 환영합니다.'); location.replace('../home/main')</script>";
 		}
 		return "html:<script> alert('이미 존재하는 아이디 입니다.'); location.replace('join')</script>";
 	}
@@ -58,5 +72,4 @@ public class MemberController extends Controller {
 	private String actionJoin(HttpServletRequest req, HttpServletResponse resp) {
 		return "member/join.jsp";
 	}
-
 }

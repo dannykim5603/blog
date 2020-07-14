@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
+import com.sbs.java.blog.dto.Member;
 import com.sbs.java.blog.util.Util;
 
 public class ArticleController extends Controller {
@@ -53,12 +54,15 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionWriteArticleReply(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("articleId"));
+		int id = Util.getInt(req, "id");
 		Article article = articleService.getArticleById(id);
+		int articleId = article.getId();
 		String articleReply = req.getParameter("body");
-		articleService.doWriteArticleReply(articleReply);
+		int memberId = (int) session.getAttribute("loginedMemberId");
+		Member member = memberService.getMemberById(memberId);
+		articleService.doWriteArticleReply(articleReply,member,articleId);
 		
-		return "html:<script> alert(댓글이 등록되었습니다.);.location.replace('detail?id="+article.getId()+"'";
+		return "html:<script> alert(댓글이 등록되었습니다.);.location.replace('detail?id="+article.getId()+"')";
 		
 	}
 

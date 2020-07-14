@@ -7,6 +7,7 @@ import com.sbs.java.blog.dao.ArticleDao;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
+import com.sbs.java.blog.dto.Member;
 
 public class ArticleService extends Service {
 	private ArticleDao articleDao;
@@ -68,8 +69,8 @@ public class ArticleService extends Service {
 		return articleDao.modify(title,body,displayStatus,cateItemId,id);
 	}
 
-	public void doWriteArticleReply(String articleReply) {
-		articleDao.writeArticleReply(articleReply);
+	public void doWriteArticleReply(String articleReply, Member member, int articleId) {
+		articleDao.writeArticleReply(articleReply,member,articleId);
 	}
 
 	public List<ArticleReply> getArticleReplyByArticleId(int id) {

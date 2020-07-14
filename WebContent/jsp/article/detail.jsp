@@ -12,8 +12,7 @@
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
 
 <!-- 하이라이트 라이브러리, 언어 -->
 <script
@@ -53,8 +52,9 @@
 	border: 2px solid #444958;
 }
 
-.article-box>.modift-butt-box {
+.article-box>.modify-butt-box {
 	display: flex;
+	justify-content: flex-end;
 }
 
 .article-box>.articleReplyForm {
@@ -64,8 +64,9 @@
 	height: 50px;
 }
 </style>
-
+<!-- 상세 -->
 <div class="con article-box" style="background-color: white">
+
 	<h1><%=article.getTitle()%></h1>
 	<h2><%=article.getRegDate()%></h2>
 	<h3>
@@ -75,21 +76,21 @@
 	<div id="viewer1"></div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>
+	<!-- 댓글 -->
 	<div class="articleReply-box">
 		<div class="reply-box">
 			<% if (replies != null){ %>
 			<% for (ArticleReply articleReplies : replies ){ %>
 					<%=articleReplies.getId()%>
-					
 			<% } }%>
 		</div>
 		<form action="writeArticleReply" method="POST" class="articleReplyForm">
-			<%request.setAttribute("articleId", article.getId()); %>
+			<input type="hidden" name="id" value=<%=article.getId() %> />
 			<div class="form-row">
-				<div class="input" style="display:flex; justify-content:center" >
+				<div class="input">
 				<div class="label" style="margin-right:30px;">댓글</div>
-					<textarea name="articleReply" rows="3px" cols="100%"></textarea>
-					<input class="reply-submit" style="margin-left:10px"name="body"type="submit" value="작성"/>
+					<textarea name="articleReply" name="body" rows="3px" cols="100%"></textarea>
+					<input class="reply-submit" style="margin-left:10px"type="submit" value="작성"/>
 				</div>
 			</div>
 		</form>
@@ -100,6 +101,7 @@
 			onclick="location.href='../article/modify?id=${param.id}%>'">수정
 		</button>
 	</div>
+	
 </div>
 
 <%@ include file="/jsp/part/foot.jspf"%>
