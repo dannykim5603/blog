@@ -1,12 +1,4 @@
-console.clear();
-var editor1__initialValue = $('#origin1').html().trim();
-var editor1 = new toastui.Editor({
-	el : document.querySelector('#viewer1'),
-	height : '600px',
-	initialValue : editor1__initialValue,
-	viewer : true,
-	plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
-});
+		
 // 유튜브 플러그인 시작
 function youtubePlugin() {
   toastui.Editor.codeBlockManager.setReplacer("youtube", function (youtubeId) {
@@ -174,10 +166,11 @@ function getUrlParams(url) {
 }
 // lib 끝
 
-var editor1__initialValue = $('#origin1').html();
-var editor1 = new toastui.Editor({
-  el: document.querySelector("#viewer1"),
-  viewer:true,
-  initialValue: editor1__initialValue,
-  plugins: [toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin]
+
+function getBodyFromXTemplate(selector) {
+	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi, 'script');
+}
+
+$(function() {
+	MobileSideBar__init();
 });

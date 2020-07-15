@@ -29,4 +29,12 @@ public class MemberService extends Service {
 	public Member getMemberById(int id) {
 		return memberDao.getMemberById(id);
 	}
+
+	public Boolean checkEmail(String email) {
+		return memberDao.checkEmail(email);
+	}
+
+	public boolean nicknameCheck(String nickname) {
+		return memberDao.nicknameCheck(nickname);
+	}
 }

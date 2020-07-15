@@ -69,5 +69,29 @@ public class MemberDao extends Dao{
 	
 		Member member = new Member (DBUtil.selectRow(dbConn, secSql));
 		return member;
+	}
+
+	public Boolean checkEmail(String email) {
+		SecSql sql = SecSql.from("SELECT COUNT(*) AS cnt");
+		sql.append("FROM `member`");
+		sql.append("WHERE email = ?", email);
+		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
+		
+		if(row.isEmpty()) {
+			return false; // 없으면 false
+		}
+		return true; //있으면 true
+	}
+
+	public boolean nicknameCheck(String nickname) {
+		SecSql sql = SecSql.from("SELECT COUNT(*) AS cnt");
+		sql.append("FROM `member`");
+		sql.append("WHERE nickname = ?", nickname);
+		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
+		
+		if(row.isEmpty()) {
+			return false; // 없으면 false
+		}
+		return true; //있으면 true
 	}	
 }

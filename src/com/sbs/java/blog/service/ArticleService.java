@@ -53,8 +53,8 @@ public class ArticleService extends Service {
 		return articleDao.getCateItem(cateItemId);
 	}
 
-	public int doWrite(int displayStatus, int cateItemId, String title, String body) {
-		return articleDao.doWrite(displayStatus,cateItemId,title,body);
+	public int doWrite(int displayStatus, int cateItemId, String title, String body, int loginedMemberId) {
+		return articleDao.doWrite(displayStatus,cateItemId,title,body,loginedMemberId);
 	}
 
 	public void increaseHit(int id) {

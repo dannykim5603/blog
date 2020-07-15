@@ -7,7 +7,7 @@
 
 <%
 	List<ArticleReply> replies = (List<ArticleReply>) request.getAttribute("articleReplies");
-Article article = (Article) request.getAttribute("article");
+	Article article = (Article) request.getAttribute("article");
 %>
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
@@ -81,10 +81,23 @@ Article article = (Article) request.getAttribute("article");
 	<h3>
 		조회수 :
 		<%=article.getHit()%></h3>
-	<script type="text/x-template" id="origin1"><%=article.getBody()%></script>
+	<script type="text/x-template" id="origin1"><%=article.getBodyForXTemplate()%></script>
 	<div id="viewer1"></div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>
+	
+	<script>
+	<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBodyForXTemplate()%></script>
+	<div id="viewer1"></div>
+	<script>
+		var editor1__initialValue = getBodyFromXTemplate('#origin1');
+		var editor1 = new toastui.Editor({
+			el : document.querySelector('#viewer1'),
+			initialValue : editor1__initialValue,
+			viewer : true,
+			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight,
+					youtubePlugin, replPlugin, codepenPlugin ]
+		});
+	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>
 	<!-- 댓글 -->
 	<div class="articleReply-box">
 		<div class="reply-box">

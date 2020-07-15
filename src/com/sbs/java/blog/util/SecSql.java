@@ -17,6 +17,11 @@ public class SecSql {
 		datas = new ArrayList<>();
 	}
 
+	@Override
+	public String toString() {
+		return "sql=" + getFormat() + ", data=" + datas;
+	}
+
 	public boolean isInsert() {
 		return getFormat().startsWith("INSERT");
 	}

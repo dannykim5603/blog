@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <style>
 .join-form-box {
 	color : white;
@@ -49,7 +49,7 @@
 		<div class="form-row">
 			<div class="label">e-mail</div>
 			<div class="input">
-				<input name="email" type="text" placeholder="E-mail " />
+				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
 		<div class="form-row">
@@ -73,7 +73,7 @@
 		<div class="form-row">
 			<div class="label">loginPwConfirm</div>
 			<div class="input">
-				<input name="loginPwC" type="password" placeholder=" PW Confirm "></input>
+				<input name="loginPwC" type="<passwo></passwo>rd" placeholder=" PW Confirm "></input>
 			</div>
 		</div>
 		<div class="form-row">
@@ -87,8 +87,5 @@
 </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/member/join.js "></script>
-
-
-
 
 <%@ include file="/jsp/part/foot.jspf"%>

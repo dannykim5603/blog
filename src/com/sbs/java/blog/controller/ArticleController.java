@@ -27,33 +27,33 @@ public class ArticleController extends Controller {
 	public String doAction() {
 		switch (actionMethodName) {
 		case "list":
-			return actionList(req, resp);
+			return actionList();
 
 		case "detail":
-			return actionDetail(req, resp);
+			return actionDetail();
 
 		case "write":
-			return actionWrtie(req, resp);
+			return actionWrtie();
 
 		case "doWrite":
-			return actionDoWrite(req, resp);
+			return actionDoWrite();
 
 		case "modify":
-			return actionModify(req, resp);
+			return actionModify();
 
 		case "doModify":
-			return actionDoModify(req, resp);
+			return actionDoModify();
 
 		case "delete":
-			return actionDelete(req, resp);
+			return actionDelete();
 
 		case "writeArticleReply":
-			return actionWriteArticleReply(req,resp);
+			return actionWriteArticleReply();
 		}
 		return "";
 	}
 
-	private String actionWriteArticleReply(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionWriteArticleReply() {
 		int id = Util.getInt(req, "id");
 		
 		Article article = articleService.getArticleById(id);
@@ -72,13 +72,13 @@ public class ArticleController extends Controller {
 		
 	}
 
-	private String actionDelete(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionDelete() {
 		int id = Util.getInt(req, "id");
 		articleService.delete(id);
 		return "html:<script> alert('" + id + "번 게시물이 삭제되었습니다.'); location.replace('list')</script>";
 	}
 
-	private String actionDoModify(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionDoModify() {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
@@ -91,7 +91,7 @@ public class ArticleController extends Controller {
 		return "html:<script>alert('"+article.getId()+"번 게시물이 수정되었습니다.'); location.replace('detail?id="+article.getId()+")</script>";
 	}
 
-	private String actionModify(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionModify() {
 		if (Util.empty(req, "id")) {
 			return "html:id를 입력해주세요.";
 		}
@@ -107,22 +107,24 @@ public class ArticleController extends Controller {
 		return "article/modify.jsp";
 	}
 
-	private String actionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionDoWrite() {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
 		int cateItemId = Util.getInt(req, "cateItemId");
 
-		int id = articleService.doWrite(displayStatus, cateItemId, title, body);
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		
+		int id = articleService.doWrite(displayStatus, cateItemId, title, body,loginedMemberId);
 
 		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('list')</script>";
 	}
 
-	private String actionWrtie(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionWrtie() {
 		return "article/write.jsp";
 	}
 
-	private String actionDetail(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionDetail() {
 		if (Util.empty(req, "id")) {
 			return "html:id를 입력해주세요.";
 		}
@@ -142,7 +144,7 @@ public class ArticleController extends Controller {
 		return "article/detail.jsp";
 	}
 
-	private String actionList(HttpServletRequest req, HttpServletResponse resp) {
+	private String actionList() {
 		int page = 1;
 
 		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
@@ -187,5 +189,10 @@ public class ArticleController extends Controller {
 				searchKeyword);
 		req.setAttribute("articles", articles);
 		return "article/list.jsp";
+	}
+	@Override
+	public String getControllerName() {
+		return "article";
+		
 	}
 }
