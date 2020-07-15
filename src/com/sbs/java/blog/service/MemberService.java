@@ -22,7 +22,7 @@ public class MemberService extends Service {
 		return memberDao.checkId(loginId);
 	}
 
-	public Map<String,Object> getMemberByIdNPw(String loginId, String loginPw) {
+	public Member getMemberByIdNPw(String loginId, String loginPw) {
 		return memberDao.getMemberByIdnPw(loginId,loginPw);
 	}
 

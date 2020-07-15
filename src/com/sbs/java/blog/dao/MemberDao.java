@@ -46,7 +46,7 @@ public class MemberDao extends Dao{
 		return true;
 	}
 
-	public Map<String, Object> getMemberByIdnPw(String loginId, String loginPw) {
+	public Member getMemberByIdnPw(String loginId, String loginPw) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("SELECT * ");
@@ -55,9 +55,10 @@ public class MemberDao extends Dao{
 		secSql.append(" AND loginId = ?",loginId);
 		secSql.append(" AND loginPw = ?",loginPw);
 		
-		Map<String, Object> member = DBUtil.selectRow(dbConn, secSql);
+		Member member = new Member(DBUtil.selectRow(dbConn, secSql));
+//		Map<String, Object> member = DBUtil.selectRow(dbConn, secSql);
 		
-		return DBUtil.selectRow(dbConn, secSql);
+		return member;
 	}
 
 	public Member getMemberById(int id) {

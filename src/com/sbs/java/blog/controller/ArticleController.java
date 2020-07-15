@@ -55,20 +55,27 @@ public class ArticleController extends Controller {
 
 	private String actionWriteArticleReply(HttpServletRequest req, HttpServletResponse resp) {
 		int id = Util.getInt(req, "id");
+		
 		Article article = articleService.getArticleById(id);
+		
 		int articleId = article.getId();
+		
 		String articleReply = req.getParameter("body");
+		
 		int memberId = (int) session.getAttribute("loginedMemberId");
+		
 		Member member = memberService.getMemberById(memberId);
+			
 		articleService.doWriteArticleReply(articleReply,member,articleId);
 		
-		return "html:<script> alert(댓글이 등록되었습니다.);.location.replace('detail?id="+article.getId()+"')";
+		return "html:<script> alert(댓글이 등록되었습니다.); location.replace('detail?id="+article.getId()+"')</script>";
 		
 	}
 
 	private String actionDelete(HttpServletRequest req, HttpServletResponse resp) {
-
-		return null;
+		int id = Util.getInt(req, "id");
+		articleService.delete(id);
+		return "html:<script> alert('" + id + "번 게시물이 삭제되었습니다.'); location.replace('list')</script>";
 	}
 
 	private String actionDoModify(HttpServletRequest req, HttpServletResponse resp) {
@@ -76,10 +83,12 @@ public class ArticleController extends Controller {
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
 		int cateItemId = Util.getInt(req, "cateItemId");
+		
 		int id = Util.getInt(req, "id");
+		Article article = articleService.getArticleById(id);
 		
 		articleService.doModify(title,body,displayStatus,cateItemId,id);
-		return null;
+		return "html:<script>alert('"+article.getId()+"번 게시물이 수정되었습니다.'); location.replace('detail?id="+article.getId()+")</script>";
 	}
 
 	private String actionModify(HttpServletRequest req, HttpServletResponse resp) {
@@ -122,16 +131,14 @@ public class ArticleController extends Controller {
 		}
 
 		int id = Util.getInt(req, "id");
-
 		articleService.increaseHit(id);
 
 		Article article = articleService.detail(id);
-
 		req.setAttribute("article", article);
 		
 		List<ArticleReply> articleReplies = articleService.getArticleReplyByArticleId(id);
-
-		req.setAttribute("articleReply", articleReplies);
+		req.setAttribute("articleReplies", articleReplies);
+		
 		return "article/detail.jsp";
 	}
 

@@ -20,8 +20,8 @@ public class ArticleService extends Service {
 		return articleDao.getArticles(page,itemsInAPage,cateItemId,searchKeywordType,searchKeyword);
 	}
 
-	public void delete(int num) {
-		articleDao.delete(num);
+	public int delete(int num) {
+		return articleDao.delete(num);
 	}
 
 	public Article detail(int num) {
@@ -73,8 +73,7 @@ public class ArticleService extends Service {
 		articleDao.writeArticleReply(articleReply,member,articleId);
 	}
 
-	public List<ArticleReply> getArticleReplyByArticleId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ArticleReply> getArticleReplyByArticleId(int articleId) {
+		return articleDao.getArticleReplyByArticleId(articleId);
 	}
 }

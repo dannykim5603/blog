@@ -39,7 +39,7 @@
 </style>
 
 <div class="login-form-box con">
-	<form action="doLogin" method="POST" class="join-form form1" onsubmit="submitJoinForm(this); return false;">
+	<form action="doLogin" method="POST" class="join-form form1" onsubmit="submitLoginForm(this); return false;">
 		<div class="form-row">
 			<div class="label">loginId</div>
 			<div class="input">

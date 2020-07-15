@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sbs.java.blog.dto.Article;
+import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.dto.Member;
 import com.sbs.java.blog.util.DBUtil;
@@ -111,7 +112,7 @@ public class ArticleDao extends Dao{
 		}
 
 		if (searchKeywordType.equals("title") && searchKeyword.length() > 0) {
-			secSql.append("AND title LIKE CONCAT('%', '?', '%')", searchKeyword);
+			secSql.append("AND title LIKE CONCAT('%', ?, '%')", searchKeyword);
 		}
 
 		int count = DBUtil.selectRowIntValue(dbConn, secSql);
@@ -210,7 +211,7 @@ public class ArticleDao extends Dao{
 		SecSql secSql = new SecSql();
 		
 		secSql.append("INSERT INTO articleReply");
-		secSql.append(", SET regDate = NOW()");
+		secSql.append(" SET regDate = NOW()");
 		secSql.append(", updateDate = NOW()");
 		secSql.append(", body = ?",articleReply);
 		secSql.append(", nickname = ?", member.getNickname());
@@ -218,5 +219,21 @@ public class ArticleDao extends Dao{
 		secSql.append(", articleId = ?",articleId);
 		
 		DBUtil.insert(dbConn, secSql);
+	}
+
+	public List<ArticleReply> getArticleReplyByArticleId(int articleId) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT * FROM articleReply");
+		secSql.append(" WHERE articleId = ?",articleId);
+		
+		List<Map<String,Object>> rows = DBUtil.selectRows(dbConn, secSql);
+		List<ArticleReply> articleReplies = new ArrayList<>();
+		
+		for (Map<String,Object> row : rows ) {
+			articleReplies.add(new ArticleReply(row));
+		}
+		
+		return articleReplies;
 	}
 }

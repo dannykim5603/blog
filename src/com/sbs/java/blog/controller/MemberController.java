@@ -32,20 +32,30 @@ public class MemberController extends Controller {
 		
 		case "doLogin":
 			return actionDoLogin(req,resp);
+			
+		case "doLogout":
+			return actionLogout(req,resp);
 		}
 		return "";
+	}
+
+	private String actionLogout(HttpServletRequest req, HttpServletResponse resp) {
+		
+		return null;
 	}
 
 	private String actionDoLogin(HttpServletRequest req, HttpServletResponse resp) {
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPw");
 		
-		Member member = new Member (memberService.getMemberByIdNPw(loginId,loginPw));
-		System.out.println(member);
-		
+		Member member = memberService.getMemberByIdNPw(loginId,loginPw);
+//		System.out.println(member); // 로그인 멤버 정보
+		if (member != null ) {
 		session.setAttribute("loginedMemberId", member.getId());
+		return  "html:<script> alert('"+ member.getNickname() +"님 환영합니다.'); location.replace('../home/main')</script>";
 		
-		return  "html:<script> location.replace('../home/main')</script>";
+		}
+		return "html:<script> alert('아이디 혹은 비밀번호를 확인해 주세요'); location.replace('../home/main') </script>";
 	}
 
 	private String actionLogin(HttpServletRequest req, HttpServletResponse resp) {

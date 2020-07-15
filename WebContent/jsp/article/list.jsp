@@ -59,7 +59,7 @@ h2 {
 	String cateItemName = (String) request.getAttribute("cateItemName");
 %>
 <h2 class="con" style="text-align: center"> <%=cateItemName%> 🤗 </h2>
-<h2 calss="con" style="text-align: center">총 게시물 수 : ${totalCount}</h2>
+<h2 class="con" style="text-align: center">총 게시물 수 : ${totalCount}</h2>
 <div class="article-list-box-1 con table-box">
 	<table>
 		<colgroup>

@@ -9,7 +9,7 @@ public class Dto {
 	private Map<String, Object> extra;
 
 	public Dto(Map<String, Object> row) {
-		this.id = (int) row.get("id");
+		this.id = (int)row.get("id");
 		this.regDate = (String) row.get("regDate");
 		this.extra = new HashMap<>();
 
