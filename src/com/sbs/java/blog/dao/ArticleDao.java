@@ -68,7 +68,15 @@ public class ArticleDao extends Dao{
 		secSql.append("WHERE 1 ");
 		secSql.append("AND id = ? ", num );
 		secSql.append("AND displayStatus = 1 ");
-		
+		/*
+		secSql.append("SELECT *, member.name AS extra__writer ");
+		secSql.append("FROM article AS article ");
+		secSql.append("INNER JOIN member AS member ");
+		secSql.append("ON memberId = member.id ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND displayStatus = 1 ");
+		secSql.append("AND id = ? ", num );
+		*/
 		return new Article(DBUtil.selectRow(dbConn,secSql));
 	}
 	

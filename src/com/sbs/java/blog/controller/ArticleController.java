@@ -68,7 +68,7 @@ public class ArticleController extends Controller {
 			
 		articleService.doWriteArticleReply(articleReply,member,articleId);
 		
-		return "html:<script> alert(댓글이 등록되었습니다.); location.replace('detail?id="+article.getId()+"')</script>";
+		return "html:<script> alert('댓글이 등록되었습니다.'); location.replace('detail?id="+article.getId()+"')</script>";
 		
 	}
 
@@ -137,6 +137,10 @@ public class ArticleController extends Controller {
 
 		Article article = articleService.detail(id);
 		req.setAttribute("article", article);
+		
+		int memberId = article.getMemberId();
+		String memberNickname = memberService.getMemberById(memberId).getNickname();
+		req.setAttribute("memberNickname", memberNickname);
 		
 		List<ArticleReply> articleReplies = articleService.getArticleReplyByArticleId(id);
 		req.setAttribute("articleReplies", articleReplies);

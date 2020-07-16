@@ -8,6 +8,7 @@ public class Article extends Dto{
 	private String body;
 	private int cateItemId;
 	private int hit;
+	private int memberId;
 
 	public Article(Map<String, Object> row) {
 		super(row);
@@ -16,6 +17,15 @@ public class Article extends Dto{
 		this.title = (String) row.get("title");
 		this.body = (String) row.get("body");		
 		this.hit = (int)row.get("hit");
+		this.memberId = (int) row.get("memberId");
+	}
+	
+	public int getMemberId() {
+		return memberId;
+	}
+	
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 	
 	public int getHit() {

@@ -55,9 +55,10 @@ h1 {
 .form1 .form-row {
 	align-items: center;
 	display: flex;
+	margin : 10px;
 }
 
-.form1 .form-row:not(:first-child) {
+.form1 .form-row:not (:first-child ) {
 	margin-top: 10px;
 }
 
@@ -94,12 +95,12 @@ h1 {
 }
 
 .form1 .form-row>.last-box>.cancel {
-	background-color : white;
-	color:black;
-	font-weight:400;
-	radius : 15px;
-	padding : 0px 40px;
-	padding-top:5px;
+	background-color: white;
+	color: black;
+	font-weight: 400;
+	radius: 15px;
+	padding: 0px 40px;
+	padding-top: 5px;
 }
 
 /*cus*/
@@ -119,7 +120,8 @@ h1 {
 <h1>글 작성</h1>
 
 <div class="write-form-box con">
-	<form action="doWrite" method="POST" class="write-form form1">
+	<form action="doWrite" method="POST" class="write-form form1"
+		onsubmit="submitWriteForm(this); return false;">
 		<div class="form-row">
 			<div class="label">공개 여부</div>
 			<div class="input">
@@ -151,18 +153,41 @@ h1 {
 		</div>
 		<div class="form-row">
 			<div class="label">내용</div>
-			<div class="input">
-				<textarea name="body" placeholder="내용"></textarea>
-			</div>
+			<input type="hidden" name="body">
+			<div id="editor1" style="width:93%"></div>
 		</div>
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;" type="submit" value="작성" />
-				<a style="border: 3px solid #444958; border-radius: 15px;" class="cancel" href="list">취소</a>
+				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+					type="submit" value="작성" /> <a
+					style="border: 3px solid #444958; border-radius: 15px;"
+					class="cancel" href="list">취소</a>
 			</div>
 		</div>
 	</form>
 </div>
+<script>
+	var editor1 = new toastui.Editor({
+		el : document.querySelector("#editor1"),
+		height : "600px",
+		initialEditType : "markdown",
+		previewStyle : "vertical",
+		initialValue : "# 내용",
+		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin,
+				replPlugin, codepenPlugin ]
+	});
+
+	function submitWriteForm(form) {
+		var source = editor1.getMarkdown().trim();
+		if (source.length == 0) {
+			alert('내용을 입력해주세요.');
+			editor1.focus();
+			return;
+		}
+		form.body.value = source;
+		form.submit();
+	}
+</script>
 
 <%@ include file="/jsp/part/foot.jspf"%>

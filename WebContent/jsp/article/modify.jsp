@@ -148,7 +148,30 @@
 		</div>
 	</form>
 </div>
+<!-- 
+<script>
+	var editor1 = new toastui.Editor({
+		el : document.querySelector("#editor1"),
+		height : "600px",
+		initialEditType : "markdown",
+		previewStyle : "vertical",
+		initialValue : "# 내용",
+		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin,
+				replPlugin, codepenPlugin ]
+	});
 
+	function submitModifyForm(form) {
+		var source = editor1.getMarkdown().trim();
+		if (source.length == 0) {
+			alert('내용을 입력해주세요.');
+			editor1.focus();
+			return;
+		}
+		form.body.value = source;
+		form.submit();
+	}
+</script>
+ -->
 
 <%@ include file="/jsp/part/foot.jspf"%>
 

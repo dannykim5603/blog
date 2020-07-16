@@ -72,8 +72,8 @@ public class MemberDao extends Dao{
 	}
 
 	public Boolean checkEmail(String email) {
-		SecSql sql = SecSql.from("SELECT COUNT(*) AS cnt");
-		sql.append("FROM `member`");
+		SecSql sql = SecSql.from("SELECT * ");
+		sql.append("FROM `member` ");
 		sql.append("WHERE email = ?", email);
 		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
 		
@@ -84,8 +84,8 @@ public class MemberDao extends Dao{
 	}
 
 	public boolean nicknameCheck(String nickname) {
-		SecSql sql = SecSql.from("SELECT COUNT(*) AS cnt");
-		sql.append("FROM `member`");
+		SecSql sql = SecSql.from("SELECT * ");
+		sql.append("FROM `member` ");
 		sql.append("WHERE nickname = ?", nickname);
 		Map<String,Object> row = DBUtil.selectRow(dbConn, sql);
 		

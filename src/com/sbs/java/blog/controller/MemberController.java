@@ -56,6 +56,8 @@ public class MemberController extends Controller {
 		if (loginedMemberId == -1 ) {
 			return "html:<script> alert('아이디 혹은 비밀번호를 확인해 주세요'); location.replace('../home/main') </script>";
 		}
+		
+		session.setAttribute("loginedMemberId", loginedMemberId);
 		return  "html:<script> alert('로그인 되었습니다.'); location.replace('../home/main')</script>";
 	}
 
@@ -81,14 +83,14 @@ public class MemberController extends Controller {
 		if ( emailCheck == true ) {
 			return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
 		}
-
+		
 		boolean nicknameCheck = memberService.nicknameCheck(nickname);
 		//nickname이 있으면 true 없으면 false
 		if (nicknameCheck == true) {
 			return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
 		}
 		
-		int memberId = memberService.Join(loginId, loginPw, email, name, nickname);
+		int memberId = memberService.join(loginId, loginPw, email, name, nickname);
 		return "html:<script> alert('" + nickname + " 회원님 " + memberId
 				+ "번째 회원이 되신 것을 환영합니다.'); location.replace('../home/main')</script>";
 	}

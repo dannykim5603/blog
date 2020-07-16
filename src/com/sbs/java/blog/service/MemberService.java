@@ -13,7 +13,7 @@ public class MemberService extends Service {
 		memberDao = new MemberDao(dbConn);
 	}
 
-	public int Join(String loginId, String loginPw, String email, String name, String nickname) {
+	public int join(String loginId, String loginPw, String email, String name, String nickname) {
 
 		return memberDao.join(loginId,loginPw,email,name,nickname);
 	}

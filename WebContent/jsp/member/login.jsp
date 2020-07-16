@@ -2,38 +2,42 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <style>
 .login-form-box {
-	color : white;
-	display : flex;
-	justify-content : center;
-	margin-top:15%;
+	color: white;
+	display: flex;
+	justify-content: center;
+	margin-top: 15%;
 }
+
 .form1 {
-	width:40%;
-	margin-top : 100px;
+	width: 40%;
+	margin-top: 100px;
 }
-.form1 > .form-row {
-	width : 100%;
+
+.form1>.form-row {
+	width: 100%;
 }
-.form1 > .form-row > .label{
-	padding-top : 20px;
-	padding-bottom : 20px;
+
+.form1>.form-row>.label {
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
-.form1 > .form-row > .input > input {
-	width : 100%;
-	margin-left : 20px;
-	height : 25px;
+
+.form1>.form-row>.input>input {
+	width: 100%;
+	margin-left: 20px;
+	height: 25px;
 }
-	
-.last-box > a {
-	background-color : white;
-	color:black;
-	font-weight : thin;
-	border-radius : 15px;
-	padding : 0px 40px;
-	
+
+.last-box>a {
+	background-color: white;
+	color: black;
+	font-weight: thin;
+	border-radius: 15px;
+	padding: 0px 40px;
 }
 </style>
 <script>
@@ -50,15 +54,18 @@
 			form.loginPw.focus();
 			return;
 		}
+
 		form.loginPwReal.value = sha256(form.loginPw.value);
 		form.loginPw.value = '';
+
 		form.submit();
 	}
 </script>
 
 <div class="login-form-box con">
-	<form action="doLogin" method="POST" class="join-form form1" onsubmit="submitLoginForm(this); return false;">
-	<input type="hidden" name = "loginPwReal" />
+	<form action="doLogin" method="POST" class="join-form form1"
+		onsubmit="submitLoginForm(this); return false;">
+		<input type="hidden" name="loginPwReal" />
 		<div class="form-row">
 			<div class="label">loginId</div>
 			<div class="input">
@@ -74,8 +81,9 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"type="submit" value="로그인" /> 
-					<a style="border: 3px solid #444958;" class="cancel" href="home">취소</a>
+				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+					type="submit" value="로그인" /> <a style="border: 3px solid #444958;"
+					class="cancel" href="home">취소</a>
 			</div>
 		</div>
 	</form>

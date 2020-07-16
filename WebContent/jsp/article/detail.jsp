@@ -8,6 +8,7 @@
 <%
 	List<ArticleReply> replies = (List<ArticleReply>) request.getAttribute("articleReplies");
 	Article article = (Article) request.getAttribute("article");
+	String memberNickname = (String) request.getAttribute("memberNickname");
 %>
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
@@ -77,14 +78,13 @@
 <div class="con article-box" style="background-color: white">
 
 	<h1><%=article.getTitle()%></h1>
-	<h2><%=article.getRegDate()%></h2>
+	<h2>작성자 : <%=memberNickname%> </h2>
 	<h3>
 		조회수 :
 		<%=article.getHit()%></h3>
+	<h3>작성일 : <%=article.getRegDate()%></h3>
 	<script type="text/x-template" id="origin1"><%=article.getBodyForXTemplate()%></script>
 	<div id="viewer1"></div>
-	
-	<script>
 	<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBodyForXTemplate()%></script>
 	<div id="viewer1"></div>
 	<script>
@@ -131,6 +131,7 @@
 		</form>
 	</div>
 	<div class="util-butt-box">
+	<input type="hidden" name="id" value=<%=article.getId()%> />
 		<button type="button" class="modify-button" value="modify"
 			onclick="location.href='../article/modify?id=${param.id}'">수정
 		</button>
