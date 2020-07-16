@@ -131,7 +131,8 @@
 		</form>
 	</div>
 	<div class="util-butt-box">
-	<input type="hidden" name="id" value=<%=article.getId()%> />
+		<input type="hidden" name="id" value=<%=article.getId()%> />
+		<%request.setAttribute("id",article.getId());%>
 		<button type="button" class="modify-button" value="modify"
 			onclick="location.href='../article/modify?id=${param.id}'">수정
 		</button>

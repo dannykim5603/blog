@@ -79,16 +79,17 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionDoModify() {
+		Article article = (Article) req.getAttribute("article");
+		System.out.println(article);
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int displayStatus = Integer.parseInt(req.getParameter("displayStatus"));
 		int cateItemId = Util.getInt(req, "cateItemId");
 		
-		int id = Util.getInt(req, "id");
-		Article article = articleService.getArticleById(id);
+		int id = article.getId();
 		
 		articleService.doModify(title,body,displayStatus,cateItemId,id);
-		return "html:<script>alert('"+article.getId()+"번 게시물이 수정되었습니다.'); location.replace('detail?id="+article.getId()+")</script>";
+		return "html:<script>alert('"+id+"번 게시물이 수정되었습니다.'); location.replace('detail?id="+id+")</script>";
 	}
 
 	private String actionModify() {
@@ -100,9 +101,8 @@ public class ArticleController extends Controller {
 		}
 
 		int id = Util.getInt(req, "id");
-
 		Article article = articleService.detail(id);
-
+		System.out.println(article);
 		req.setAttribute("article", article);
 		return "article/modify.jsp";
 	}
