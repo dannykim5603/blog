@@ -99,7 +99,7 @@
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>
 	<!-- 댓글 -->
-	<div class="articleReply-box">
+	<div class="articleReply-box"  style="margin-top:20px">
 		<div class="reply-box">
 			<%
 				if (replies != null) {
@@ -107,13 +107,13 @@
 			<%
 				for (ArticleReply articleReplies : replies) {
 			%>
-			<%=articleReplies.getId()%>. <%=articleReplies.getNickname()%> <%=articleReplies.getBody()%><br>
+			<%=articleReplies.getId()%>. 	<%=articleReplies.getNickname()%> 		<%=articleReplies.getBody()%> 	<button class="reply-modify" type="button" onclick="">수정</button>  <button class="reply-delete" type="button" onclick="">삭제</button><br>
 			<%
 				}
 			}
 			%>
 		</div>
-		<form action="writeArticleReply" method="POST" class="articleReplyForm">
+		<form action="writeArticleReply" method="POST" class="articleReplyForm" style="margin-top:20px;">
 			<input type="hidden" name="id" value=<%=article.getId()%> />
 			<div class="form-row">
 				<div class="label" style="margin-right: 30px;">댓글</div>

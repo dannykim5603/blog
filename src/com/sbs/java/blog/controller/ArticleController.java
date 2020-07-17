@@ -49,8 +49,20 @@ public class ArticleController extends Controller {
 
 		case "writeArticleReply":
 			return actionWriteArticleReply();
+			
+		case "replyDelete":
+			return actionReplyDelete();
+			
+		
 		}
 		return "";
+	}
+
+	private String actionReplyDelete() {
+		int replyId = Util.getInt(req,"replyId");
+		articleService.deleteReply(replyId);
+		
+		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
 	}
 
 	private String actionWriteArticleReply() {
