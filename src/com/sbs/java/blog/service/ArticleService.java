@@ -15,7 +15,7 @@ public class ArticleService extends Service {
 	public ArticleService(Connection dbConn) {
 		articleDao = new ArticleDao(dbConn);
 	}
-
+	
 	public List<Article> getArticles(int page,int itemsInAPage, int cateItemId,String searchKeywordType, String searchKeyword) {
 		return articleDao.getArticles(page,itemsInAPage,cateItemId,searchKeywordType,searchKeyword);
 	}

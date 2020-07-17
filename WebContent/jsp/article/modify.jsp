@@ -98,12 +98,12 @@
 </style>
 <div class="modify-form-box con">
 	<form action="doModify" method="POST" class="modify-form form1">
+		<input type="hidden" name="id" value=<%=article.getId()%> />
 		<div class="form-row">
 			<div class="label id"><p>게시글 번호 </p></div>
 			<div class="input">
-				<select>
-					<option value=<%=article.getId() %>><%=article.getId() %></option>
-				</select>
+				<% int num = (int)article.getId(); %>
+				<% out.println(num); %>				
 			</div>
 			<div class="label"> 공개 여부</div>
 			<div class="input">
@@ -130,7 +130,7 @@
 		<div class="form-row">
 			<div class="label">제목</div>
 			<div class="input">
-				<input name="title" type="text" placeholder=<%=article.getTitle()%> />
+				<input name="title" type="text" placeholder=<%=article.getTitle()%>>
 			</div>
 		</div>
 		<div class="form-row">
@@ -148,6 +148,20 @@
 		</div>
 	</form>
 </div>
+<script>
+function submitLoginForm(form) {
+		form.title.value = form.title.value.trim();
+		if (form.loginId.value.length == 0) {
+			alert('로그인 아이디를 입력해주세요.');
+			form.loginId.focus();
+			return;
+		}
+		form.loginPwReal.value = sha256(form.loginPw.value);
+		form.loginPw.value = '';
+
+		form.submit();
+	}
+</script>
 <!-- 
 <script>
 	var editor1 = new toastui.Editor({

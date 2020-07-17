@@ -20,25 +20,11 @@ public class ArticleDao extends Dao{
 		this.dbConn = dbConn;
 	}
 
-//	public int save(Article article) {
-//		StringBuilder sb = new StringBuilder();
-//
-//		sb.append(String.format("INSERT INTO article "));
-//		sb.append(String.format("SET regDate = '%s' ", article.getRegDate()));
-//		sb.append(String.format(", `title` = '%s' ", article.getTitle()));
-//		sb.append(String.format(", `body` = '%s' ", article.getBody()));
-////		sb.append(String.format(", `memberId` = '%d' ", article.getMemberId()));
-////		sb.append(String.format(", `boardId` = '%d' ", article.getBoardId()));
-//
-//		return DBUtil.insert(dbConn,sb.toString());
-//	}
-
-
 	public List<Article> getArticles(int page, int itemsInAPage,int cateItemId, String searchKeywordType, String searchKeyword) {
 		SecSql sql = new SecSql();
 		int limitFrom = (page - 1) * itemsInAPage;
 
-		sql.append("SELECT *");
+		sql.append("SELECT *, '김대니' AS extra__ ");
 		sql.append("FROM article");
 		sql.append("WHERE displayStatus = 1");
 		if (cateItemId != 0) {
@@ -68,15 +54,7 @@ public class ArticleDao extends Dao{
 		secSql.append("WHERE 1 ");
 		secSql.append("AND id = ? ", num );
 		secSql.append("AND displayStatus = 1 ");
-		/*
-		secSql.append("SELECT *, member.name AS extra__writer ");
-		secSql.append("FROM article AS article ");
-		secSql.append("INNER JOIN member AS member ");
-		secSql.append("ON memberId = member.id ");
-		secSql.append("WHERE 1 ");
-		secSql.append("AND displayStatus = 1 ");
-		secSql.append("AND id = ? ", num );
-		*/
+
 		return new Article(DBUtil.selectRow(dbConn,secSql));
 	}
 	
@@ -88,8 +66,6 @@ public class ArticleDao extends Dao{
 		
 		return DBUtil.delete(dbConn,secSql);
 	}
-
-
 
 	public void deleteReply(int id) {
 		SecSql secSql = new SecSql();
@@ -196,12 +172,12 @@ public class ArticleDao extends Dao{
 		SecSql secSql = new SecSql();
 		
 		secSql.append("UPDATE article ");
-		secSql.append("SET title = ? ",title);
+		secSql.append("SET updateDate = NOW() ");
+		secSql.append(", title = ? ",title);
 		secSql.append(", body = ? ",body);
-		secSql.append(", updateDate = NOW() ");
 		secSql.append(", cateItemId = ? ",cateItemId);
 		secSql.append(", displayStatus = ? ",displayStatus);
-		secSql.append(", id = ? ",id);
+		secSql.append("WHERE id = ? ",id);
 		
 		return DBUtil.update(dbConn,secSql);
 	}

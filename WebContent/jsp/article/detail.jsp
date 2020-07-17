@@ -93,8 +93,7 @@
 			el : document.querySelector('#viewer1'),
 			initialValue : editor1__initialValue,
 			viewer : true,
-			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight,
-					youtubePlugin, replPlugin, codepenPlugin ]
+			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
 		});
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>

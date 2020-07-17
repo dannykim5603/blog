@@ -4,6 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sbs.java.blog.dto.Article"%>
+<%@page import="com.sbs.java.blog.service.ArticleService"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 
@@ -53,6 +54,7 @@ h2 {
 }
 </style>
 <%
+	ArticleService articleService;
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
@@ -63,9 +65,9 @@ h2 {
 <div class="article-list-box-1 con table-box">
 	<table>
 		<colgroup>
-			<col width="50">
-			<col width="150">
-			<col width="150">
+			<col width="25">
+			<col width="120">
+			<col width="120">
 		</colgroup>
 		<thead>
 			<tr>
@@ -73,6 +75,7 @@ h2 {
 				<th>등록날짜</th>
 				<th>갱신날짜</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>조회수</th>
 			</tr>
 		</thead>
@@ -87,7 +90,8 @@ h2 {
 				<td class=" text-align-left ">
 					<a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
 				</td>
-				<td><%=article.getHit() %></td>
+				<td><%=article.getExtra() %></td>
+				<td><%=article.getHit()%></td>
 			</tr>
 			<%
 				}
