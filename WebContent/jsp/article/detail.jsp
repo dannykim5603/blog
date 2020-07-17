@@ -107,7 +107,7 @@
 			<%
 				for (ArticleReply articleReplies : replies) {
 			%>
-			<%=articleReplies.getId()%>. 	<%=articleReplies.getNickname()%> 		<%=articleReplies.getBody()%> 	<button class="reply-modify" type="button" onclick="">수정</button>  <button class="reply-delete" type="button" onclick="">삭제</button><br>
+			<%=articleReplies.getId()%>. 	<%=articleReplies.getNickname()%> 		<%=articleReplies.getBody()%> 	<button class="reply-modify" type="button" onclick="location.href=''">수정</button>  <button class="reply-delete" type="button" onclick="">삭제</button><br>
 			<%
 				}
 			}
