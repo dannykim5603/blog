@@ -52,9 +52,19 @@ public class ArticleController extends Controller {
 
 		case "replyDelete":
 			return actionReplyDelete();
-
+			
+		case "replyModify":
+			return actionReplyModify();
+			
 		}
 		return "";
+	}
+	
+
+	private String actionReplyModify() {
+		int replyId = Util.getInt(req, "replyId");
+		
+		return null;
 	}
 
 	private String actionReplyDelete() {
