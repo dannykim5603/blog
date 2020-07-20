@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
+import com.sbs.java.blog.service.MemberService;
 import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.dto.Member;
 import com.sbs.java.blog.util.Util;
@@ -52,26 +53,33 @@ public class ArticleController extends Controller {
 
 		case "replyDelete":
 			return actionReplyDelete();
-			
+
 		case "replyModify":
 			return actionReplyModify();
-			
+
 		}
+		
 		return "";
 	}
-	
 
 	private String actionReplyModify() {
 		int replyId = Util.getInt(req, "replyId");
-		
+
 		return null;
 	}
 
 	private String actionReplyDelete() {
 		int replyId = Util.getInt(req, "replyId");
-		articleService.deleteReply(replyId);
+		
+		ArticleReply articleReply = articleService.getArticleReplyById(replyId);
 
-		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
+		if ((int) session.getAttribute("loginedMemberId") == Integer.parseInt(articleReply.getMemberId())) {
+			articleService.deleteReply(replyId);
+		
+			return "html:<script> alert(' 댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
+		}
+		
+		return "html:<script> alert(' 권한이 없습니다.'); location.replace('history.back()')</script>";
 	}
 
 	private String actionWriteArticleReply() {
@@ -82,19 +90,26 @@ public class ArticleController extends Controller {
 		int articleId = article.getId();
 
 		String articleReply = req.getParameter("body");
-
+		
+		if(session.getAttribute("loginedMemberId") ==null) {
+			return "html:<script> alert(' 로그인이 필요한 서비스 입니다.'); location.replace('detail?id="+ article.getId() +"')</script>"; 
+		}
+		
 		int memberId = (int) session.getAttribute("loginedMemberId");
 
 		Member member = memberService.getMemberById(memberId);
-
+		
 		articleService.doWriteArticleReply(articleReply, member, articleId);
 
 		return "html:<script> alert('댓글이 등록되었습니다.'); location.replace('detail?id=" + article.getId() + "')</script>";
-
 	}
 
 	private String actionDelete() {
 		int id = Util.getInt(req, "id");
+		Article article = articleService.getArticleById(id);
+		if (article.getMemberId() != (int) session.getAttribute("loginedMemberId")) {
+			return "html:<script> alert(' 권한이 없습니다.'); location.replace('list')</script>";
+		}
 		articleService.delete(id);
 		return "html:<script> alert('" + id + "번 게시물이 삭제되었습니다.'); location.replace('list')</script>";
 	}
@@ -120,7 +135,6 @@ public class ArticleController extends Controller {
 
 		int id = Util.getInt(req, "id");
 		Article article = articleService.detail(id);
-		System.out.println(article);
 		req.setAttribute("article", article);
 		return "article/modify.jsp";
 	}
@@ -206,10 +220,10 @@ public class ArticleController extends Controller {
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
-
+		req.setAttribute("memberService", memberService);
 		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId, searchKeywordType,
 				searchKeyword);
-		
+
 		req.setAttribute("articles", articles);
 		return "article/list.jsp";
 	}

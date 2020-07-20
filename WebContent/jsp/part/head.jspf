@@ -7,9 +7,9 @@
 
 <%
 	List<CateItem> cateItems = (List<CateItem>) request.getAttribute("cateItems");
-	int loginedMemberId = (int) request.getAttribute("loginedMemberId");
-	Member loginedMember = (Member) request.getAttribute("loginedMember");
-	boolean isLogined = (boolean) request.getAttribute("isLogined");
+int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+Member loginedMember = (Member) request.getAttribute("loginedMember");
+boolean isLogined = (boolean) request.getAttribute("isLogined");
 %>
 
 <!DOCTYPE html>
@@ -42,18 +42,20 @@
 	var loginedMember = null;
 </script>
 <%
-	if (isLogined){
+	if (isLogined) {
 %>
 <script>
 	loginedMember = {};
 	loginedMember["id"] = parseInt("${loginedMember.id}");
-	loginedMember["regDate"] = "${loginedMember.regDate}"; 
-	loginedMember["loginId"] = "${loginedMember.loginId}"; 
-	loginedMember["name"] =  "${loginedMember.name}";
+	loginedMember["regDate"] = "${loginedMember.regDate}";
+	loginedMember["loginId"] = "${loginedMember.loginId}";
+	loginedMember["name"] = "${loginedMember.name}";
 	loginedMember["nickname"] = "${loginedMember.nickname}";
 	loginedMember["email"] = "${loginedMember.email}";
 </script>
-<%} %>
+<%
+	}
+%>
 </head>
 
 <body>
@@ -70,10 +72,14 @@
 		<div class="con height-100p ">
 			<nav class="menu-box-1 flex flex-jc-c flex flex-ai-e">
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
-					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/s/article/write" class="height-100p flex flex-ai-c">Write</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/main"
+						class="height-100p flex flex-ai-c">Home</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
+						href="${pageContext.request.contextPath}/s/article/write"
+						class="height-100p flex flex-ai-c">Write</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/s/article/list"
+						class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
 							<%
 								for (CateItem cateItem : cateItems) {
@@ -95,6 +101,8 @@
 								target="blank">FACEBOOK</a></li>
 							<li><a class="block " href="https://to2.kr/bru"
 								target="blank">INSTAGRAM</a></li>
+							<li><a class="block " href="https://to2.kr/bt7"
+								target="blank">YOUTUBE</a></li>
 						</ul></li>
 				</ul>
 			</nav>
@@ -102,15 +110,21 @@
 	</div>
 	<div class="tbrln visible-on-md-up"></div>
 	<div class="member-bar visible-on-md-up">
-		<% if (session.getAttribute("loginedMemberId")==null){ %>
-		<button type="button" class="login-button" value="login" onclick="location.href='../member/login'">로그인
-		</button>
-		<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입
-		</button>
-		<%}else if (session.getAttribute("loginedMemberId") != null){ %>
-		<button type="button" class="login-button" value="logout" onclick="location.href='../member/doLogout'">로그아웃
-		</button>
-		<% }%>
+		<%
+			if (session.getAttribute("loginedMemberId") == null) {
+		%>
+		<button type="button" class="login-button" value="login"
+			onclick="location.href='../member/login'">로그인</button>
+		<button type="button" class="join-button" value="join"
+			onclick="location.href='../member/join'">회원가입</button>
+		<%
+			} else if (session.getAttribute("loginedMemberId") != null) {
+		%>
+		<button type="button" class="login-button" value="logout"
+			onclick="location.href='../member/doLogout'">로그아웃</button>
+		<%
+			}
+		%>
 	</div>
 
 	<!-모바일 탑바->
@@ -122,7 +136,8 @@
 				<div></div>
 				<div></div>
 		</a>
-		</a> <a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
+		</a> <a href="${pageContext.request.contextPath}/s/home/main"
+			class="logo flex flex-jc-c "> <span> <img
 				src="${pageContext.request.contextPath}/resource/img/logo.png"
 				alt="" width="250 " class="image blinking ">
 		</span>
@@ -134,8 +149,11 @@
 	<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down ">
 		<nav class="menu-box-1 flex-grow-1 ">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/s/article/write" class="block">Write</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/main"
+					class="block">Home</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/s/article/write"
+					class="block">Write</a></li>
 				<li><a href="${pageContext.request.contextPath}/s/article/list"
 					class="block">Articles</a>
 					<ul>
@@ -158,24 +176,58 @@
 							target="blank">FACEBOOK</a></li>
 						<li><a class="block " href="https://to2.kr/bru"
 							target="blank">INSTAGRAM</a></li>
+						<li><a class="block " href="https://to2.kr/bt7"
+							target="blank">YOUTUBE</a></li>
 					</ul></li>
 			</ul>
 		</nav>
 		<div class="mobile-member-bar visible-on-sm-down">
-		<% if (session.getAttribute("loginedMemberId")==null){ %>
-		<button type="button" class="login-button" value="login" onclick="location.href='../member/login'">로그인
-		</button>
-		<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입
-		</button>
-		<%}else if (session.getAttribute("loginedMemberId") != null){ %>
-		<button type="button" class="login-button" value="logout" onclick="location.href='../member/logout'">로그아웃
-		</button>
-		<% }%>
+			<%
+				if (session.getAttribute("loginedMemberId") == null) {
+			%>
+			<button type="button" class="login-button" value="login"
+				onclick="location.href='../member/login'">로그인</button>
+			<button type="button" class="join-button" value="join"
+				onclick="location.href='../member/join'">회원가입</button>
+			<%
+				} else if (session.getAttribute("loginedMemberId") != null) {
+			%>
+			<button type="button" class="login-button" value="logout"
+				onclick="location.href='../member/logout'">로그아웃</button>
+			<%
+				}
+			%>
+		</div>
 	</div>
-</div>
-<%
-	if (loginedMember != null) {
-%>
-<div class = "con" style="color:white; display:none" ><%=loginedMember.getName()%> 회원님 환영합니다.</div>
-<%} %>
+	<%
+		if (loginedMember != null) {
+	%>
+	<div class="con" style="color: white; display: none"><%=loginedMember.getName()%>
+		회원님 환영합니다.
+	</div>
+	<%
+		}
+	%>
+	<script>
+		function MobileSideBar__init() {
+			var $btnToggleMobileSideBar = $('.btn-toggle-mobile-side-bar');
 
+			$btnToggleMobileSideBar.click(function() {
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+					$('.mobile-side-bar').removeClass('active');
+					$('.index').removeClass('active');
+					$('.mobile-profile-box').removeClass('active');
+				} else {
+					$(this).addClass('active');
+					$('.mobile-side-bar').addClass('active');
+					$('.index').addClass('active');
+					$('.mobile-profile-box').addClass('active');
+				}
+			});
+		}
+
+		$(function() {
+			MobileSideBar__init();
+		});
+	</script>

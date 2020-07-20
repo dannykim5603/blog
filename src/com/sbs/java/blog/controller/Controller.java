@@ -85,6 +85,13 @@ public abstract class Controller {
 		String controllerName = getControllerName();
 		
 		switch (controllerName) {
+		case "home":
+			switch(actionMethodName) {
+			case "aboutMe":
+				needToLogin = true;
+				break;
+			}
+			break;
 		case "member":
 			switch(actionMethodName) {
 			case "doLogout":
