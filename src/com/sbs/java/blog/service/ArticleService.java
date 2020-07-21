@@ -76,8 +76,4 @@ public class ArticleService extends Service {
 	public List<ArticleReply> getArticleReplyByArticleId(int articleId) {
 		return articleDao.getArticleReplyByArticleId(articleId);
 	}
-
-	public ArticleReply getArticleReplyById(int replyId) {
-		return articleDao.getArticleReplyById(replyId);
-	}
 }

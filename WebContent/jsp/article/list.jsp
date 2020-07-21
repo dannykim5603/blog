@@ -5,7 +5,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.sbs.java.blog.dto.Article"%>
 <%@page import="com.sbs.java.blog.service.ArticleService"%>
-<%@page import="com.sbs.java.blog.service.MemberService"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 
@@ -24,9 +23,6 @@ h2 {
 	border-collapse: collapse;
 	color: white;
 	font-size: .9rem;
-}
-.table-box> table th {
-	background-color: #444958;
 }
 
 .table-box>table th, .table-box>table td {
@@ -58,12 +54,11 @@ h2 {
 }
 </style>
 <%
-	MemberService memberService = (MemberService)request.getAttribute("memberService");
+	ArticleService articleService;
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
 	String cateItemName = (String) request.getAttribute("cateItemName");
-	String memberNickname = new String();
 %>
 <h2 class="con" style="text-align: center"> <%=cateItemName%> 🤗 </h2>
 <h2 class="con" style="text-align: center">총 게시물 수 : ${totalCount}</h2>
@@ -73,7 +68,6 @@ h2 {
 			<col width="25">
 			<col width="120">
 			<col width="120">
-			<col width="900">
 		</colgroup>
 		<thead>
 			<tr>
@@ -88,7 +82,6 @@ h2 {
 		<tbody>
 			<%
 				for (Article article : articles) {
-				memberNickname = (String)memberService.getMemberNickname(article.getMemberId());
 			%>
 			<tr>
 				<td><%=article.getId()%></td>
@@ -97,7 +90,7 @@ h2 {
 				<td class=" text-align-left ">
 					<a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
 				</td>
-				<td><%=memberNickname %></td>
+				<td><%=article.getExtra() %></td>
 				<td><%=article.getHit()%></td>
 			</tr>
 			<%
@@ -126,7 +119,7 @@ h2 {
 		<input type="hidden" name="page" value="1" />
 		<input type="hidden" name="cateItemId" value="${param.cateItemId}" />
 		<input type="hidden" name="searchKeywordType" value="title" /> 
-		<input type="text" name="searchKeyword" value="${param.searchKeyword}" placeholder =" 검색어를 입력해 주세요."/>
+		<input type="text" name="searchKeyword" value="${param.searchKeyword}" />
 		<button type="submit">검색</button>
 	</form>
 	

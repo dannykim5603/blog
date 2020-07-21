@@ -221,15 +221,4 @@ public class ArticleDao extends Dao{
 		
 		return articleReplies;
 	}
-
-	public ArticleReply getArticleReplyById(int replyId) {
-		SecSql secSql = new SecSql();
-		
-		secSql.append("SELECT * FROM articleReply");
-		secSql.append(" WHERE id = ?",replyId);
-		
-		ArticleReply articleReply = new ArticleReply(DBUtil.selectRow(dbConn, secSql));
-		
-		return articleReply;
-	}
 }

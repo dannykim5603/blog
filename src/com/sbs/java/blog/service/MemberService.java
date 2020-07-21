@@ -37,7 +37,4 @@ public class MemberService extends Service {
 	public boolean nicknameCheck(String nickname) {
 		return memberDao.nicknameCheck(nickname);
 	}
-	public String getMemberNickname(int memberId) {
-		return memberDao.getMemberNickname(memberId);
-	}
 }
