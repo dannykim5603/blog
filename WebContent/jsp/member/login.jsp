@@ -33,21 +33,21 @@
 }
 
 .last-box>a {
-	color: white;
+	background-color: white;
+	color: black;
 	font-weight: thin;
+	border-radius: 15px;
 	padding: 0px 40px;
 }
 </style>
 <script>
 	function submitLoginForm(form) {
-		
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
 			form.loginId.focus();
 			return;
 		}
-		
 		form.loginPw.value = form.loginPw.value.trim();
 		if (form.loginPw.value.length == 0) {
 			alert('로그인 비번을 입력해주세요.');
@@ -66,31 +66,26 @@
 	<form action="doLogin" method="POST" class="join-form form1"
 		onsubmit="submitLoginForm(this); return false;">
 		<input type="hidden" name="loginPwReal" />
-		
 		<div class="form-row">
 			<div class="label">loginId</div>
 			<div class="input">
 				<input name="loginId" type="text" placeholder=" login ID " />
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">loginPw</div>
 			<div class="input">
 				<input name="loginPw" type="password" placeholder=" login PW "></input>
 			</div>
 		</div>
-		
 		<div class="form-row">
+			<div class="label"></div>
 			<div class="input last-box">
-				<div class = "find-box" style="display:flex; justify-content:center; margin-bottom:20px; align-items:center">
-				<a class = "findId" href = "findId">아이디 찾기</a>/
-				<a class = "findPw" href = "findPw">비번 찾기</a>
-				</div>
-				<input class="submit-box" style="width: 50%; border-radius: 15px;" type="submit" value="로그인" /> <a class="cancel" href="../home/main">취소</a>
+				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+					type="submit" value="로그인" /> <a style="border: 3px solid #444958;"
+					class="cancel" href="home">취소</a>
 			</div>
 		</div>
-		
 	</form>
 </div>
 

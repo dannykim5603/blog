@@ -104,7 +104,6 @@
 <div class="join-form-box con">
 	<form action="doJoin" method="POST" class="join-form form1"
 		onsubmit="submitJoinForm(this); return false;">
-		
 		<input type="hidden" name="loginPwReal">
 		<div class="form-row">
 			<div class="label">loginId</div>
@@ -112,35 +111,30 @@
 				<input name="loginId" type="text" placeholder=" login ID " />
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">e-mail</div>
 			<div class="input">
 				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">name</div>
 			<div class="input">
 				<input name="name" type="text" placeholder=" NAME "></input>
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">nickname</div>
 			<div class="input">
 				<input name="nickname" type="text" placeholder=" NICKNAME " />
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">loginPw</div>
 			<div class="input">
 				<input name="loginPw" type="password" placeholder=" login PW "></input>
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label">loginPwConfirm</div>
 			<div class="input">
@@ -148,16 +142,14 @@
 					placeholder=" PW Confirm "></input>
 			</div>
 		</div>
-		
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
 				<input class="submit-box" style="width: 50%; border-radius: 15px;"
 					type="submit" value="회원가입" /> <a
-					style="border: 3px solid #444958;" class="cancel" href="../home/main">취소</a>
+					style="border: 3px solid #444958;" class="cancel" href="home">취소</a>
 			</div>
 		</div>
-		
 	</form>
 </div>
 
