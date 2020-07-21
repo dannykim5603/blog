@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sbs.java.blog.dto.CateItem;
-import com.sbs.java.blog.service.ArticleService;
-import com.sbs.java.blog.service.MemberService;
 import com.sbs.java.blog.dto.Member;
+import com.sbs.java.blog.service.ArticleService;
+import com.sbs.java.blog.service.MailService;
 import com.sbs.java.blog.service.MemberService;
 
 // Controller
@@ -23,6 +23,7 @@ public abstract class Controller {
 	
 	protected ArticleService articleService;
 	protected MemberService memberService;
+	protected MailService mailService;
 	
 	public Controller(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
 		this.dbConn = dbConn;

@@ -16,5 +16,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-8.0.20.jar"/>
 	<classpathentry kind="lib" path="C:/work/apache-tomcat-9.0.36/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/work/apache-tomcat-9.0.36/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="lib/mail-1.4.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
