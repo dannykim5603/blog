@@ -206,6 +206,7 @@ public class ArticleController extends Controller {
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
+		req.setAttribute("memberService", memberService);
 
 		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId, searchKeywordType,
 				searchKeyword);

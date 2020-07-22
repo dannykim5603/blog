@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sbs.java.blog.app.App;
-import com.sbs.java.blog.service.MailService;
 
 public class DispatcherServlet extends HttpServlet {
 	HttpSession session;

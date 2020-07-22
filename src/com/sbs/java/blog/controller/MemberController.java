@@ -76,11 +76,15 @@ public class MemberController extends Controller {
 		}
 		
 		Member member = memberService.modifyMemberInfo(email,nickname,loginPw,id);
+		String title = "BLOG DANNYS UNKNOWN ";
+		String body = " 회원님의 정보가 수정되었습니다. ";
 		mailService.send(email, title, body);
 		return "html:<script> alert('"+member.getNickname()+"님의 정보가 수정되었습니다.'); location.replace('../home/main') </script>";
 	}
 
 	private String actionMyInfo() {
+		Member member = memberService.getMemberById((int)session.getAttribute("loginedMemberId"));
+		req.setAttribute("member", member);
 		return "member/myInfo.jsp";
 	}
 

@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
+<%
+
+Member member = (Member)request.getAttribute("member");
+
+%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <style>

@@ -12,6 +12,10 @@ public class MemberService extends Service {
 	public MemberService(Connection dbConn) {
 		memberDao = new MemberDao(dbConn);
 	}
+	
+	public String getMemberNickname(int id) {
+		return memberDao.getMemberNickname(id);
+	}
 
 	public int join(String loginId, String loginPw, String email, String name, String nickname) {
 
