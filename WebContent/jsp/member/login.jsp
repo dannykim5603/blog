@@ -49,6 +49,7 @@
 }
 </style>
 <script>
+
 	function submitLoginForm(form) {
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
@@ -56,6 +57,7 @@
 			form.loginId.focus();
 			return;
 		}
+		
 		form.loginPw.value = form.loginPw.value.trim();
 		if (form.loginPw.value.length == 0) {
 			alert('로그인 비번을 입력해주세요.');

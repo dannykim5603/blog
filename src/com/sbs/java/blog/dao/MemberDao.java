@@ -105,5 +105,19 @@ public class MemberDao extends Dao{
 		Member member = new Member (DBUtil.selectRow(dbConn, sql));
 		
 		return member;
+	}
+
+	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
+		SecSql sql = new SecSql();
+		
+		sql.append("UPDATA member");
+		sql.append(" SET email = ?",email);
+		sql.append(", nickname = ?",nickname);
+		sql.append(", loginPw = ?",loginPw);
+		sql.append("WHERE id = ?",id);
+		
+		Member member = new Member(DBUtil.selectRow(dbConn, sql));
+		
+		return member;
 	}	
 }

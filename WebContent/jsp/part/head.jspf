@@ -108,6 +108,7 @@
 		<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입
 		</button>
 		<%}else if (session.getAttribute("loginedMemberId") != null){ %>
+		<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보 수정</button>
 		<button type="button" class="login-button" value="logout" onclick="location.href='../member/doLogout'">로그아웃
 		</button>
 		<% }%>
@@ -168,6 +169,7 @@
 		<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입
 		</button>
 		<%}else if (session.getAttribute("loginedMemberId") != null){ %>
+		<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보 수정</button>
 		<button type="button" class="login-button" value="logout" onclick="location.href='../member/logout'">로그아웃
 		</button>
 		<% }%>

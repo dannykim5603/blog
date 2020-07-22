@@ -48,8 +48,40 @@ public class MemberController extends Controller {
 			
 		case "doFindPw":
 			return actionDoFindPw();
+			
+		case "myInfo":
+			return actionMyInfo();
+			
+		case "modifyMyInfo":
+			return actionModifyMyInfo();
 		}
 		return "";
+	}
+
+	private String actionModifyMyInfo() {
+		String email = req.getParameter("email");
+		String nickname = req.getParameter("nickname");
+		String loginPw = req.getParameter("loginPwReal");
+		int id = (int)session.getAttribute("loginedMemberId");
+		boolean emailCheck = memberService.checkEmail(email);
+		//email이 있으면 true 없으면 false
+		if ( emailCheck == true ) {
+			return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
+		}
+		
+		boolean nicknameCheck = memberService.nicknameCheck(nickname);
+		//nickname이 있으면 true 없으면 false
+		if (nicknameCheck == true) {
+			return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
+		}
+		
+		Member member = memberService.modifyMemberInfo(email,nickname,loginPw,id);
+		mailService.send(email, title, body);
+		return "html:<script> alert('"+member.getNickname()+"님의 정보가 수정되었습니다.'); location.replace('../home/main') </script>";
+	}
+
+	private String actionMyInfo() {
+		return "member/myInfo.jsp";
 	}
 
 	private String actionDoFindPw() {

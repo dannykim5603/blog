@@ -41,4 +41,8 @@ public class MemberService extends Service {
 	public Member getMemberByEmailANDName(String email, String name) {
 		return memberDao.getMemberByEmailANDName(email,name);
 	}
+
+	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
+		return memberDao.modifyMemberInfo(email,nickname,loginPw,id);
+	}
 }
