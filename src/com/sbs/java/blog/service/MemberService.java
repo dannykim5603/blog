@@ -37,4 +37,8 @@ public class MemberService extends Service {
 	public boolean nicknameCheck(String nickname) {
 		return memberDao.nicknameCheck(nickname);
 	}
+
+	public Member getMemberByEmailANDName(String email, String name) {
+		return memberDao.getMemberByEmailANDName(email,name);
+	}
 }

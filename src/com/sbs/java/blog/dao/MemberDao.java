@@ -93,5 +93,17 @@ public class MemberDao extends Dao{
 			return false; // 없으면 false
 		}
 		return true; //있으면 true
+	}
+
+	public Member getMemberByEmailANDName(String email, String name) {
+		SecSql sql = new SecSql();
+		
+		sql.append("SELECT * FROM member");
+		sql.append(" WHERE email = ?",email);
+		sql.append(" AND name = ?",name);
+		
+		Member member = new Member (DBUtil.selectRow(dbConn, sql));
+		
+		return member;
 	}	
 }

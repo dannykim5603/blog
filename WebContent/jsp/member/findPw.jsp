@@ -5,11 +5,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <style>
-.login-form-box {
+.join-form-box {
 	color: white;
 	display: flex;
 	justify-content: center;
-	margin-top: 15%;
 }
 
 .form1 {
@@ -39,41 +38,46 @@
 	border-radius: 15px;
 	padding: 0px 40px;
 }
-.find-box {
-	margin-top:20px;
-	display:flex;
-	justify-content:center;
-}
-.find-box > a{
-	padding: 0 20px;
-}
 </style>
+
 <script>
-	function submitLoginForm(form) {
+	var submitJoinFormDone = false;
+	function submitJoinForm(form) {
+		if ( submitJoinFormDone ) {
+			alert('처리중 입니다.');
+			return;
+		}
+		
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
 			form.loginId.focus();
 			return;
 		}
-		form.loginPw.value = form.loginPw.value.trim();
-		if (form.loginPw.value.length == 0) {
-			alert('로그인 비번을 입력해주세요.');
-			form.loginPw.focus();
+		
+		form.name.value = form.name.value.trim();
+		if (form.name.value.length == 0) {
+			alert('이름을 입력해주세요.');
+			form.name.focus();
 			return;
 		}
+		
+		form.email.value = form.email.value.trim();
 
-		form.loginPwReal.value = sha256(form.loginPw.value);
-		form.loginPw.value = '';
-
+		if (form.email.value.length == 0) {
+			alert('이메일을 입력해주세요.');
+			form.email.focus();
+			return;
+		}
+		
 		form.submit();
+		submitJoinFormDone = true;
 	}
 </script>
 
-<div class="login-form-box con">
-	<form action="doLogin" method="POST" class="join-form form1"
-		onsubmit="submitLoginForm(this); return false;">
-		<input type="hidden" name="loginPwReal" />
+<div class="join-form-box con">
+	<form action="doFindPw" method="POST" class="join-form form1"
+		onsubmit="submitJoinForm(this); return false;">
 		<div class="form-row">
 			<div class="label">loginId</div>
 			<div class="input">
@@ -81,20 +85,23 @@
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">loginPw</div>
+			<div class="label">e-mail</div>
 			<div class="input">
-				<input name="loginPw" type="password" placeholder=" login PW "></input>
+				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
-		<div class="find-box">
-		<a href="findId">아이디 찾기</a>/
-		<a href="findPw">비밀번호 찾기</a>
+		<div class="form-row">
+			<div class="label">name</div>
+			<div class="input">
+				<input name="name" type="text" placeholder=" NAME "></input>
+			</div>
 		</div>
+		
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
 				<input class="submit-box" style="width: 50%; border-radius: 15px;"
-					type="submit" value="로그인" /> <a class="cancel" href="home">취소</a>
+					type="submit" value="비번 찾기" /> <a class="cancel" href="home">취소</a>
 			</div>
 		</div>
 	</form>

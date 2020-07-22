@@ -36,8 +36,42 @@ public class MemberController extends Controller {
 			
 		case "doLogout":
 			return actionLogout();
+		
+		case "findId":
+			return actionFindId();
+			
+		case "doFindId":
+			return actionDoFindId();
+		
+		case "findPw":
+			return actionFidnPw();
+			
+		case "doFindPw":
+			return actionDoFindPw();
 		}
 		return "";
+	}
+
+	private String actionDoFindPw() {
+		
+		return null;
+	}
+
+	private String actionFidnPw() {
+		return "member/findPw.jsp";
+	}
+
+	private String actionDoFindId() {
+		String email = req.getParameter("email");
+		String name = req.getParameter("name");
+		
+		Member member = memberService.getMemberByEmailANDName(email,name);
+		
+		return "html:<script> alert('찾으신 아이디는  "+member.getLoginId()+"  입니다.'); location.replace('../member/login') </script>";
+	}
+
+	private String actionFindId() {
+		return "member/findId.jsp";
 	}
 
 	private String actionLogout() {
