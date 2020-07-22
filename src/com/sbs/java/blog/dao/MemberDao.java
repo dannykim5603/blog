@@ -110,7 +110,7 @@ public class MemberDao extends Dao{
 	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
 		SecSql sql = new SecSql();
 		
-		sql.append("UPDATA member");
+		sql.append("UPDATE member");
 		sql.append(" SET email = ?",email);
 		sql.append(", nickname = ?",nickname);
 		sql.append(", loginPw = ?",loginPw);
@@ -133,5 +133,16 @@ public class MemberDao extends Dao{
 		String nickname = member.getNickname();
 		
 		return nickname;
+	}
+
+	public void setTemporaryPw(String email, String name, String loginId, String tempPw) {
+		SecSql sql = new SecSql();
+		
+		sql.append("UPDATE member");
+		sql.append(" SET loginPw = ?",tempPw);
+		sql.append(" WHERE loginId = ?",loginId);
+		
+		DBUtil.update(dbConn, sql);
+		
 	}	
 }

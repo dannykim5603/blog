@@ -117,16 +117,17 @@
 	<!-모바일 탑바->
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
 		<a href="${pageContext.request.contextPath}/home/main "
-			class="logo flex flex-ai-c absolute-center absolute-middle "> <a
-			href="# " class="btn-toggle-mobile-side-bar ">
+			class="logo flex flex-ai-c absolute-center absolute-middle "> 
+			<a href="# " class="btn-toggle-mobile-side-bar ">
 				<div></div>
 				<div></div>
 				<div></div>
 		</a>
-		</a> <a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png"
-				alt="" width="250 " class="image blinking ">
-		</span>
+		</a>
+		<a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c ">
+			<span> 
+				<img src="${pageContext.request.contextPath}/resource/img/logo.png"	alt="" width="250 " class="image blinking ">
+			</span>
 		</a>
 	</div>
 
