@@ -547,6 +547,7 @@ label[for] {
 	visibility: hidden;
 	opacity: 0;
 	transition: visibility 0.5s, opacity 0.5s;
+	z-index:10;
 }
 
 .mobile-side-bar.active {

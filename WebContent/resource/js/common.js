@@ -164,7 +164,3 @@ function getUrlParams(url) {
   return params;
 }
 // lib 끝
-
-function getBodyFromXTemplate(selector) {
-	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi, 'script');
-}

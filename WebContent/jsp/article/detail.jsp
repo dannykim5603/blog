@@ -5,43 +5,6 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 
-<%
-	List<ArticleReply> replies = (List<ArticleReply>) request.getAttribute("articleReplies");
-	Article article = (Article) request.getAttribute("article");
-	String memberNickname = (String) request.getAttribute("memberNickname");
-%>
-<!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
-
-<!-- 하이라이트 라이브러리, 언어 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/css.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/javascript.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/xml.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/php.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/php-template.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/sql.min.js"></script>
-
-<!-- 토스트 UI 에디터, 자바스크립트 코어 -->
-<script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
-
-<!-- 토스트 UI 에디터, 신택스 하이라이트 플러그인 추가 -->
-<script
-	src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
-
-<!-- 토스트 UI 에디터, CSS 코어 -->
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
 <style>
 .article-box {
 	border: 2px solid #444958;
@@ -77,43 +40,33 @@
 <!-- 상세 -->
 <div class="con article-box" style="background-color: white">
 
-	<h1><%=article.getTitle()%></h1>
-	<h2>작성자 : <%=memberNickname%> </h2>
+	<h1>${article.title }</h1>
+	<h2>작성자 : ${memberNickname } </h2>
 	<h3>
 		조회수 :
-		<%=article.getHit()%></h3>
-	<h3>작성일 : <%=article.getRegDate()%></h3>
-	<script type="text/x-template" id="origin1"><%=article.getBodyForXTemplate()%></script>
+		${article.hit }</h3>
+	<h3>작성일 : ${article.regDate }</h3>
+	<script type="text/x-template">${article.getBodyForXTemplate}</script>
+	<div class="toast-editor toast-editor-viewer"></div>
+	<!--  
+	<script type="text/x-template">${article.bodyForXTemplate}</script>
+					<div id="viewer1" class="toast-editor toast-editor-viewer"></div>
+	<script type="text/x-template" id="origin1" style="display: none;">${article.getBodyForXTemplate}</script>
 	<div id="viewer1"></div>
-	<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBodyForXTemplate()%></script>
-	<div id="viewer1"></div>
-	<script>
-		var editor1__initialValue = getBodyFromXTemplate('#origin1');
-		var editor1 = new toastui.Editor({
-			el : document.querySelector('#viewer1'),
-			initialValue : editor1__initialValue,
-			viewer : true,
-			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
-		});
-	</script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/article/detail.js "></script>
+	-->
 	<!-- 댓글 -->
 	<div class="articleReply-box"  style="margin-top:20px">
 		<div class="reply-box">
-			<%
-				if (replies != null) {
-			%>
-			<%
-				for (ArticleReply articleReplies : replies) {
-			%>
-			<%=articleReplies.getId()%>. 	<%=articleReplies.getNickname()%> 		<%=articleReplies.getBody()%> 	<button class="reply-modify" type="button" onclick="cmUpdateOpen(${comment})">수정</button>  <button class="reply-delete" type="button" onclick="">삭제</button><br>
-			<%
-				}
-			}
-			%>
+			<c:when test="${not empty replies }">
+				<c:forEach items="${relpies }" var="articleReply">
+					${articleReply.id }.  ${articleReply.nickname }  ${articleReply.body }
+				<button class="reply-modify" type="button" onclick="cmUpdateOpen(${comment})">수정</button>
+				<button class="reply-delete" type="button" onclick="">삭제</button><br>
+				</c:forEach>
+			</c:when>
 		</div>
 		<form action="writeArticleReply" method="POST" class="articleReplyForm" style="margin-top:20px;">
-			<input type="hidden" name="id" value=<%=article.getId()%> />
+			<input type="hidden" name="id" value="${article.id }" />
 			<div class="form-row">
 				<div class="label" style="margin-right: 30px;">댓글</div>
 				<div class="input">
@@ -130,8 +83,7 @@
 		</form>
 	</div>
 	<div class="util-butt-box">
-		<input type="hidden" name="id" value=<%=article.getId()%> />
-		<%request.setAttribute("id",article.getId());%>
+		<input type="hidden" name="id" value="${article.id }"/>
 		<button type="button" class="modify-button" value="modify"
 			onclick="location.href='../article/modify?id=${param.id}'">수정
 		</button>
