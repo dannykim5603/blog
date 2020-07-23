@@ -1,10 +1,11 @@
 package com.sbs.java.blog.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.sbs.java.blog.dto.Member;
 
@@ -76,8 +77,10 @@ public class MemberController extends Controller {
 		}
 		
 		memberService.modifyMemberInfo(email,nickname,loginPw,id);
+		
 		String title = "BLOG DANNYS UNKNOWN ";
 		String body = " 회원님의 정보가 수정되었습니다. ";
+		
 		mailService.send(email, title, body);
 		return "html:<script> alert('정보가 수정되었습니다.'); location.replace('../home/main') </script>";
 	}
@@ -97,18 +100,21 @@ public class MemberController extends Controller {
 		String name = req.getParameter("name");
 		String loginId = req.getParameter("loginId");
 		
-		Member member = memberService.getMemberByEmailANDName(email, name);
+		Member member = memberService.getMemberByEmailANDNameANDId(email, name,loginId);
 		if (member.getEmail().equals(email)) {
 		String tempPw = getTempPw(10);
-		memberService.setTemporaryPw(email, name, loginId,tempPw);
+		req.setAttribute("tempPw", tempPw);
 		
 		String title = "BLOG DANNYS UNKNOWN";
 		String body = "요청에 의해 임시 비밀번호를 발송했습니다.\n\n \t임시 비밀번호는 "+tempPw+"입니다.\n\n 본인의 요청이 아니었다면 비밀번호를 바꿔주세요.";
-		
 		mailService.send(email, title, body);
+		
+		tempPw = sha256(tempPw);
+		
+		memberService.setTemporaryPw(email, name, loginId,tempPw);
 		return "html:<script> alert('임시 비밀번호가 이메일로 발송 되었습니다. 임시 비밀번호로 접속 후 비밀번호를 수정해 주세요.'); location.replace('../member/login') </script>";
 		}
-		return "html:<script> alert('입력하신 정보가 일치하지 않습니다. 다시 시도해 주세요.'); location.replace('../member/login') </script>";
+		return "html:<script> alert('입력하신 정보가 일치하는 회원이 존재하지 않습니다. 다시 시도해 주세요.'); location.replace('../member/login') </script>";
 	}
 
 	private String actionFidnPw() {
@@ -201,6 +207,24 @@ public class MemberController extends Controller {
 		}
 		
 		return sb.toString();
+	}
+	private String sha256(String str) {
+		String SHA = "";
+		try {
+			MessageDigest sh = MessageDigest.getInstance("SHA-256");
+			sh.update(str.getBytes());
+			byte byteData[] = sh.digest();
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < byteData.length;i++) {
+				sb.append(Integer.toString((byteData[i]&0xff)+0x100,16).substring(1));
+			}
+			SHA = sb.toString();
+		}
+		catch(NoSuchAlgorithmException e){
+			e.printStackTrace();
+			SHA = null;
+		}
+		return SHA;
 	}
 
 	@Override

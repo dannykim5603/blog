@@ -95,12 +95,13 @@ public class MemberDao extends Dao{
 		return true; //있으면 true
 	}
 
-	public Member getMemberByEmailANDName(String email, String name) {
+	public Member getMemberByEmailANDNameANDId(String email, String name, String loginId) {
 		SecSql sql = new SecSql();
 		
 		sql.append("SELECT * FROM member");
 		sql.append(" WHERE email = ?",email);
 		sql.append(" AND name = ?",name);
+		sql.append(" AND loginId = ?",loginId);
 		
 		Member member = new Member (DBUtil.selectRow(dbConn, sql));
 		
@@ -143,6 +144,17 @@ public class MemberDao extends Dao{
 		sql.append(" WHERE loginId = ?",loginId);
 		
 		DBUtil.update(dbConn, sql);
+	}
+
+	public Member getMemberByEmailANDName(String email, String name) {
+		SecSql sql = new SecSql();
 		
+		sql.append("SELECT * FROM member");
+		sql.append(" WHERE email = ?",email);
+		sql.append(" AND name = ?",name);
+		
+		Member member = new Member (DBUtil.selectRow(dbConn, sql));
+		
+		return member;
 	}	
 }

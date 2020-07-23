@@ -14,12 +14,14 @@ public class DispatcherServlet extends HttpServlet {
 	HttpSession session;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		new App(req,resp).start();
+		session = req.getSession();
 		
 		resp.setContentType("text/html; charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
 
 		String gmailId = getServletConfig().getInitParameter("gmailId");
 		String gmailPw = getServletConfig().getInitParameter("gmailPw");
+		
 		session.setAttribute("gmailId", gmailId);
 		session.setAttribute("gmailPw", gmailPw);
 		

@@ -58,11 +58,11 @@ h2 {
 </style>
 <%
 	MemberService memberService = (MemberService) request.getAttribute("memberService");
-	List<Article> articles = (List<Article>) request.getAttribute("articles");
-	int totalPage = (int) request.getAttribute("totalPage");
-	int paramPage = (int) request.getAttribute("page");
-	String cateItemName = (String) request.getAttribute("cateItemName");
-	String memberNickname = new String();
+List<Article> articles = (List<Article>) request.getAttribute("articles");
+int totalPage = (int) request.getAttribute("totalPage");
+int paramPage = (int) request.getAttribute("page");
+String cateItemName = (String) request.getAttribute("cateItemName");
+String memberNickname = new String();
 %>
 <h2 class="con" style="text-align: center">
 	<%=cateItemName%>
@@ -88,9 +88,10 @@ h2 {
 		</thead>
 		<tbody>
 			<%
-			for (Article article : articles) {
-				memberNickname = (String)memberService.getMemberNickname(article.getMemberId());
-				%>
+				for (Article article : articles) {
+
+				memberNickname = memberService.getMemberNickname(article.getMemberId());
+			%>
 			<tr>
 				<td><%=article.getId()%></td>
 				<td><%=article.getRegDate()%></td>
@@ -125,10 +126,8 @@ h2 {
 <div class="con search-box flex flex-jc-c">
 
 	<form action="${pageContext.request.contextPath}/s/article/list">
-		<input type="hidden" name="page" value="1" /> <input type="hidden"
-			name="cateItemId" value="${param.cateItemId}" /> <input
-			type="hidden" name="searchKeywordType" value="title" /> <input
-			type="text" name="searchKeyword" value="${param.searchKeyword}" />
+		<input type="hidden" name="page" value="1" /> <input type="hidden" name="cateItemId" value="${param.cateItemId}" />
+		<input type="hidden" name="searchKeywordType" value="title" /> <input type="text" name="searchKeyword" value="${param.searchKeyword}" />
 		<button type="submit">검색</button>
 	</form>
 

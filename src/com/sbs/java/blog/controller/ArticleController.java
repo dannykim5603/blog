@@ -207,10 +207,9 @@ public class ArticleController extends Controller {
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
 		req.setAttribute("memberService", memberService);
-
 		List<Article> articles = articleService.getArticles(page, itemsInAPage, cateItemId, searchKeywordType,
 				searchKeyword);
-		
+
 		req.setAttribute("articles", articles);
 		return "article/list.jsp";
 	}

@@ -42,8 +42,8 @@ public class MemberService extends Service {
 		return memberDao.nicknameCheck(nickname);
 	}
 
-	public Member getMemberByEmailANDName(String email, String name) {
-		return memberDao.getMemberByEmailANDName(email,name);
+	public Member getMemberByEmailANDNameANDId(String email, String name, String loginId) {
+		return memberDao.getMemberByEmailANDNameANDId(email,name,loginId);
 	}
 
 	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
@@ -52,5 +52,9 @@ public class MemberService extends Service {
 
 	public void setTemporaryPw(String email, String name, String loginId, String tempPw) {
 		memberDao.setTemporaryPw(email, name, loginId,tempPw);
+	}
+
+	public Member getMemberByEmailANDName(String email, String name) {
+		return memberDao.getMemberByEmailANDName(email,name);
 	}
 }

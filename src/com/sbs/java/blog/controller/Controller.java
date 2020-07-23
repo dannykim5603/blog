@@ -33,6 +33,7 @@ public abstract class Controller {
 		articleService = new ArticleService(dbConn);
 		memberService = new MemberService(dbConn);
 		this.session = req.getSession();
+		
 		String gmailId = (String)session.getAttribute("gmailId");
 		String gmailPw = (String)session.getAttribute("gmailPw");
 		mailService = new MailService(gmailId, gmailPw, gmailId, "DANNY");
