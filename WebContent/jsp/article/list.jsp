@@ -30,6 +30,9 @@ h2 {
 	border: 2px double #444958;
 	padding: 10px;
 }
+.article-list-box-1 tr>th {
+	background-color: #444958;
+}
 
 .article-list-box-1 td {
 	text-align: center;

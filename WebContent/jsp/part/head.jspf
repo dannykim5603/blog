@@ -37,6 +37,7 @@
 	var loginedMember = null;
 </script>
 <c:if test="${isLogined}">
+
 	<script>
 		loginedMember = {};
 		loginedMember["id"] = parseInt("${loginedMember.id}");
@@ -46,7 +47,9 @@
 		loginedMember["nickname"] = "${loginedMember.nickname}";
 		loginedMember["email"] = "${loginedMember.email}";
 	</script>
+	
 </c:if>
+
 </head>
 
 <body>
@@ -72,10 +75,10 @@
 						href="${pageContext.request.contextPath}/s/article/list"
 						class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
-						<c:forEach items = "${cateItems}" var="cateItem">
-							<li><a class="block "
-								href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
-						</c:forEach>
+							<c:forEach items="${cateItems}" var="cateItem">
+								<li><a class="block "
+									href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
+							</c:forEach>
 						</ul></li>
 					<li><a
 						href="${pageContext.request.contextPath}/s/home/aboutMe"
@@ -139,8 +142,8 @@
 				<li><a href="${pageContext.request.contextPath}/s/article/list"
 					class="block">Articles</a>
 					<ul>
-						<c:forEach items = "${cateItems}" var="cateItem">
-						<li><a class="block "
+						<c:forEach items="${cateItems}" var="cateItem">
+							<li><a class="block "
 								href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
 						</c:forEach>
 					</ul></li>
@@ -173,6 +176,6 @@
 		</div>
 	</div>
 	<c:if test="${isLogined}">
-		<div class="con" style="color: white; display: none">${loginedMember.name} 회원님 환영합니다.
-		</div>
+		<div class="con" style="color: white; display: none">${loginedMember.name}
+			회원님 환영합니다.</div>
 	</c:if>

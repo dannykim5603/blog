@@ -108,7 +108,7 @@ public class MemberDao extends Dao{
 		return member;
 	}
 
-	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
+	public void modifyMemberInfo(String email, String nickname, String loginPw, int id) {
 		SecSql sql = new SecSql();
 		
 		sql.append("UPDATE member");
@@ -117,9 +117,7 @@ public class MemberDao extends Dao{
 		sql.append(", loginPw = ?",loginPw);
 		sql.append("WHERE id = ?",id);
 		
-		Member member = new Member(DBUtil.selectRow(dbConn, sql));
-		
-		return member;
+		DBUtil.update(dbConn, sql);
 	}
 
 	public String getMemberNickname(int id) {

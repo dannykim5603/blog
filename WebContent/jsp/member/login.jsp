@@ -21,13 +21,23 @@
 	width: 100%;
 }
 
+.join-form {
+	border: outset #444958 3px;
+	width: 50%;
+	padding : 15px;
+	color: white;
+}
+.join-form >.form-row {
+
+}
+
 .form1>.form-row>.label {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
 .form1>.form-row>.input>input {
-	width: 100%;
+	width: 90%;
 	margin-left: 20px;
 	height: 25px;
 }
@@ -46,6 +56,9 @@
 }
 .find-box > a{
 	padding: 0 20px;
+}
+.find-box > a:hover {
+	color:red;
 }
 </style>
 <script>
@@ -73,17 +86,16 @@
 </script>
 
 <div class="login-form-box con">
-	<form action="doLogin" method="POST" class="join-form form1"
-		onsubmit="submitLoginForm(this); return false;">
+	<form action="doLogin" method="POST" class="join-form form1" onsubmit="submitLoginForm(this); return false;">
 		<input type="hidden" name="loginPwReal" />
 		<div class="form-row">
-			<div class="label">loginId</div>
+			<div class="label">ID</div>
 			<div class="input">
 				<input name="loginId" type="text" placeholder=" login ID " />
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">loginPw</div>
+			<div class="label">PW</div>
 			<div class="input">
 				<input name="loginPw" type="password" placeholder=" login PW "></input>
 			</div>

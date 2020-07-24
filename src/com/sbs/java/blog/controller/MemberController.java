@@ -86,7 +86,7 @@ public class MemberController extends Controller {
 	}
 
 	private String actionModifyMyInfo() {
-		return "member/modifyMyInfo";
+		return "member/modifyMyInfo.jsp";
 	}
 
 	private String actionMyInfo() {
@@ -185,6 +185,11 @@ public class MemberController extends Controller {
 		}
 		
 		int memberId = memberService.join(loginId, loginPw, email, name, nickname);
+		String title = "BLOG DANNYS UNKOWN";
+		String body = name+"님의 회원가입을 환영합니다.\n 아이디 : "+ loginId +"\n Email :" +email +" \n 의 정보로 가입되었습니다. \n 다시한번 회원님의 가입을 환영합니다. ";
+		
+		mailService.send(email, title, body);
+		
 		return "html:<script> alert('" + nickname + " 회원님 " + memberId
 				+ "번째 회원이 되신 것을 환영합니다.'); location.replace('../home/main')</script>";
 	}

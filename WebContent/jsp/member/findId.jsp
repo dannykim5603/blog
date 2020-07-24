@@ -70,13 +70,13 @@
 <div class="join-form-box con">
 	<form action="doFindId" method="POST" class="join-form form1" onsubmit="submitJoinForm(this); return false;">
 		<div class="form-row">
-			<div class="label">e-mail</div>
+			<div class="label">E-MAIL</div>
 			<div class="input">
 				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">name</div>
+			<div class="label">NAME</div>
 			<div class="input">
 				<input name="name" type="text" placeholder=" NAME "></input>
 			</div>

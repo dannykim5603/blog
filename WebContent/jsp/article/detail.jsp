@@ -29,44 +29,53 @@
 .article-box>.articleReply-box>.articleReplyForm>.reply-submit {
 	height: 50px;
 }
-.article-box> .util-butt-box {
-	display:flex;
-	justify-content:flex-end;
+
+.article-box>.util-butt-box {
+	display: flex;
+	justify-content: flex-end;
 }
-.article-box> .util-butt-box > button{
-	margin : 10px;
+
+.article-box>.util-butt-box>button {
+	margin: 10px;
 }
 </style>
+
 <!-- 상세 -->
 <div class="con article-box" style="background-color: white">
 
-	<h1>${article.title }</h1>
-	<h2>작성자 : ${memberNickname } </h2>
-	<h3>
-		조회수 :
-		${article.hit }</h3>
-	<h3>작성일 : ${article.regDate }</h3>
-	<script type="text/x-template">${article.getBodyForXTemplate}</script>
+	<h1>${article.title}</h1>
+	<h2>작성자 : ${memberNickname}</h2>
+	<h3>조회수 : ${article.hit}</h3>
+	<h3>작성일 : ${article.regDate}</h3>
+	<script type="text/x-template">	${article.bodyForXTemplate} </script>
 	<div class="toast-editor toast-editor-viewer"></div>
-	<!--  
+
 	<script type="text/x-template">${article.bodyForXTemplate}</script>
 					<div id="viewer1" class="toast-editor toast-editor-viewer"></div>
-	<script type="text/x-template" id="origin1" style="display: none;">${article.getBodyForXTemplate}</script>
+	<script type="text/x-template" id="origin1" style="display: none;">${article.bodyForXTemplate}</script>
 	<div id="viewer1"></div>
-	-->
+
+
 	<!-- 댓글 -->
-	<div class="articleReply-box"  style="margin-top:20px">
+	<div class="articleReply-box" style="margin-top: 20px">
 		<div class="reply-box">
-			<c:when test="${not empty replies }">
-				<c:forEach items="${relpies }" var="articleReply">
-					${articleReply.id }.  ${articleReply.nickname }  ${articleReply.body }
-				<button class="reply-modify" type="button" onclick="cmUpdateOpen(${comment})">수정</button>
-				<button class="reply-delete" type="button" onclick="">삭제</button><br>
-				</c:forEach>
-			</c:when>
+			<c:choose>
+				<c:when test="${not empty replies}">
+					<c:forEach items="${relpies}" var="articleReply">
+						<c:out value="${articleReply.id}" />.  <c:out value="${articleReply.nickname}" />	<c:out value="${articleReply.body}" />
+						<button class="reply-modify" type="button" onclick="cmUpdateOpen(${comment})">수정</button>
+						<button class="reply-delete" type="button" onclick="">삭제</button>
+						<br>
+					</c:forEach>
+				</c:when>
+				<c:when test="${empty replies}">
+					<c:out value="댓글이 없습니다." />
+				</c:when>
+			</c:choose>
 		</div>
-		<form action="writeArticleReply" method="POST" class="articleReplyForm" style="margin-top:20px;">
-			<input type="hidden" name="id" value="${article.id }" />
+		<form action="writeArticleReply" method="POST"
+			class="articleReplyForm" style="margin-top: 20px;">
+			<input type="hidden" name="id" value="${article.id}" />
 			<div class="form-row">
 				<div class="label" style="margin-right: 30px;">댓글</div>
 				<div class="input">
@@ -74,16 +83,18 @@
 				</div>
 			</div>
 			<div class="form-row">
-			<div class ="label"></div>
+				<div class="label"></div>
 				<div class="input submit-box">
-					<input class="reply-submit" style="margin-left: 10px" type="submit" value="작성" />
-					<a style="border: 3px solid #444958;background-color:#444958; color:white; border-radius: 15px;" class="cancel" href="detail?id=${param.id}">취소</a>
+					<input class="reply-submit" style="margin-left: 10px" type="submit"
+						value="작성" /> <a
+						style="border: 3px solid #444958; background-color: #444958; color: white; border-radius: 15px;"
+						class="cancel" href="detail?id=${param.id}">취소</a>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="util-butt-box">
-		<input type="hidden" name="id" value="${article.id }"/>
+		<input type="hidden" name="id" value="${article.id}" />
 		<button type="button" class="modify-button" value="modify"
 			onclick="location.href='../article/modify?id=${param.id}'">수정
 		</button>

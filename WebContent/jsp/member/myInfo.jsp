@@ -10,67 +10,76 @@
 <style>
 .join-form-box {
 	color: white;
-	display: flex;
+	display: block;
 	justify-content: center;
+	border: outset #444958 3px;
+	width : 80%;
+	height: 80%;
 }
 
 .form1 {
-	width: 40%;
+	width: 80%;
 	margin-top: 100px;
 }
 
 .form1>.form-row {
 	width: 100%;
+	display:block;
 }
 
 .form1>.form-row>.label {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	margin-left:10px;
 }
 
-.form1>.form-row>.input>input {
+.form1>.form-row>.input {
 	width: 100%;
-	margin-left: 20px;
 	height: 25px;
+	text-align:center;
+	margin-top: 20px;
+	font-weight:bold;
+}
+.last-box {
+	margin-bottom:20px;
 }
 
-.last-box>a {
+.last-box> button {
 	background-color: white;
 	color: black;
 	font-weight: thin;
-	border-radius: 15px;
+	border-radius: 2px;
 	padding: 0px 40px;
+	
 }
 </style>
 
-<div class="join-form-box con">
+<div class="join-form-box form1 con">
 
 	<div class="form-row">
 		<div class="label">ID</div>
-		<div class="input">out.println(member.getId());</div>
+		<div class="input">${member.loginId}</div>
 	</div>
 
 	<div class="form-row">
 		<div class="label">이름</div>
-		<div class="input">out.println(member.getName());</div>
+		<div class="input">${member.name}</div>
 	</div>
 
 	<div class="form-row">
 		<div class="label">NICKNAME</div>
-		<div class="input">out.println(member.getNickname());</div>
+		<div class="input">${member.nickname}</div>
 	</div>
 
 	<div class="form-row">
 		<div class="label">E-MAIL</div>
-		<div class="input">out.println(member.getEmail());</div>
+		<div class="input">${member.email}</div>
 	</div>
 
 	<div class="form-row">
 		<div class="label"></div>
 		<div class="input last-box">
-			<button type="button" class="modifyMyInfo-button"
-				value="modifyMyInfo" onclick="location.href'../member/modifyMyInfo'">개인정보
-				변경</button>
+			<button type="button" class="modifyMyInfo-button" value="modifyMyInfo" onclick="location.href='../member/modifyMyInfo'">개인정보 변경</button>
 			<button type="button" class="cancel" value="cancel"
 				onclick="goBack();">취소</button>
 		</div>

@@ -9,11 +9,14 @@
 	color: white;
 	display: flex;
 	justify-content: center;
+	margin-top: 15%;
 }
 
 .form1 {
-	width: 40%;
+	width: 50%;
 	margin-top: 100px;
+	border: outset #444958 3px;
+	padding: 20px;
 }
 
 .form1>.form-row {
@@ -21,12 +24,12 @@
 }
 
 .form1>.form-row>.label {
-	padding-top: 20px;
+	padding-top: 10px;
 	padding-bottom: 20px;
 }
 
 .form1>.form-row>.input>input {
-	width: 100%;
+	width: 90%;
 	margin-left: 20px;
 	height: 25px;
 }
@@ -106,37 +109,37 @@
 		onsubmit="submitJoinForm(this); return false;">
 		<input type="hidden" name="loginPwReal">
 		<div class="form-row">
-			<div class="label">loginId</div>
+			<div class="label">LOGIN ID</div>
 			<div class="input">
 				<input name="loginId" type="text" placeholder=" login ID " />
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">e-mail</div>
+			<div class="label">E-MAIL</div>
 			<div class="input">
 				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">name</div>
+			<div class="label">NAME</div>
 			<div class="input">
 				<input name="name" type="text" placeholder=" NAME "></input>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">nickname</div>
+			<div class="label">NICKNAME</div>
 			<div class="input">
 				<input name="nickname" type="text" placeholder=" NICKNAME " />
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">loginPw</div>
+			<div class="label">LOGIN PW</div>
 			<div class="input">
 				<input name="loginPw" type="password" placeholder=" login PW "></input>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="label">loginPwConfirm</div>
+			<div class="label">LOGIN PW CONFIRM</div>
 			<div class="input">
 				<input name="loginPwConfirm" type="password"
 					placeholder=" PW Confirm "></input>

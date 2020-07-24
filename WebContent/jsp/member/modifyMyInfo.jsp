@@ -14,10 +14,12 @@ Member member = (Member)request.getAttribute("member");
 	color: white;
 	display: flex;
 	justify-content: center;
+	
 }
 
 .form1 {
-	width: 40%;
+	border : outset #444958 3px;
+	width: 80%;
 	margin-top: 100px;
 }
 
@@ -28,12 +30,16 @@ Member member = (Member)request.getAttribute("member");
 .form1>.form-row>.label {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	margin-left:10px;
 }
 
 .form1>.form-row>.input>input {
-	width: 100%;
+	width: 90%;
 	margin-left: 20px;
 	height: 25px;
+}
+.last-box{
+	margin-bottom:10px;
 }
 
 .last-box>a {
@@ -88,7 +94,7 @@ Member member = (Member)request.getAttribute("member");
 </script>
 
 <div class="join-form-box con">
-	<form action="doJoin" method="POST" class="join-form form1"
+	<form action="doModifyMyInfo" method="POST" class="join-form form1"
 		onsubmit="submitJoinForm(this); return false;">
 		<input type="hidden" name="loginPwReal">
 

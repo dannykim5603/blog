@@ -46,8 +46,8 @@ public class MemberService extends Service {
 		return memberDao.getMemberByEmailANDNameANDId(email,name,loginId);
 	}
 
-	public Member modifyMemberInfo(String email, String nickname, String loginPw, int id) {
-		return memberDao.modifyMemberInfo(email,nickname,loginPw,id);
+	public void modifyMemberInfo(String email, String nickname, String loginPw, int id) {
+		memberDao.modifyMemberInfo(email,nickname,loginPw,id);
 	}
 
 	public void setTemporaryPw(String email, String name, String loginId, String tempPw) {

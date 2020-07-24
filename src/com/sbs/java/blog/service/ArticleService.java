@@ -76,4 +76,9 @@ public class ArticleService extends Service {
 	public List<ArticleReply> getArticleReplyByArticleId(int articleId) {
 		return articleDao.getArticleReplyByArticleId(articleId);
 	}
+
+	public void modifyReply(int replyId) {
+		// TODO Auto-generated method stub
+		
+	}
 }
