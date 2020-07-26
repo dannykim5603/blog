@@ -87,11 +87,13 @@ h1 {
 
 .form1 .form-row>.last-box {
 	display: flex;
+	justify-content: flex-end;
 }
 
 .form1 .form-row>.last-box>.submit-box {
 	width: 50%;
 	border-radius: 15px;
+	
 }
 
 .form1 .form-row>.last-box>.cancel {
@@ -150,12 +152,12 @@ h1 {
 		<div class="form-row">
 			<div class="label">내용</div>
 			<input type="hidden" name="body">
-			<div id="editor1" style="width:93%"></div>
+			<div id="editor1" style="width:93%; background-color:white"></div>
 		</div>
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+				<input class="submit-box" style="width: 15%; border-radius: 15px;"
 					type="submit" value="작성" /> <a
 					style="border: 3px solid #444958; border-radius: 15px;"
 					class="cancel" href="list">취소</a>

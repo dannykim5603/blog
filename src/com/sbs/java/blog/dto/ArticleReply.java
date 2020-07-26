@@ -58,6 +58,9 @@ public class ArticleReply extends Dto {
 	public void setBody(String body) {
 		this.body = body;
 	}
+	public String getBodyForXTemplate() {
+		return body.replaceAll("(?i)script", "<!--REPLACE:script-->");
+	}
 
 	@Override
 	public String toString() {

@@ -104,6 +104,9 @@ public abstract class Controller {
 			case "modify":
 			case "doModify":
 			case "doDelete":
+			case "writeArticleReply":
+			case "ReplyDelete":
+			case "ReplyModify":
 				needToLogin = true;
 				break;
 			}

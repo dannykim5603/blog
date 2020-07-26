@@ -9,10 +9,14 @@
 	color: white;
 	display: flex;
 	justify-content: center;
+	
 }
 
 .form1 {
 	width: 40%;
+	border: outset #444958 3px;
+	margin: 15px;
+	padding: 20px;
 	margin-top: 100px;
 }
 
@@ -26,9 +30,31 @@
 }
 
 .form1>.form-row>.input>input {
-	width: 100%;
+	width: 90%;
 	margin-left: 20px;
 	height: 25px;
+}
+
+.form1>.findId {
+	text-align: center;
+	padding-top: 15px;
+}
+
+.form1 > .form-row:last-child >.label {
+	padding-top:10px;
+}
+
+.findId {
+	margin-top:20px;
+}
+
+.findId:hover{
+	color:red;
+}
+
+.last-box {
+	margin-bot : 15px;
+	text-align : center;
 }
 
 .last-box>a {
@@ -96,12 +122,14 @@
 				<input name="name" type="text" placeholder=" NAME "></input>
 			</div>
 		</div>
-		
+		<div class="findId">
+			<a href="../member/findId">아이디 찾기</a>
+		</div>
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"
-					type="submit" value="비번 찾기" /> <a class="cancel" href="home">취소</a>
+				<input class="submit-box" style="width: 20%; border-radius: 15px;"
+					type="submit" value="비밀번호 찾기" /> <a class="cancel" href="home">취소</a>
 			</div>
 		</div>
 	</form>

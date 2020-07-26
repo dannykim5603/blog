@@ -9,7 +9,6 @@
 	color: white;
 	display: flex;
 	justify-content: center;
-	margin-top: 15%;
 }
 
 .form1 {
@@ -32,6 +31,11 @@
 	width: 90%;
 	margin-left: 20px;
 	height: 25px;
+}
+
+.last-box {
+	margin-top:30px;
+	text-align:center;
 }
 
 .last-box>a {
@@ -148,7 +152,7 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+				<input class="submit-box" style="width: 20%; border-radius: 15px;"
 					type="submit" value="회원가입" /> <a
 					style="border: 3px solid #444958;" class="cancel" href="home">취소</a>
 			</div>

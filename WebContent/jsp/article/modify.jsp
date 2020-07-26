@@ -163,7 +163,6 @@
 		form.submit();
 	}
 </script>
-<!-- 
 <script>
 	var editor1 = new toastui.Editor({
 		el : document.querySelector("#editor1"),
@@ -186,7 +185,6 @@
 		form.submit();
 	}
 </script>
- -->
 
 <%@ include file="/jsp/part/foot.jspf"%>
 

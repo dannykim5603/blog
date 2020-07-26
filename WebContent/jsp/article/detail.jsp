@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
+<%@ include file="/jsp/part/toastUiEditor.jspf"%>
 
 <style>
 .article-box {
@@ -40,39 +41,100 @@
 }
 </style>
 
-<!-- 상세 -->
+<!-- detail -->
 <div class="con article-box" style="background-color: white">
 
 	<h1>${article.title}</h1>
 	<h2>작성자 : ${memberNickname}</h2>
 	<h3>조회수 : ${article.hit}</h3>
 	<h3>작성일 : ${article.regDate}</h3>
+
 	<script type="text/x-template">	${article.bodyForXTemplate} </script>
 	<div class="toast-editor toast-editor-viewer"></div>
 
-	<script type="text/x-template">${article.bodyForXTemplate}</script>
-					<div id="viewer1" class="toast-editor toast-editor-viewer"></div>
-	<script type="text/x-template" id="origin1" style="display: none;">${article.bodyForXTemplate}</script>
-	<div id="viewer1"></div>
+	<!-- articleReply -->
+	<!--  teacher's  v -->
+	<script>
+	function WriteReplyList__showTop() {
+		var top = $('.article-replies-list-box').offset().top;
+		$(window).scrollTop(top);
+		var $firstTr = $('.article-replies-list-box > table > tbody > tr:first-child');
+		$firstTr.addClass('high');
+		setTimeout(function() {
+			$firstTr.removeClass('high');
+		}, 1000);
+	}
+</script>
 
+<style>
+.article-replies-list-box>table>tbody>tr.high {
+	background-color: #dfdfdf;
+}
 
-	<!-- 댓글 -->
+.article-replies-list-box>table>tbody>tr {
+	transition: background-color 1s;
+}
+</style>
+
+	<div class="con article-replies-list-box table-box">
+	<h3>댓글</h3>
+		<table>
+			<colgroup>
+				<col width="100">
+				<col width="200">
+				<col>
+				<col width="120">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>내용</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${articleReplies}" var="articleReply">
+					<tr>
+						<td class="text-align-center">${articleReply.id}</td>
+						<td class="text-align-center">${articleReply.regDate}</td>
+						<td class="padding-left-10 padding-right-10"><script
+								type="text/x-template">${articleReply.bodyForXTemplate}</script>
+							<div class="toast-editor toast-editor-viewer"></div></td>
+						<td class="text-align-center">
+							<button class="reply-modify" type="button"
+							onclick=""
+							href="./doDeleteReply?id=${articleReply.id}">수정</button>
+						<button class="reply-delete" type="button" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false; if ( confirm('삭제하시겠습니까?') == true ) location.href="../replyDelete?id=${articleReply.id}"; )" >삭제</button>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- My version -->
+	<!-- 
 	<div class="articleReply-box" style="margin-top: 20px">
 		<div class="reply-box">
 			<c:choose>
-				<c:when test="${not empty replies}">
-					<c:forEach items="${relpies}" var="articleReply">
-						<c:out value="${articleReply.id}" />.  <c:out value="${articleReply.nickname}" />	<c:out value="${articleReply.body}" />
-						<button class="reply-modify" type="button" onclick="cmUpdateOpen(${comment})">수정</button>
+				<c:when test="${not empty articleReplies}">
+					<c:forEach items="${articleRelpies}" var="articleReply">
+						<c:out value="${articleReply.id}" />.  <c:out
+							value="${articleReply.nickname}" />
+						<c:out value="${articleReply.body}" />
+						<button class="reply-modify" type="button"
+							onclick="cmUpdateOpen(${comment})">수정</button>
 						<button class="reply-delete" type="button" onclick="">삭제</button>
 						<br>
 					</c:forEach>
 				</c:when>
-				<c:when test="${empty replies}">
+				<c:when test="${empty articleReplies}">
 					<c:out value="댓글이 없습니다." />
 				</c:when>
 			</c:choose>
 		</div>
+		-->
 		<form action="writeArticleReply" method="POST"
 			class="articleReplyForm" style="margin-top: 20px;">
 			<input type="hidden" name="id" value="${article.id}" />
@@ -93,6 +155,8 @@
 			</div>
 		</form>
 	</div>
+	 
+	<!-- article Util area -->
 	<div class="util-butt-box">
 		<input type="hidden" name="id" value="${article.id}" />
 		<button type="button" class="modify-button" value="modify"
