@@ -54,67 +54,70 @@
 
 	<!-- articleReply -->
 	<!--  teacher's  v -->
-	<script>
-	function WriteReplyList__showTop() {
-		var top = $('.article-replies-list-box').offset().top;
-		$(window).scrollTop(top);
-		var $firstTr = $('.article-replies-list-box > table > tbody > tr:first-child');
-		$firstTr.addClass('high');
-		setTimeout(function() {
-			$firstTr.removeClass('high');
-		}, 1000);
-	}
+<script>
+function WriteReplyList__showTop() {
+	var top = $('.article-replies-list-box').offset().top;
+	$(window).scrollTop(top);
+}
+
+function WriteReplyList__showDetail() {
+	WriteReplyList__showTop();
+	var $tr = $('.article-replies-list-box > table > tbody > tr[data-id="'
+			+ param.generatedArticleReplyId + '"]');
+	$tr.addClass('high');
+	setTimeout(function() {
+		$tr.removeClass('high');
+	}, 1000);
+}
 </script>
 
 <style>
-.article-replies-list-box>table>tbody>tr.high {
-	background-color: #dfdfdf;
-}
+	.article-replies-list-box>table>tbody>tr.high {
+		background-color: #dfdfdf;
+	}
 
-.article-replies-list-box>table>tbody>tr {
-	transition: background-color 1s;
+	.article-replies-list-box>table>tbody>tr {
+		transition: background-color 1s;
 }
 </style>
-
+<div>
 	<div class="con article-replies-list-box table-box">
-	<h3>댓글</h3>
-		<table>
-			<colgroup>
-				<col width="100">
-				<col width="200">
-				<col>
-				<col width="120">
-			</colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>날짜</th>
-					<th>내용</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${articleReplies}" var="articleReply">
+		<h3>댓글</h3>
+			<table>
+				<colgroup>
+					<col width="100">
+					<col width="200">
+					<col width="500">
+					<col width="120">
+				</colgroup>
+				<thead>
 					<tr>
-						<td class="text-align-center">${articleReply.id}</td>
-						<td class="text-align-center">${articleReply.regDate}</td>
-						<td class="padding-left-10 padding-right-10"><script
-								type="text/x-template">${articleReply.bodyForXTemplate}</script>
-							<div class="toast-editor toast-editor-viewer"></div></td>
-						<td class="text-align-center">
-							<button class="reply-modify" type="button"
-							onclick=""
-							href="./doDeleteReply?id=${articleReply.id}">수정</button>
-						<button class="reply-delete" type="button" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false; if ( confirm('삭제하시겠습니까?') == true ) location.href="../replyDelete?id=${articleReply.id}"; )" >삭제</button>
-						</td>
+						<th>번호</th>
+						<th>날짜</th>
+						<th>내용</th>
+						<th>비고</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+				<tbody>
+					<c:forEach items="${articleReplies}" var="articleReply">
+						<tr>
+							<td class="text-align-center">${articleReply.id}</td>
+							<td class="text-align-center">${articleReply.regDate}</td>
+							<td class="padding-left-10 padding-right-10 text-align-center"><script
+									type="text/x-template">${articleReply.bodyForXTemplate}</script>
+								<div class="toast-editor toast-editor-viewer"></div></td>
+							<td class="text-align-center">
+								<button class="reply-modify" type="button" onclick="location.href='../article/replyModify?id=${articleReply.id}'">수정</button>
+								<button class="reply-delete" type="button" onclick="location.href='../article/replyDelete?id=${articleReply.id}'" >삭제</button>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
-	<!-- My version -->
-	<!-- 
+		<!-- My version -->
+		<!-- 
 	<div class="articleReply-box" style="margin-top: 20px">
 		<div class="reply-box">
 			<c:choose>
@@ -147,15 +150,13 @@
 			<div class="form-row">
 				<div class="label"></div>
 				<div class="input submit-box">
-					<input class="reply-submit" style="margin-left: 10px" type="submit"
-						value="작성" /> <a
-						style="border: 3px solid #444958; background-color: #444958; color: white; border-radius: 15px;"
-						class="cancel" href="detail?id=${param.id}">취소</a>
+					<input class="reply-submit" style="margin-left: 10px" type="submit" value="작성" />
+					<button  type="button" class="cancel" value="cancel" onclick="location.href='detail?id=${param.id}'">취소</button>
 				</div>
 			</div>
 		</form>
 	</div>
-	 
+
 	<!-- article Util area -->
 	<div class="util-butt-box">
 		<input type="hidden" name="id" value="${article.id}" />

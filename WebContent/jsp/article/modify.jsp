@@ -141,8 +141,10 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;"
-					type="submit" value="작성" /> <a
+				<input class="submit-box" style="width: 20%;"
+					type="submit" value="작성" />
+					<!-- <button type="button" class="cancel" value="cancel" style="border-radius:15px;" onclick="location.href='list'">취소</button> -->
+					 <a
 					style="border: 3px solid #444958; border-radius: 15px;"
 					class="cancel" href="list">취소</a>
 			</div>

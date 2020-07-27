@@ -55,13 +55,82 @@ h1 {
 .form1 .form-row {
 	align-items: center;
 	display: flex;
-	margin : 10px;
+	margin: 10px;
 }
 
-.form1 .form-row:not (:first-child ) {
-	margin-top: 10px;
-}
+.form1
 
+
+
+
+ 
+
+
+
+
+.form-row
+
+
+
+
+
+
+
+
+:not
+
+
+
+
+ 
+
+
+
+
+(
+:first-child
+
+
+
+
+ 
+
+
+
+
+)
+{
+margin-top
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+10
+px
+
+
+
+
+
+
+
+
+;
+}
 .form1 .form-row>.label {
 	width: 100px;
 }
@@ -93,7 +162,6 @@ h1 {
 .form1 .form-row>.last-box>.submit-box {
 	width: 50%;
 	border-radius: 15px;
-	
 }
 
 .form1 .form-row>.last-box>.cancel {
@@ -152,7 +220,7 @@ h1 {
 		<div class="form-row">
 			<div class="label">내용</div>
 			<input type="hidden" name="body">
-			<div id="editor1" style="width:93%; background-color:white"></div>
+			<div id="editor1" style="width: 93%; background-color: white"></div>
 		</div>
 		<div class="form-row">
 			<div class="label"></div>
@@ -166,12 +234,13 @@ h1 {
 	</form>
 </div>
 <script>
+	
 	var editor1 = new toastui.Editor({
 		el : document.querySelector("#editor1"),
 		height : "600px",
 		initialEditType : "markdown",
 		previewStyle : "vertical",
-		initialValue : "# 내용",
+		initialValue : "",
 		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin,
 				replPlugin, codepenPlugin ]
 	});
@@ -186,6 +255,7 @@ h1 {
 		form.body.value = source;
 		form.submit();
 	}
+	
 </script>
 
 <%@ include file="/jsp/part/foot.jspf"%>

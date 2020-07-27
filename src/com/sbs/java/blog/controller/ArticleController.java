@@ -56,10 +56,17 @@ public class ArticleController extends Controller {
 		case "replyModify":
 			return actionReplyModify();
 			
+		case "doReplyModify":
+			return actionDoReplyModify();
 		}
 		return "";
 	}
 	
+
+	private String actionDoReplyModify() {
+
+		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('history.back()')</script>";
+	}
 
 	private String actionReplyModify() {
 		int replyId = Util.getInt(req, "replyId");
@@ -70,6 +77,8 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionReplyDelete() {
+		int Id = (int)req.getAttribute("replyId");
+		System.out.println(Id);
 		int replyId = Util.getInt(req, "replyId");
 		articleService.deleteReply(replyId);
 
@@ -169,6 +178,9 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionList() {
+		
+//		long startTime = System.nanoTime();
+		
 		int page = 1;
 
 		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
@@ -213,6 +225,13 @@ public class ArticleController extends Controller {
 				searchKeyword);
 
 		req.setAttribute("articles", articles);
+		
+//		long endTime= System.nanoTime();
+//		long estimatedTime = endTime - startTime;
+//		//nano seconds to seconds
+//		double seconds = estimatedTime / 1000000000.0;
+//		System.out.println("seconds : " + seconds);
+//		
 		return "article/list.jsp";
 	}
 
