@@ -2,6 +2,7 @@ package com.sbs.java.blog.controller;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,9 +78,10 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionReplyDelete() {
-		int Id = (int)req.getAttribute("replyId");
-		System.out.println(Id);
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		
 		int replyId = Util.getInt(req, "replyId");
+		
 		articleService.deleteReply(replyId);
 
 		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
@@ -128,9 +130,9 @@ public class ArticleController extends Controller {
 		if (Util.isNum(req, "id") == false) {
 			return "html:id를 숫자로 입력해 주세요.";
 		}
-
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId"); 
 		int id = Util.getInt(req, "id");
-		Article article = articleService.detail(id);
+		Article article = articleService.detail(id,loginedMemberId);
 		System.out.println(article);
 		req.setAttribute("article", article);
 		return "article/modify.jsp";
@@ -163,8 +165,9 @@ public class ArticleController extends Controller {
 
 		int id = Util.getInt(req, "id");
 		articleService.increaseHit(id);
-
-		Article article = articleService.detail(id);
+		
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		Article article = articleService.detail(id,loginedMemberId);
 		req.setAttribute("article", article);
 
 		int memberId = article.getMemberId();

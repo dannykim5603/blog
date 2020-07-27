@@ -111,6 +111,12 @@ public abstract class Controller {
 				break;
 			}
 			break;
+		case "home":
+			switch (actionMethodName) {
+			case "aboutMe":
+				needToLogin = true;
+				break;
+			}
 		}
 		if (needToLogin && isLogined == false ) {
 			return "html:<script> alert('로그인 후 이용해 주세요.'); location.href = '../member/login';</script>";

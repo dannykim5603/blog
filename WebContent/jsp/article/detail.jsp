@@ -107,8 +107,11 @@ function WriteReplyList__showDetail() {
 									type="text/x-template">${articleReply.bodyForXTemplate}</script>
 								<div class="toast-editor toast-editor-viewer"></div></td>
 							<td class="text-align-center">
+							<div class="util-butt-box">
+							<input type="hidden" name="replyId" value="${articleReply.id}">
 								<button class="reply-modify" type="button" onclick="location.href='../article/replyModify?id=${articleReply.id}'">수정</button>
-								<button class="reply-delete" type="button" onclick="location.href='../article/replyDelete?id=${articleReply.id}'" >삭제</button>
+								<button class="reply-delete" type="button" onclick="location.href='../article/replyDelete?id=${articleReply.id}'">삭제</button>
+							</div>
 							</td>
 						</tr>
 					</c:forEach>

@@ -1,13 +1,16 @@
 package com.sbs.java.blog.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sbs.java.blog.dao.ArticleDao;
 import com.sbs.java.blog.dto.Article;
 import com.sbs.java.blog.dto.ArticleReply;
 import com.sbs.java.blog.dto.CateItem;
 import com.sbs.java.blog.dto.Member;
+import com.sbs.java.blog.util.Util;
 
 public class ArticleService extends Service {
 	private ArticleDao articleDao;
@@ -24,11 +27,52 @@ public class ArticleService extends Service {
 		return articleDao.delete(num);
 	}
 
-	public Article detail(int num) {
-		return articleDao.detail(num);
+	public Article detail(int num, int loginedMemberId) {
+		Article article = articleDao.detail(num);
+		
+//		updateArticleExtraDataForPrint(article,loginedMemberId);
+		
+		return article;
 	}
 
 
+//	private void updateArticleExtraDataForPrint(Article article, int loginedMemberId) {
+//		boolean deleteAvailable = Util.isSuccess(getCheckRsDeleteAvailable(article,loginedMemberId));
+//		article.getExtra().put("deleteAvailable", deleteAvailable);
+//		
+//		boolean modifyAvailable = Util.isSuccess(getCheckRsModifyAvailable(article,loginedMemberId));
+//		article.getExtra().put("modifyAvailable", modifyAvailable);
+//		
+//	}
+
+	private Map<String, Object> getCheckRsModifyAvailable(Article article, int actorId) {
+		return getReplyCheckRsDeleteAvailable(article, actorId);
+	}
+	
+	
+	private Map<String, Object> getReplyCheckRsDeleteAvailable(Article article, int actorId) {
+		Map<String, Object> rs = new HashMap<>();
+
+		if (article == null) {
+			rs.put("resultCode", "F-1");
+			rs.put("msg", "존재하지 않는 게시물 입니다.");
+
+			return rs;
+		}
+
+		if (article.getMemberId() != actorId) {
+			rs.put("resultCode", "F-2");
+			rs.put("msg", "권한이 없습니다.");
+
+			return rs;
+		}
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", "작업이 가능합니다.");
+
+		return rs;
+	}
+	
 	public void deleteReply(int id) {
 		articleDao.deleteReply(id);
 	}
@@ -81,4 +125,5 @@ public class ArticleService extends Service {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

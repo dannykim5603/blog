@@ -404,7 +404,7 @@ label[for] {
 }
 
 .top-bar .menu-box-1>ul ul {
-	background-color: #20232b;
+	background-color:#202338;
 	color: white;
 	display: none;
 	position: absolute;
@@ -467,7 +467,7 @@ label[for] {
 
 /* 모바일 탑바 시작 */
 .mobile-top-bar {
-	background-color: #20232b;
+	background-color: #202338;
 	color: black;
 	top: 0;
 	left: 0;
@@ -538,7 +538,7 @@ label[for] {
 /* 모바일 사이드바 */
 .mobile-side-bar {
 	position: fixed;
-	background: #20232b;
+	background: #202338;
 	color: #444958;
 	top: 85px;
 	left: 0;
@@ -553,7 +553,7 @@ label[for] {
 .mobile-side-bar.active {
 	visibility: visible;
 	opacity: 1;
-	background-color: #20232b;
+	background-color: #202338;
 }
 
 .mobile-side-bar>.menu-box-1 {

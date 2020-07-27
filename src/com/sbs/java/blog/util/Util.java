@@ -1,7 +1,7 @@
 package com.sbs.java.blog.util;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,5 +65,9 @@ public class Util {
 	public static String getString(HttpServletRequest req, String paramName) {
 		
 		return req.getParameter(paramName);
+	}
+
+	public static boolean isSuccess(Map<String,Object> rs) {
+		return ((String) rs.get("resultCode")).startsWith("S-");
 	}
 }
