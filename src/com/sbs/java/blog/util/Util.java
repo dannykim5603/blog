@@ -1,6 +1,8 @@
 package com.sbs.java.blog.util;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +67,26 @@ public class Util {
 	public static String getString(HttpServletRequest req, String paramName) {
 		
 		return req.getParameter(paramName);
+	}
+	
+	public static String getUrlEncoded(String str) {
+		try {
+			return URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return str;
+		}
+	}
+
+	public static String getString(HttpServletRequest req, String paramName, String elseValue) {
+		if ( req.getParameter(paramName) == null ) {
+			return elseValue;
+		}
+		
+		if ( req.getParameter(paramName).trim().length() == 0 ) {
+			return elseValue;
+		}
+		
+		return getString(req, paramName);
 	}
 
 	public static boolean isSuccess(Map<String,Object> rs) {

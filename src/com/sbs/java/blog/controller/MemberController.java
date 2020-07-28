@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.java.blog.dto.Member;
+import com.sbs.java.blog.util.Util;	
 
 public class MemberController extends Controller {
 	public MemberController(Connection dbConn, String actionMethodName, HttpServletRequest req,
@@ -136,8 +137,9 @@ public class MemberController extends Controller {
 
 	private String actionLogout() {
 		session.removeAttribute("loginedMemberId");
+		String redirectUrl = Util.getString(req, "redirectUrl", "../home/main");
 		
-		return "html:<script> alert('로그아웃 되었습니다.'); location.replace('../home/main') </script>";
+		return "html:<script> alert('로그아웃 되었습니다.'); location.replace('" + redirectUrl + "') </script>";
 	}
 
 	private String actionDoLogin() {
@@ -152,7 +154,8 @@ public class MemberController extends Controller {
 		}
 		
 		session.setAttribute("loginedMemberId", loginedMemberId);
-		return  "html:<script> alert('로그인 되었습니다.'); location.replace('../home/main')</script>";
+		String redirectUrl = Util.getString(req, "redirectUrl", "../home/main");
+		return  "html:<script> alert('로그인 되었습니다.'); location.replace('" + redirectUrl + "')</script>";
 	}
 
 	private String actionLogin() {

@@ -48,7 +48,7 @@
 	<h2>작성자 : ${memberNickname}</h2>
 	<h3>조회수 : ${article.hit}</h3>
 	<h3>작성일 : ${article.regDate}</h3>
-
+	<br>
 	<script type="text/x-template">	${article.bodyForXTemplate} </script>
 	<div class="toast-editor toast-editor-viewer"></div>
 
@@ -70,7 +70,7 @@ function WriteReplyList__showDetail() {
 	}, 1000);
 }
 </script>
-
+<br>
 <style>
 	.article-replies-list-box>table>tbody>tr.high {
 		background-color: #dfdfdf;
@@ -78,7 +78,7 @@ function WriteReplyList__showDetail() {
 
 	.article-replies-list-box>table>tbody>tr {
 		transition: background-color 1s;
-}
+	}
 </style>
 <div>
 	<div class="con article-replies-list-box table-box">
@@ -87,7 +87,7 @@ function WriteReplyList__showDetail() {
 				<colgroup>
 					<col width="100">
 					<col width="200">
-					<col width="500">
+					<col width="800">
 					<col width="120">
 				</colgroup>
 				<thead>

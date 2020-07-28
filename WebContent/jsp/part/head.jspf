@@ -66,31 +66,20 @@
 		<div class="con height-100p ">
 			<nav class="menu-box-1 flex flex-jc-c flex flex-ai-e">
 				<ul class="flex height-100p flex-ai-e flex-jc-c">
-					<li><a href="${pageContext.request.contextPath}/s/home/main"
-						class="height-100p flex flex-ai-c">Home</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/s/article/write"
-						class="height-100p flex flex-ai-c">Write</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/s/article/list"
-						class="height-100p flex flex-ai-c">Articles</a>
+					<li><a href="${pageContext.request.contextPath}/s/home/main" class="height-100p flex flex-ai-c">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/write" class="height-100p flex flex-ai-c">Write</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/list" class="height-100p flex flex-ai-c">Articles</a>
 						<ul>
 							<c:forEach items="${cateItems}" var="cateItem">
-								<li><a class="block "
-									href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
+								<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
 							</c:forEach>
 						</ul></li>
-					<li><a
-						href="${pageContext.request.contextPath}/s/home/aboutMe"
-						class="height-100p flex flex-ai-c ">About Me</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe" class="height-100p flex flex-ai-c ">About Me</a></li>
 					<li><a href="# " class="height-100p flex flex-ai-c ">SNS</a>
 						<ul>
-							<li><a class="block " href="https://to2.kr/brs"
-								target="blank">GITHUB</a></li>
-							<li><a class="block " href="https://to2.kr/brt"
-								target="blank">FACEBOOK</a></li>
-							<li><a class="block " href="https://to2.kr/bru"
-								target="blank">INSTAGRAM</a></li>
+							<li><a class="block " href="https://to2.kr/brs" target="blank">GITHUB</a></li>
+							<li><a class="block " href="https://to2.kr/brt" target="blank">FACEBOOK</a></li>
+							<li><a class="block " href="https://to2.kr/bru" target="blank">INSTAGRAM</a></li>
 						</ul></li>
 				</ul>
 			</nav>
@@ -99,32 +88,26 @@
 	<div class="tbrln visible-on-md-up"></div>
 	<div class="member-bar visible-on-md-up">
 		<c:if test="${isLogined == false}">
-			<button type="button" class="login-button" value="login"
-				onclick="location.href='../member/login'">로그인</button>
-			<button type="button" class="join-button" value="join"
-				onclick="location.href='../member/join'">회원가입</button>
+			<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUrl=${urlEncodedAfterLoginRedirectUrl}'">로그인</button>
+			<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입</button>
 		</c:if>
 		<c:if test="${isLogined}">
-			<button type="button" class="myInfo-button" value="myInfo"
-				onclick="location.href='../member/myInfo'">내 정보</button>
-			<button type="button" class="login-button" value="logout"
-				onclick="location.href='../member/doLogout'">로그아웃</button>
+			<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보</button>
+			<button type="button" class="login-button" value="logout" onclick="location.href='../member/doLogout?redirectUrl=${urlEncodedAfterLogoutRedirectUrl}'">로그아웃</button>
 		</c:if>
 	</div>
 
 	<!-모바일 탑바->
 	<div class="mobile-top-bar visible-on-sm-down flex flex-ai-c ">
-		<a href="${pageContext.request.contextPath}/home/main "
-			class="logo flex flex-ai-c absolute-center absolute-middle "> <a
-			href="# " class="btn-toggle-mobile-side-bar ">
+		<a href="${pageContext.request.contextPath}/home/main" class="logo flex flex-ai-c absolute-center absolute-middle"> 
+			<a href="#" class="btn-toggle-mobile-side-bar ">
 				<div></div>
 				<div></div>
 				<div></div>
 		</a>
-		</a> <a href="${pageContext.request.contextPath}/s/home/main"
-			class="logo flex flex-jc-c "> <span> <img
-				src="${pageContext.request.contextPath}/resource/img/logo.png"
-				alt="" width="250 " class="image blinking ">
+		</a> <a href="${pageContext.request.contextPath}/s/home/main" class="logo flex flex-jc-c "> 
+		<span> 
+		<img src="${pageContext.request.contextPath}/resource/img/logo.png" alt="" width="250 " class="image blinking ">
 		</span>
 		</a>
 	</div>
@@ -134,48 +117,34 @@
 	<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down ">
 		<nav class="menu-box-1 flex-grow-1 ">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/s/home/main"
-					class="block">Home</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/s/article/write"
-					class="block">Write</a></li>
-				<li><a href="${pageContext.request.contextPath}/s/article/list"
-					class="block">Articles</a>
+				<li><a href="${pageContext.request.contextPath}/s/home/main" class="block">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/article/write" class="block">Write</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/article/list" class="block">Articles</a>
 					<ul>
 						<c:forEach items="${cateItems}" var="cateItem">
-							<li><a class="block "
-								href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
+							<li><a class="block " href="${pageContext.request.contextPath}/s/article/list?cateItemId=${cateItem.id}&">${cateItem.name}</a></li>
 						</c:forEach>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe"
-					class="block">About Me</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe" class="block">About Me</a></li>
 				<li><a href=" # " class=" block ">SNS</a>
 					<ul>
-						<li><a class="block " href="https://to2.kr/brs"
-							target="blank">GITHUB</a></li>
-						<li><a class="block " href="https://to2.kr/brt"
-							target="blank">FACEBOOK</a></li>
-						<li><a class="block " href="https://to2.kr/bru"
-							target="blank">INSTAGRAM</a></li>
+						<li><a class="block " href="https://to2.kr/brs" target="blank">GITHUB</a></li>
+						<li><a class="block " href="https://to2.kr/brt" target="blank">FACEBOOK</a></li>
+						<li><a class="block " href="https://to2.kr/bru" target="blank">INSTAGRAM</a></li>
 					</ul></li>
 			</ul>
 		</nav>
 		<div class="mobile-member-bar visible-on-sm-down">
 			<c:if test="${isLogined == false}">
-				<button type="button" class="login-button" value="login"
-					onclick="location.href='../member/login'">로그인</button>
-				<button type="button" class="join-button" value="join"
-					onclick="location.href='../member/join'">회원가입</button>
+				<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUrl=${urlEncodedAfterLoginRedirectUrl}'">로그인</button>
+				<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입</button>
 			</c:if>
 			<c:if test="${isLogined}">
-				<button type="button" class="myInfo-button" value="myInfo"
-					onclick="location.href='../member/myInfo'">내 정보</button>
-				<button type="button" class="login-button" value="logout"
-					onclick="location.href='../member/logout'">로그아웃</button>
+				<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보</button>
+				<button type="button" class="login-button" value="logout" onclick="location.href='../member/logout?redirectUrl=${urlEncodedAfterLogoutRedirectUrl}'">로그아웃</button>
 			</c:if>
 		</div>
 	</div>
 	<c:if test="${isLogined}">
-		<div class="con" style="color: white; display: none">${loginedMember.name}
-			회원님 환영합니다.</div>
+		<div class="con" style="color: white; display: none">${loginedMember.name} 회원님 환영합니다.</div>
 	</c:if>

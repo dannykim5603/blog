@@ -13,12 +13,12 @@
 	display: block;
 	justify-content: center;
 	border: outset #444958 3px;
-	width : 80%;
+	width : 50%;
 	height: 80%;
 }
 
 .form1 {
-	width: 80%;
+	width: 50%;
 	margin-top: 100px;
 }
 
