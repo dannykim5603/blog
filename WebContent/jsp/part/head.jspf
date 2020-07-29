@@ -8,7 +8,7 @@
 
 
 <!DOCTYPE html>
-<html lang="ko" style="background-color: #202338;">
+<html lang="ko" style="height:100%; background: #0f3854; background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%); background-size: 100%;">
 
 <head>
 <meta charset="UTF-8">
@@ -148,3 +148,4 @@
 	<c:if test="${isLogined}">
 		<div class="con" style="color: white; display: none">${loginedMember.name} 회원님 환영합니다.</div>
 	</c:if>
+	

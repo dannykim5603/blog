@@ -62,8 +62,7 @@ function WriteReplyList__showTop() {
 
 function WriteReplyList__showDetail() {
 	WriteReplyList__showTop();
-	var $tr = $('.article-replies-list-box > table > tbody > tr[data-id="'
-			+ param.generatedArticleReplyId + '"]');
+	var $tr = $('.article-replies-list-box > table > tbody > tr[data-id="' + param.generatedArticleReplyId + '"]');
 	$tr.addClass('high');
 	setTimeout(function() {
 		$tr.removeClass('high');
@@ -109,8 +108,8 @@ function WriteReplyList__showDetail() {
 							<td class="text-align-center">
 							<div class="util-butt-box">
 							<input type="hidden" name="replyId" value="${articleReply.id}">
-								<button class="reply-modify" type="button" onclick="location.href='../article/replyModify?id=${articleReply.id}'">수정</button>
-								<button class="reply-delete" type="button" onclick="location.href='../article/replyDelete?id=${articleReply.id}'">삭제</button>
+								<input type="button" value="수정" onclick="window.open('../article/replyModify?id=${articleReply.id}', 'replyModify', 'width=800, height=200')">
+								<button class="reply-delete" type="button" value="deleteReply" onclick="location.href='../article/replyDelete?id=${articleReply.id}'">삭제</button>
 							</div>
 							</td>
 						</tr>

@@ -86,8 +86,7 @@ h2 {
 				<td>${article.id}</td>
 				<td>${article.regDate}</td>
 				<td>${article.updateDate}</td>
-				<td class=" text-align-left "><a
-					href="./detail?id=${article.id}">${article.title}</a>
+				<td class="text-align-left"><a href="./detail?id=${article.id}">${article.title}</a>
 				</td>
 				<td>${article.hit}</td>
 			</tr>

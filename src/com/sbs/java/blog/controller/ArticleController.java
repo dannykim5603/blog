@@ -65,6 +65,8 @@ public class ArticleController extends Controller {
 	
 
 	private String actionDoReplyModify() {
+		
+		articleService.modifyReply(replyId);
 
 		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('history.back()')</script>";
 	}
@@ -72,9 +74,7 @@ public class ArticleController extends Controller {
 	private String actionReplyModify() {
 		int replyId = Util.getInt(req, "replyId");
 		
-		articleService.modifyReply(replyId);
-		
-		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('history.back()')</script>";
+		return "articleReply/articleReplyModify.jsp";
 	}
 
 	private String actionReplyDelete() {
