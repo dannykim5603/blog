@@ -39,7 +39,7 @@ public class App {
 
 	}
 	
-	private String getDbUrl() {
+	private String getDbUri() {
 		return "jdbc:mysql://site32.iu.gy:3306/site32?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
 	}
 	private String getDbId() {
@@ -55,7 +55,7 @@ public class App {
 		loadDbDriver();
 		
 		// DB 접속 정보 세팅
-		String url = getDbUrl();
+		String Uri = getDbUri();
 		String user = getDbId();
 		String password = getDbPw();
 
@@ -63,7 +63,7 @@ public class App {
 
 		try {
 			// DB 접속 성공
-			dbConn = DriverManager.getConnection(url, user, password);
+			dbConn = DriverManager.getConnection(Uri, user, password);
 			//올바른 컨트롤러로 라우팅
 			route(dbConn,req,resp);
 		} catch (SQLException e) {

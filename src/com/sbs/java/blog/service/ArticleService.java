@@ -126,4 +126,8 @@ public class ArticleService extends Service {
 		
 	}
 
+	public ArticleReply getArticleReplyByReplyId(int replyId) {
+		return articleDao.getArticleReplyByReplyId(replyId);
+	}
+
 }

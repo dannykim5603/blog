@@ -34,27 +34,24 @@
 }
 
 .last-box {
-	margin-top:30px;
-	text-align:center;
+	margin-top: 30px;
+	text-align: center;
 }
 
 .last-box>a {
 	background-color: white;
 	color: black;
 	font-weight: thin;
-	border-radius: 15px;
-	padding: 0px 40px;
+	border-radius: 0px;
+	padding: 3px 20px;
 }
 </style>
 
 <script>
-	var submitJoinFormDone = false;
-	function submitJoinForm(form) {
-		if ( submitJoinFormDone ) {
-			alert('처리중 입니다.');
-			return;
-		}
-		
+	var JoinForm__validLoginId = '';
+	function JoinForm__submit(form) {
+		form.loginId.value = form.loginId.value.trim();
+
 		form.loginId.value = form.loginId.value.trim();
 		if (form.loginId.value.length == 0) {
 			alert('로그인 아이디를 입력해주세요.');
@@ -90,7 +87,7 @@
 			form.nickname.focus();
 			return;
 		}
-		
+
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
@@ -98,24 +95,46 @@
 			form.email.focus();
 			return;
 		}
-		
+
 		form.loginPwReal.value = sha256(form.loginPw.value);
 		form.loginPw.value = '';
 		form.loginPwConfirm.value = '';
-		
+
 		form.submit();
 		submitJoinFormDone = true;
+	}
+
+	function JoinForm__checkLoginIdDup(input) {
+		var form = input.form;
+		form.loginId.value = form.loginId.value.trim();
+		if (form.loginId.value.length == 0) {
+			return;
+		}
+		$.get('getLoginIdDup', {
+			loginId : form.loginId.value
+		}, function(data) {
+			var $message = $(form.loginId).next();
+			if (data.resultCode.substr(0, 2) == 'S-') {
+				$message.empty().append(
+						'<div style="color:green;">' + data.msg + '</div>');
+				JoinForm__validLoginId = data.loginId;
+			} else {
+				$message.empty().append(
+						'<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validLoginId = '';
+			}
+		}, 'json');
 	}
 </script>
 
 <div class="join-form-box con">
-	<form action="doJoin" method="POST" class="join-form form1"
-		onsubmit="submitJoinForm(this); return false;">
+	<form action="doJoin" method="POST" class="join-form form1" onsubmit="JoinForm__submit(this); return false;">
 		<input type="hidden" name="loginPwReal">
 		<div class="form-row">
 			<div class="label">LOGIN ID</div>
 			<div class="input">
-				<input name="loginId" type="text" placeholder=" login ID " />
+				<input onkeyup="JoinForm__checkLoginIdDup(this);" name="loginId" type="text" placeholder="login ID" />
+				<div class="message-msg"></div>
 			</div>
 		</div>
 		<div class="form-row">
@@ -152,9 +171,9 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; border-radius: 15px;"
-					type="submit" value="회원가입" /> <a
-					style="border: 3px solid #444958;" class="cancel" href="home">취소</a>
+				<input class="submit-box" style="width: 80px; margin-left: 0;"
+					type="submit" value="회원가입" /> <a style="" class="cancel"
+					href="home">취소</a>
 			</div>
 		</div>
 	</form>

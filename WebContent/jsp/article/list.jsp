@@ -75,7 +75,7 @@ h2 {
 			<tr>
 				<th>ID</th>
 				<th>등록날짜</th>
-				<th>갱신날짜</th>
+				<th>작성자</th>
 				<th>제목</th>
 				<th>조회수</th>
 			</tr>
@@ -85,7 +85,7 @@ h2 {
 			<tr>
 				<td>${article.id}</td>
 				<td>${article.regDate}</td>
-				<td>${article.updateDate}</td>
+				<td>${article.extra.writer}</td>
 				<td class="text-align-left"><a href="./detail?id=${article.id}">${article.title}</a>
 				</td>
 				<td>${article.hit}</td>

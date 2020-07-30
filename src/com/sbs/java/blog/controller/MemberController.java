@@ -2,7 +2,9 @@ package com.sbs.java.blog.controller;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import java.sql.Connection;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,8 +61,23 @@ public class MemberController extends Controller {
 			
 		case "doModifyMyInfo":
 			return actionDoModifyMyInfo();
+			
+		case "getLoginIdDup":
+			return actionGetLoginIdDup();
 		}
 		return "";
+	}
+
+	private String actionGetLoginIdDup() {
+		String loginId = req.getParameter("loginId");
+
+		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);
+
+		if (isJoinableLoginId) {
+			return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + loginId + "\"}";
+		} else {
+			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+		}
 	}
 
 	private String actionDoModifyMyInfo() {
@@ -69,6 +86,15 @@ public class MemberController extends Controller {
 		String loginPw = req.getParameter("loginPwReal");
 		int id = (int)session.getAttribute("loginedMemberId");
 		Member member = memberService.getMemberById(id);
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		String authCode = req.getParameter("authCode");
+
+		if (memberService.isValidModifyPrivateAuthCode(loginedMemberId, authCode) == false) {
+			return String.format(
+					"html:<script> alert('비밀번호를 다시 체크해주세요.'); location.replace('../member/passwordForPrivate'); </script>");
+		}
+		
+		
 		if ( email == null ) {
 			email = member.getEmail(); 
 		}
@@ -87,6 +113,14 @@ public class MemberController extends Controller {
 	}
 
 	private String actionModifyMyInfo() {
+//		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+//
+//		String authCode = req.getParameter("authCode");
+//		if (memberService.isValidModifyPrivateAuthCode(loginedMemberId, authCode) == false) {
+//			return String.format(
+//					"html:<script> alert('비밀번호를 다시 체크해주세요.'); location.replace('../member/passwordForPrivate'); </script>");
+//		}
+		
 		return "member/modifyMyInfo.jsp";
 	}
 
@@ -137,9 +171,9 @@ public class MemberController extends Controller {
 
 	private String actionLogout() {
 		session.removeAttribute("loginedMemberId");
-		String redirectUrl = Util.getString(req, "redirectUrl", "../home/main");
+		String redirectUri = Util.getString(req, "redirectUri", "../home/main");
 		
-		return "html:<script> alert('로그아웃 되었습니다.'); location.replace('" + redirectUrl + "') </script>";
+		return "html:<script> alert('로그아웃 되었습니다.'); location.replace('" + redirectUri + "') </script>";
 	}
 
 	private String actionDoLogin() {
@@ -154,8 +188,8 @@ public class MemberController extends Controller {
 		}
 		
 		session.setAttribute("loginedMemberId", loginedMemberId);
-		String redirectUrl = Util.getString(req, "redirectUrl", "../home/main");
-		return  "html:<script> alert('로그인 되었습니다.'); location.replace('" + redirectUrl + "')</script>";
+		String redirectUri = Util.getString(req, "redirectUri", "../home/main");
+		return  "html:<script> alert('로그인 되었습니다.'); location.replace('" + redirectUri + "')</script>";
 	}
 
 	private String actionLogin() {

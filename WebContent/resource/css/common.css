@@ -339,6 +339,10 @@ label[for] {
 	max-width: 1356px;
 }
 
+.form1 .message {
+	color:red;
+}
+
 @media ( min-width :800px) {
 	.visible-on-sm-down {
 		display: none;
@@ -453,7 +457,7 @@ label[for] {
 .member-bar > button {
 	margin : 10px;
 	color:white;
-	background-color:#444958;
+	background-color:#0a2e38;
 	border:white;
 }
 .member-bar > .login-button {

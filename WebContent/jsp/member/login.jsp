@@ -37,7 +37,6 @@
 
 .form1>.form-row>.input>input {
 	width: 90%;
-	margin-left: 20px;
 	height: 25px;
 }
 
@@ -49,8 +48,8 @@
 	background-color: white;
 	color: black;
 	font-weight: thin;
-	border-radius: 15px;
-	padding: 0px 40px;
+	border-radius: 0px;
+	padding: 3px 10px;
 }
 .find-box {
 	margin-top:20px;
@@ -90,7 +89,7 @@
 
 <div class="login-form-box con">
 	<form action="doLogin" method="POST" class="join-form form1" onsubmit="submitLoginForm(this); return false;">
-		<input type="hidden" name="redirectUrl" value="${param.afterLoginRedirectUrl}" />
+		<input type="hidden" name="redirectUri" value="${param.afterLoginRedirectUri}" />
 		<input type="hidden" name="loginPwReal" />
 		<div class="form-row">
 			<div class="label">ID</div>
@@ -111,8 +110,8 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; border-radius: 15px;"
-					type="submit" value="로그인" /> <a class="cancel" href="home">취소</a>
+				<input class="submit-box" style="width:60px; margin-left:0;"type="submit" value="로그인">
+				<a class="cancel" href="home">취소</a>
 			</div>
 		</div>
 	</form>

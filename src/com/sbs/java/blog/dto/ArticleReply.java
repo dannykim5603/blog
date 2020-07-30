@@ -3,7 +3,6 @@ package com.sbs.java.blog.dto;
 import java.util.Map;
 
 public class ArticleReply extends Dto {
-	private String updateDate;
 	private String body;
 	private String articleId;
 	private String memberId;
@@ -12,7 +11,6 @@ public class ArticleReply extends Dto {
 	public ArticleReply(Map<String, Object> row) {
 		super(row);
 		this.articleId = (String)row.get("articleId");
-		this.updateDate = (String) row.get("updateDate");
 		this.body = (String) row.get("body");
 		this.memberId = (String) row.get("memberId");
 		this.nickname = (String) row.get("nickname");
@@ -43,14 +41,6 @@ public class ArticleReply extends Dto {
 		this.memberId = memberId;
 	}
 
-	public String getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
-
 	public String getBody() {
 		return body;
 	}
@@ -64,8 +54,9 @@ public class ArticleReply extends Dto {
 
 	@Override
 	public String toString() {
-		return String.format("%n게시번호 : %d 게시 날짜 : %s 업데이트 날짜 : %s%n내용 : %s%n%n 조회수 : %d%n%n 게시자 : %s%n 게시물번호: %s%n" + super.toString(),
-				getId(), getRegDate(), getUpdateDate(), body,memberId,articleId);
+		return String.format(
+				"ArticleReply [body=%s, articleId=%s, memberId=%s, nickname=%s, getId()=%s, getRegDate()=%s, getUpdateDate()=%s, getExtra()=%s]",
+				body, articleId, memberId, nickname, getId(), getRegDate(), getUpdateDate(), getExtra());
 	}
 
 }

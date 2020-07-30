@@ -13,12 +13,12 @@
 	display: block;
 	justify-content: center;
 	border: outset #444958 3px;
-	width : 50%;
+	width : 40%;
 	height: 80%;
 }
 
 .form1 {
-	width: 50%;
+	width: 500px;
 	margin-top: 100px;
 }
 
@@ -80,8 +80,7 @@
 		<div class="label"></div>
 		<div class="input last-box">
 			<button type="button" class="modifyMyInfo-button" value="modifyMyInfo" onclick="location.href='../member/modifyMyInfo'">개인정보 변경</button>
-			<button type="button" class="cancel" value="cancel"
-				onclick="goBack();">취소</button>
+			<button type="button" class="cancel" value="cancel" onclick="goBack();">취소</button>
 		</div>
 	</div>
 	
