@@ -14,41 +14,41 @@ function youtubePlugin() {
 function renderYoutube(wrapperId, youtubeId) {
   const el = document.querySelector('#' + wrapperId);
   
-  var uriParams = getUriParams(youtubeId);
+  var urlParams = getUrlParams(youtubeId);
 
   var width = '100%';
   var height = '100%';
   
-  if ( uriParams.width ) {
-    width = uriParams.width;
+  if ( urlParams.width ) {
+    width = urlParams.width;
   }
 
-  if ( uriParams.height ) {
-    height = uriParams.height;
+  if ( urlParams.height ) {
+    height = urlParams.height;
   }
   
   var maxWidth = 500;
   
-  if ( uriParams['max-width'] ) {
-    maxWidth = uriParams['max-width'];
+  if ( urlParams['max-width'] ) {
+    maxWidth = urlParams['max-width'];
   }
   
   var ratio = '16-9';
   
-  if ( uriParams['ratio'] ) {
-    ratio = uriParams['ratio'];
+  if ( urlParams['ratio'] ) {
+    ratio = urlParams['ratio'];
   }
   
   var marginLeft = 'auto';
   
-  if ( uriParams['margin-left'] ) {
-    marginLeft = uriParams['margin-left'];
+  if ( urlParams['margin-left'] ) {
+    marginLeft = urlParams['margin-left'];
   }
   
   var marginRight = 'auto';
   
-  if ( uriParams['margin-right'] ) {
-    marginRight = uriParams['margin-right'];
+  if ( urlParams['margin-right'] ) {
+    marginRight = urlParams['margin-right'];
   }
   
   if ( youtubeId.indexOf('?') !== -1 ) {
@@ -62,86 +62,86 @@ function renderYoutube(wrapperId, youtubeId) {
 
 // repl 플러그인 시작
 function replPlugin() {
-  toastui.Editor.codeBlockManager.setReplacer("repl", function (replUri) {
+  toastui.Editor.codeBlockManager.setReplacer("repl", function (replUrl) {
     var postSharp = "";
-    if ( replUri.indexOf('#') !== -1 ) {
-      var pos = replUri.indexOf('#');
-      postSharp = replUri.substr(pos);
-      replUri = replUri.substr(0, pos);
+    if ( replUrl.indexOf('#') !== -1 ) {
+      var pos = replUrl.indexOf('#');
+      postSharp = replUrl.substr(pos);
+      replUrl = replUrl.substr(0, pos);
     }
 
-    if ( replUri.indexOf('?') === -1 ) {
-      replUri += "?dummy=1";
+    if ( replUrl.indexOf('?') === -1 ) {
+      replUrl += "?dummy=1";
     }
 
-    replUri += "&lite=true";
-    replUri += postSharp;
+    replUrl += "&lite=true";
+    replUrl += postSharp;
 
     // Indentify multiple code blocks
     const wrapperId = `yt${Math.random().toString(36).substr(2, 10)}`;
 
     // Avoid sanitizing iframe tag
-    setTimeout(renderRepl.bind(null, wrapperId, replUri), 0);
+    setTimeout(renderRepl.bind(null, wrapperId, replUrl), 0);
 
     return "<div id=\"" + wrapperId + "\"></div>";
   });
 }
 
-function renderRepl(wrapperId, replUri) {
+function renderRepl(wrapperId, replUrl) {
   const el = document.querySelector(`#${wrapperId}`);
 
-  var UriParams = getUriParams(replUri);
+  var urlParams = getUrlParams(replUrl);
 
   var height = 400;
 
-  if ( UriParams.height ) {
-    height = UriParams.height;
+  if ( urlParams.height ) {
+    height = urlParams.height;
   }
 
-  el.innerHTML = '<iframe height="' + height + 'px" width="100%" src="' + replUri + '" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>';
+  el.innerHTML = '<iframe height="' + height + 'px" width="100%" src="' + replUrl + '" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>';
 }
 // repl 플러그인 끝
 
 // codepen 플러그인 시작
 function codepenPlugin() {
-  toastui.Editor.codeBlockManager.setReplacer("codepen", function (codepenUri) {
+  toastui.Editor.codeBlockManager.setReplacer("codepen", function (codepenUrl) {
     // Indentify multiple code blocks
     const wrapperId = `yt${Math.random().toString(36).substr(2, 10)}`;
 
     // Avoid sanitizing iframe tag
-    setTimeout(renderCodepen.bind(null, wrapperId, codepenUri), 0);
+    setTimeout(renderCodepen.bind(null, wrapperId, codepenUrl), 0);
 
     return '<div id="' + wrapperId + '"></div>';
   });
 }
 
-function renderCodepen(wrapperId, codepenUri) {
+function renderCodepen(wrapperId, codepenUrl) {
   const el = document.querySelector(`#${wrapperId}`);
 
-  var uriParams = getUriParams(codepenUri);
+  var urlParams = getUrlParams(codepenUrl);
 
   var height = 400;
 
-  if ( uriParams.height ) {
-    height = uriParams.height;
+  if ( urlParams.height ) {
+    height = urlParams.height;
   }
   
   var width = '100%';
 
-  if ( uriParams.width ) {
-    width = uriParams.width;
+  if ( urlParams.width ) {
+    width = urlParams.width;
   }
   
   if ( !isNaN(width) ) {
     width += 'px';
   }
   
-  if ( codepenUri.indexOf('#') !== -1 ) {
-    var pos = codepenUri.indexOf('#');
-    codepenUri = codepenUri.substr(0, pos);
+  if ( codepenUrl.indexOf('#') !== -1 ) {
+    var pos = codepenUrl.indexOf('#');
+    codepenUrl = codepenUrl.substr(0, pos);
   }
 
-  el.innerHTML = '<iframe height="' + height + '" style="width: ' + width + ';" scrolling="no" title="" src="' + codepenUri + '" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe>';
+  el.innerHTML = '<iframe height="' + height + '" style="width: ' + width + ';" scrolling="no" title="" src="' + codepenUrl + '" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe>';
 }
 // repl 플러그인 끝
 
@@ -150,17 +150,17 @@ String.prototype.replaceAll = function(org, dest) {
   return this.split(org).join(dest);
 }
 
-function getUriParams(Uri) {
-  Uri = uri.trim();
-  uri = uri.replaceAll('&amp;', '&');
-  if ( uri.indexOf('#') !== -1 ) {
-    var pos = uri.indexOf('#');
-    uri = uri.substr(0, pos);
+function getUrlParams(url) {
+  url = url.trim();
+  url = url.replaceAll('&amp;', '&');
+  if ( url.indexOf('#') !== -1 ) {
+    var pos = url.indexOf('#');
+    url = url.substr(0, pos);
   }
   
   var params = {};
   
-  uri.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+  url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
   return params;
 }
 // lib 끝

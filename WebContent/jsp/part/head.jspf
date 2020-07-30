@@ -36,39 +36,6 @@
 	var isLogined = "${isLogined}" == "true";
 	var loginedMember = null;
 </script>
-<!-- 쌤꺼 스크립트 -->
-<script>
-	var param = {};
-</script>
-<c:forEach var="pageParameter" items="${param}">
-	<script>
-		param["${pageParameter.key}"] = "${pageParameter.value}";
-	</script>
-</c:forEach>
-
-<script>
-	if (!param.jsAction) {
-		param.jsAction = '';
-	}
-
-	var jsActions = param.jsAction.split(',');
-
-	for ( var key in jsActions) {
-		var jsActionFuncName = jsActions[key];
-
-		$(function() {
-			setTimeout(function() {
-				if (window[jsActionFuncName]) {
-					window[jsActionFuncName]();
-				} else {
-					console.error("jsAction으로 요청받은, " + jsActionFuncName
-							+ " 함수는 존재하지 않아서 실행하지 못했습니다.");
-				}
-			}, 100);
-		});
-	}
-</script>
-
 <c:if test="${isLogined}">
 
 	<script>
@@ -121,12 +88,12 @@
 	<div class="tbrln visible-on-md-up"></div>
 	<div class="member-bar visible-on-md-up">
 		<c:if test="${isLogined == false}">
-			<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUri=${uriEncodedAfterLoginRedirectUri}'">로그인</button>
+			<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUrl=${urlEncodedAfterLoginRedirectUrl}'">로그인</button>
 			<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입</button>
 		</c:if>
 		<c:if test="${isLogined}">
 			<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보</button>
-			<button type="button" class="login-button" value="logout" onclick="location.href='../member/doLogout?redirectUri=${uriEncodedAfterLogoutRedirectUri}'">로그아웃</button>
+			<button type="button" class="login-button" value="logout" onclick="location.href='../member/doLogout?redirectUrl=${urlEncodedAfterLogoutRedirectUrl}'">로그아웃</button>
 		</c:if>
 	</div>
 
@@ -169,12 +136,12 @@
 		</nav>
 		<div class="mobile-member-bar visible-on-sm-down">
 			<c:if test="${isLogined == false}">
-				<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUri=${uriEncodedAfterLoginRedirectUri}'">로그인</button>
+				<button type="button" class="login-button" value="login" onclick="location.href='../member/login?afterLoginRedirectUrl=${urlEncodedAfterLoginRedirectUrl}'">로그인</button>
 				<button type="button" class="join-button" value="join" onclick="location.href='../member/join'">회원가입</button>
 			</c:if>
 			<c:if test="${isLogined}">
 				<button type="button" class="myInfo-button" value="myInfo" onclick="location.href='../member/myInfo'">내 정보</button>
-				<button type="button" class="login-button" value="logout" onclick="location.href='../member/logout?redirectUri=${uriEncodedAfterLogoutRedirectUri}'">로그아웃</button>
+				<button type="button" class="login-button" value="logout" onclick="location.href='../member/logout?redirectUrl=${urlEncodedAfterLogoutRedirectUrl}'">로그아웃</button>
 			</c:if>
 		</div>
 	</div>

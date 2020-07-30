@@ -6,13 +6,11 @@ import java.util.Map;
 public class Dto {
 	private int id;
 	private String regDate;
-	private String updateDate;
 	private Map<String, Object> extra;
 
 	public Dto(Map<String, Object> row) {
 		this.id = (int)row.get("id");
 		this.regDate = (String) row.get("regDate");
-		this.updateDate = (String) row.get("updateDate");
 		this.extra = new HashMap<>();
 
 		for (String key : row.keySet()) {
@@ -39,14 +37,6 @@ public class Dto {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	
-	public String getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
 
 	public Map<String, Object> getExtra() {
 		return extra;
@@ -54,5 +44,10 @@ public class Dto {
 
 	public void setExtra(Map<String, Object> extra) {
 		this.extra = extra;
+	}
+
+	@Override
+	public String toString() {
+		return "id : " + id + " regDate :" + regDate + " extra : " + extra ;
 	}
 }

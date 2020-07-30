@@ -24,11 +24,9 @@ public class ArticleDao extends Dao{
 		SecSql sql = new SecSql();
 		int limitFrom = (page - 1) * itemsInAPage;
 
-		sql.append("SELECT A.*, M.nickname AS extra__writer");
-		sql.append("FROM article AS A");
-		sql.append("INNER JOIN member AS M");
-		sql.append("ON A.memberId = M.id");
-		sql.append("WHERE A.displayStatus = 1");
+		sql.append("SELECT *, '김대니' AS extra__ ");
+		sql.append("FROM article");
+		sql.append("WHERE displayStatus = 1");
 		if (cateItemId != 0) {
 			sql.append("AND cateItemId = ?", cateItemId);
 		}
@@ -209,16 +207,12 @@ public class ArticleDao extends Dao{
 	}
 
 	public List<ArticleReply> getArticleReplyByArticleId(int articleId) {
-		SecSql sql = new SecSql();
+		SecSql secSql = new SecSql();
 		
-		sql.append("SELECT AR.*, M.nickname AS extra__writer");
-		sql.append("FROM articleReply AS AR");
-		sql.append("INNER JOIN member AS M");
-		sql.append("ON AR.memberId = M.id");
-		sql.append("WHERE AR.articleId = ?", articleId);
-		sql.append("ORDER BY AR.id DESC ");
+		secSql.append("SELECT * FROM articleReply");
+		secSql.append(" WHERE articleId = ?",articleId);
 		
-		List<Map<String,Object>> rows = DBUtil.selectRows(dbConn, sql);
+		List<Map<String,Object>> rows = DBUtil.selectRows(dbConn, secSql);
 		List<ArticleReply> articleReplies = new ArrayList<>();
 		
 		for (Map<String,Object> row : rows ) {
@@ -226,16 +220,5 @@ public class ArticleDao extends Dao{
 		}
 		
 		return articleReplies;
-	}
-
-	public ArticleReply getArticleReplyByReplyId(int replyId) {
-		SecSql secSql = new SecSql();
-		
-		secSql.append("SELECT * FROM articleReply");
-		secSql.append(" WHERE Id = ?",replyId);
-		
-		ArticleReply articleReply = new ArticleReply(DBUtil.selectRow(dbConn, secSql));
-		
-		return articleReply;
 	}
 }

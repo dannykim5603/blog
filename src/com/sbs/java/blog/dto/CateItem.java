@@ -21,8 +21,7 @@ public class CateItem extends Dto{
 
 	@Override
 	public String toString() {
-		return String.format("CateItem [name=%s, getId()=%s, getRegDate()=%s, getUpdateDate()=%s, getExtra()=%s]", name,
-				getId(), getRegDate(), getUpdateDate(), getExtra());
+		return "CateItem [name=" + name + ", dto=" + super.toString()+ "]";
 	}
-
+	
 }

@@ -1,21 +1,16 @@
 package com.sbs.java.blog.service;
 
 import java.sql.Connection;
-import java.util.UUID;
+import java.util.Map;
 
 import com.sbs.java.blog.dao.MemberDao;
 import com.sbs.java.blog.dto.Member;
 
 public class MemberService extends Service {
 	private MemberDao memberDao;
-	private MailService mailService;
-	private AttrService attrService;
 
-	public MemberService(Connection dbConn, MailService mailService, AttrService attrService) {
+	public MemberService(Connection dbConn) {
 		memberDao = new MemberDao(dbConn);
-		this.mailService = mailService;
-		this.attrService = attrService;
-		
 	}
 	
 	public String getMemberNickname(int id) {
@@ -62,18 +57,4 @@ public class MemberService extends Service {
 	public Member getMemberByEmailANDName(String email, String name) {
 		return memberDao.getMemberByEmailANDName(email,name);
 	}
-	
-	public String genModifyPrivateAuthCode(int actorId) {
-		String authCode = UUID.randomUUID().toString();
-		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode);
-
-		return authCode;
-	}
-
-	public boolean isValidModifyPrivateAuthCode(int actorId, String authCode) {
-		String authCodeOnDB = attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode");
-
-		return authCodeOnDB.equals(authCode);
-	}
-	
 }

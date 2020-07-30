@@ -53,42 +53,38 @@ public class ArticleController extends Controller {
 
 		case "replyDelete":
 			return actionReplyDelete();
-
+			
 		case "replyModify":
 			return actionReplyModify();
-
+			
 		case "doReplyModify":
 			return actionDoReplyModify();
 		}
 		return "";
 	}
+	
 
 	private String actionDoReplyModify() {
-
-//		articleService.modifyReply(replyId);
+		
+		articleService.modifyReply(replyId);
 
 		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('history.back()')</script>";
 	}
 
 	private String actionReplyModify() {
-		int replyId = Util.getInt(req, "id");
+		int replyId = Util.getInt(req, "replyId");
 		
 		return "articleReply/articleReplyModify.jsp";
 	}
 
 	private String actionReplyDelete() {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-
-		int replyId = Util.getInt(req, "id");
-		ArticleReply articleReply = articleService.getArticleReplyByReplyId(replyId);
-		int memberId = Integer.parseInt(articleReply.getMemberId());
-		System.out.println(memberId);
 		
-		if (loginedMemberId == memberId) {
+		int replyId = Util.getInt(req, "replyId");
+		
 		articleService.deleteReply(replyId);
-			return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace(history.go(-1))</script>";
-		}
-		return "html:<script> alert('권한이 없습니다.'); location.replace(history.back())</script>";
+
+		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
 	}
 
 	private String actionWriteArticleReply() {
@@ -112,14 +108,8 @@ public class ArticleController extends Controller {
 
 	private String actionDelete() {
 		int id = Util.getInt(req, "id");
-		Article article = articleService.getArticleById(id);
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		
-		if (loginedMemberId == article.getId()) {
-			articleService.delete(id);
-			return "html:<script> alert('" + id + "번 게시물이 삭제되었습니다.'); location.replace('list')</script>";
-		}
-		return "html:<script> alert('권한이 없습니다.'); location.replace('../article/detail?id="+article.getId()+"')</script>"; 
+		articleService.delete(id);
+		return "html:<script> alert('" + id + "번 게시물이 삭제되었습니다.'); location.replace('list')</script>";
 	}
 
 	private String actionDoModify() {
@@ -140,15 +130,12 @@ public class ArticleController extends Controller {
 		if (Util.isNum(req, "id") == false) {
 			return "html:id를 숫자로 입력해 주세요.";
 		}
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId"); 
 		int id = Util.getInt(req, "id");
-		Article article = articleService.detail(id, loginedMemberId);
+		Article article = articleService.detail(id,loginedMemberId);
 		System.out.println(article);
-		if (loginedMemberId == article.getId()) {
-			req.setAttribute("article", article);
-			return "article/modify.jsp";
-		}
-		return "html:<script> alert('권한이 없습니다.'); location.replace('../article/detail?id="+article.getId()+"')</script>";
+		req.setAttribute("article", article);
+		return "article/modify.jsp";
 	}
 
 	private String actionDoWrite() {
@@ -178,9 +165,9 @@ public class ArticleController extends Controller {
 
 		int id = Util.getInt(req, "id");
 		articleService.increaseHit(id);
-
+		
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		Article article = articleService.detail(id, loginedMemberId);
+		Article article = articleService.detail(id,loginedMemberId);
 		req.setAttribute("article", article);
 
 		int memberId = article.getMemberId();
@@ -194,9 +181,9 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionList() {
-
+		
 //		long startTime = System.nanoTime();
-
+		
 		int page = 1;
 
 		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
@@ -241,7 +228,7 @@ public class ArticleController extends Controller {
 				searchKeyword);
 
 		req.setAttribute("articles", articles);
-
+		
 //		long endTime= System.nanoTime();
 //		long estimatedTime = endTime - startTime;
 //		//nano seconds to seconds

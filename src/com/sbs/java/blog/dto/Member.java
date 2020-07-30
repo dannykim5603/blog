@@ -5,6 +5,7 @@ import java.util.Map;
 public class Member extends Dto {
 	private String loginId;
 	private String loginPw;
+	private String updateDate;
 	private String name;
 	private String nickname;
 	private String email;
@@ -14,20 +15,27 @@ public class Member extends Dto {
 		this.loginId = (String) row.get("loginId");
 		this.loginPw = (String) row.get("loginPw");
 		this.name = (String) row.get("name");
+		this.updateDate = (String) row.get("updateDate");
 		this.nickname = (String) row.get("nickname");
 		this.email = (String) row.get("email");
 		
 	}
+	@Override
+	public String toString() {
+		return String.format("Member [loginId=%s, loginPw=%s, name=%s, getId()=%s, getRegDate()=%s]", loginId, loginPw,
+				name, getId(), getRegDate());
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	public String getNickname() {
 		return nickname;
-	}
-
-	@Override
-	public String toString() {
-		return String.format(
-				"Member [loginId=%s, loginPw=%s, name=%s, nickname=%s, email=%s, getId()=%s, getRegDate()=%s, getUpdateDate()=%s]",
-				loginId, loginPw, name, nickname, email, getId(), getRegDate(), getUpdateDate());
 	}
 
 	public void setNickname(String nickname) {

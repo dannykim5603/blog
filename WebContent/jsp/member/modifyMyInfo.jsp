@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
+<%
+
+Member member = (Member)request.getAttribute("member");
+
+%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <style>
@@ -9,13 +14,13 @@
 	color: white;
 	display: flex;
 	justify-content: center;
+	
 }
 
 .form1 {
-	width: 50%;
+	border : outset #444958 3px;
+	width: 80%;
 	margin-top: 100px;
-	border: outset #444958 3px;
-	padding: 20px;
 }
 
 .form1>.form-row {
@@ -23,8 +28,9 @@
 }
 
 .form1>.form-row>.label {
-	padding-top: 10px;
+	padding-top: 20px;
 	padding-bottom: 20px;
+	margin-left:10px;
 }
 
 .form1>.form-row>.input>input {
@@ -32,10 +38,8 @@
 	margin-left: 20px;
 	height: 25px;
 }
-
-.last-box {
-	margin-top:30px;
-	text-align:center;
+.last-box{
+	margin-bottom:10px;
 }
 
 .last-box>a {
@@ -55,12 +59,6 @@
 			return;
 		}
 		
-		form.loginId.value = form.loginId.value.trim();
-		if (form.loginId.value.length == 0) {
-			alert('로그인 아이디를 입력해주세요.');
-			form.loginId.focus();
-			return;
-		}
 		form.loginPw.value = form.loginPw.value.trim();
 		if (form.loginPw.value.length == 0) {
 			alert('로그인 비번을 입력해주세요.');
@@ -78,24 +76,11 @@
 			form.loginPwConfirm.focus();
 			return;
 		}
-		form.name.value = form.name.value.trim();
-		if (form.name.value.length == 0) {
-			alert('이름을 입력해주세요.');
-			form.name.focus();
-			return;
-		}
+		
 		form.nickname.value = form.nickname.value.trim();
 		if (form.nickname.value.length == 0) {
 			alert('별명을 입력해주세요.');
 			form.nickname.focus();
-			return;
-		}
-		
-		form.email.value = form.email.value.trim();
-
-		if (form.email.value.length == 0) {
-			alert('이메일을 입력해주세요.');
-			form.email.focus();
 			return;
 		}
 		
@@ -109,51 +94,37 @@
 </script>
 
 <div class="join-form-box con">
-	<form action="doJoin" method="POST" class="join-form form1"
+	<form action="doModifyMyInfo" method="POST" class="join-form form1"
 		onsubmit="submitJoinForm(this); return false;">
 		<input type="hidden" name="loginPwReal">
+
 		<div class="form-row">
-			<div class="label">LOGIN ID</div>
-			<div class="input">
-				<input name="loginId" type="text" placeholder=" login ID " />
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="label">E-MAIL</div>
-			<div class="input">
-				<input name="email" type="email" placeholder="E-mail " />
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="label">NAME</div>
-			<div class="input">
-				<input name="name" type="text" placeholder=" NAME "></input>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="label">NICKNAME</div>
+			<div class="label">nickname</div>
 			<div class="input">
 				<input name="nickname" type="text" placeholder=" NICKNAME " />
 			</div>
 		</div>
+		
 		<div class="form-row">
-			<div class="label">LOGIN PW</div>
+			<div class="label">loginPw</div>
 			<div class="input">
 				<input name="loginPw" type="password" placeholder=" login PW "></input>
 			</div>
 		</div>
+		
 		<div class="form-row">
-			<div class="label">LOGIN PW CONFIRM</div>
+			<div class="label">loginPwConfirm</div>
 			<div class="input">
 				<input name="loginPwConfirm" type="password"
 					placeholder=" PW Confirm "></input>
 			</div>
 		</div>
+		
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; border-radius: 15px;"
-					type="submit" value="회원가입" /> <a
+				<input class="submit-box" style="width: 50%; border-radius: 15px;"
+					type="submit" value="정보수정" /> <a
 					style="border: 3px solid #444958;" class="cancel" href="home">취소</a>
 			</div>
 		</div>
