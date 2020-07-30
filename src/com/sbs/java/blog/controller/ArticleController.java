@@ -72,7 +72,7 @@ public class ArticleController extends Controller {
 	}
 
 	private String actionReplyModify() {
-		int replyId = Util.getInt(req, "replyId");
+		int replyId = Util.getInt(req, "id");
 		
 		return "articleReply/articleReplyModify.jsp";
 	}
@@ -80,7 +80,7 @@ public class ArticleController extends Controller {
 	private String actionReplyDelete() {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
-		int replyId = Util.getInt(req, "replyId");
+		int replyId = Util.getInt(req, "id");
 		
 		articleService.deleteReply(replyId);
 
