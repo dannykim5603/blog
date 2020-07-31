@@ -13,7 +13,7 @@
 }
 
 .form1 {
-	width: 40%;
+	width: 500px;
 	border: outset #444958 3px;
 	margin: 15px;
 	padding: 20px;
@@ -61,7 +61,6 @@
 	background-color: white;
 	color: black;
 	font-weight: thin;
-	border-radius: 15px;
 	padding: 0px 40px;
 }
 </style>
@@ -102,36 +101,41 @@
 </script>
 
 <div class="join-form-box con">
-	<form action="doFindPw" method="POST" class="join-form form1"
-		onsubmit="submitJoinForm(this); return false;">
+	<form action="doFindPw" method="POST" class="join-form form1" onsubmit="submitJoinForm(this); return false;">
+		
 		<div class="form-row">
 			<div class="label">ID</div>
 			<div class="input">
 				<input name="loginId" type="text" placeholder=" login ID " />
 			</div>
 		</div>
+		
 		<div class="form-row">
 			<div class="label">E-MAIL</div>
 			<div class="input">
 				<input name="email" type="email" placeholder="E-mail " />
 			</div>
 		</div>
+		
 		<div class="form-row">
 			<div class="label">NAME</div>
 			<div class="input">
 				<input name="name" type="text" placeholder=" NAME "></input>
 			</div>
 		</div>
+		
 		<div class="findId">
 			<a href="../member/findId">아이디 찾기</a>
 		</div>
+		
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; border-radius: 15px;"
+				<input class="submit-box" style="width: 20%;"
 					type="submit" value="비밀번호 찾기" /> <a class="cancel" href="home">취소</a>
 			</div>
 		</div>
+		
 	</form>
 </div>
 

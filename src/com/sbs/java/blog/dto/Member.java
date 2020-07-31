@@ -20,6 +20,7 @@ public class Member extends Dto {
 		this.email = (String) row.get("email");
 		
 	}
+	
 	@Override
 	public String toString() {
 		return String.format("Member [loginId=%s, loginPw=%s, name=%s, getId()=%s, getRegDate()=%s]", loginId, loginPw,

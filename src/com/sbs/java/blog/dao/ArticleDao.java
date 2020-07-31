@@ -221,4 +221,42 @@ public class ArticleDao extends Dao{
 		
 		return articleReplies;
 	}
+
+	public boolean isReplyDeletable(int loginedMemberId, int replyId) {
+		SecSql sql = new SecSql();
+		
+		sql.append("SELECT * FROM articleReply");
+		sql.append(" WHERE id = ?",replyId);
+		sql.append(" AND memberId = ?",loginedMemberId);
+
+		ArticleReply articleReply = new ArticleReply(DBUtil.selectRow(dbConn, sql));
+		
+		if (replyId == articleReply.getId()) {
+			return true;
+		}
+		return false;
+	}
+
+	public void modifyReply(int replyId, String body) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("UPDATE articleReply ");
+		secSql.append("SET updateDate = NOW() ");
+		secSql.append(", body = ? ",body);
+		secSql.append("WHERE id = ? ",replyId);
+		
+		DBUtil.update(dbConn,secSql);
+	}
+
+	public ArticleReply getArticleReplyByReplyId(int replyId) {
+		SecSql sql = new SecSql();
+		
+		sql.append("SELECT * FROM articleReply ");
+		sql.append(" WHERE id = ?",replyId);
+
+		ArticleReply reply = new ArticleReply(DBUtil.selectRow(dbConn, sql));
+		
+		return reply;
+	}
+	
 }

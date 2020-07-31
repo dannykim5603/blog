@@ -12,7 +12,7 @@
 }
 
 .form1 {
-	width: 40%;
+	width: 500px;
 	border: outset #444958 3px;
 	padding: 20px;
 	margin-top: 100px;
@@ -20,6 +20,7 @@
 
 .form1>.form-row {
 	width: 100%;
+	margin-bottom:10px;
 }
 
 .form1>.form-row>.label {
@@ -60,7 +61,6 @@
 	background-color: white;
 	color: black;
 	font-weight: thin;
-	border-radius: 15px;
 	padding: 0px 40px;
 }
 </style>
@@ -112,7 +112,7 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; border-radius: 15px;"
+				<input class="submit-box" style="width: 20%;"
 					type="submit" value="아이디 찾기" /> <a class="cancel" href="home">취소</a>
 			</div>
 		</div>

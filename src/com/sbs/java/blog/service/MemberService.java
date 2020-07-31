@@ -57,4 +57,8 @@ public class MemberService extends Service {
 	public Member getMemberByEmailANDName(String email, String name) {
 		return memberDao.getMemberByEmailANDName(email,name);
 	}
+
+	public boolean checkMemberPw(String pw, Member member) {
+		return memberDao.checkMemberPw(pw,member);
+	}
 }

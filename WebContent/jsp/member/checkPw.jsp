@@ -14,7 +14,8 @@ Member member = (Member)request.getAttribute("member");
 	color: white;
 	display: flex;
 	justify-content: center;
-	
+	width:500px;
+	margin-top:200px;
 }
 
 .form1 {
@@ -40,6 +41,7 @@ Member member = (Member)request.getAttribute("member");
 }
 .last-box{
 	margin-bottom:10px;
+	text-align:center;
 }
 
 .last-box>a {
@@ -64,28 +66,9 @@ Member member = (Member)request.getAttribute("member");
 			form.loginPw.focus();
 			return;
 		}
-		form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
-		if (form.loginPwConfirm.value.length == 0) {
-			alert('로그인 비번확인을 입력해주세요.');
-			form.loginPwConfirm.focus();
-			return;
-		}
-		if (form.loginPw.value != form.loginPwConfirm.value) {
-			alert('로그인 비번확인이 일치하지 않습니다.');
-			form.loginPwConfirm.focus();
-			return;
-		}
-		
-		form.nickname.value = form.nickname.value.trim();
-		if (form.nickname.value.length == 0) {
-			alert('별명을 입력해주세요.');
-			form.nickname.focus();
-			return;
-		}
 		
 		form.loginPwReal.value = sha256(form.loginPw.value);
 		form.loginPw.value = '';
-		form.loginPwConfirm.value = '';
 		
 		form.submit();
 		submitJoinFormDone = true;
@@ -93,16 +76,9 @@ Member member = (Member)request.getAttribute("member");
 </script>
 
 <div class="join-form-box con">
-	<form action="doModifyMyInfo" method="POST" class="join-form form1" onsubmit="submitJoinForm(this); return false;">
+	<form action="doCheckPw" method="POST" class="join-form form1" onsubmit="submitJoinForm(this); return false;">
 		<input type="hidden" name="loginPwReal">
 
-		<div class="form-row">
-			<div class="label">nickname</div>
-			<div class="input">
-				<input name="nickname" type="text" placeholder=" NICKNAME " />
-			</div>
-		</div>
-		
 		<div class="form-row">
 			<div class="label">loginPw</div>
 			<div class="input">
@@ -111,19 +87,13 @@ Member member = (Member)request.getAttribute("member");
 		</div>
 		
 		<div class="form-row">
-			<div class="label">loginPwConfirm</div>
-			<div class="input">
-				<input name="loginPwConfirm" type="password" placeholder=" PW Confirm "></input>
-			</div>
-		</div>
-		
-		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 50%; border-radius: 15px;" type="submit" value="정보수정" /> 
+				<input class="submit-box" style="width:100px;" type="submit" value="확인" />
 				<a style="border: 1px solid #444958;" class="cancel" href="../home/main">취소</a>
 			</div>
 		</div>
+		
 	</form>
 </div>
 

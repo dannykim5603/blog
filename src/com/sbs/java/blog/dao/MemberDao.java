@@ -154,5 +154,20 @@ public class MemberDao extends Dao{
 		Member member = new Member (DBUtil.selectRow(dbConn, sql));
 		
 		return member;
+	}
+
+	public boolean checkMemberPw(String pw, Member member) {
+		SecSql sql = new SecSql();
+		
+		sql.append("SELECT * FROM member");
+		sql.append(" WHERE id = ?",member.getId());
+		sql.append(" AND loginPw = ?",member.getLoginPw());
+
+		Member memberToCheck = new Member(DBUtil.selectRow(dbConn, sql));
+		
+		if(memberToCheck.getLoginPw().equals(member.getLoginPw())) {
+			return true; // 맞으면 true
+		}
+		return false; //틀리면 false
 	}	
 }

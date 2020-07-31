@@ -121,9 +121,16 @@ public class ArticleService extends Service {
 		return articleDao.getArticleReplyByArticleId(articleId);
 	}
 
-	public void modifyReply(int replyId) {
-		// TODO Auto-generated method stub
-		
+	public void modifyReply(int replyId, String body) {
+		articleDao.modifyReply(replyId,body);
+	}
+
+	public boolean isReplyDeletable(int loginedMemberId, int replyId) {
+		return articleDao.isReplyDeletable(loginedMemberId,replyId);
+	}
+
+	public ArticleReply getArticleReplyByReplyId(int replyId) {
+		return articleDao.getArticleReplyByReplyId(replyId);
 	}
 
 }
