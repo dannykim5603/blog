@@ -101,14 +101,14 @@ function WriteReplyList__showDetail() {
 					<c:forEach items="${articleReplies}" var="articleReply">
 						<tr>
 							<td class="text-align-center">${articleReply.id}</td>
-							<td class="text-align-center">${articleReply.regDate}</td>
+							<td class="text-align-center">${articleReply.updateDate}</td>
 							<td class="padding-left-10 padding-right-10 text-align-center"><script
 									type="text/x-template">${articleReply.bodyForXTemplate}</script>
 								<div class="toast-editor toast-editor-viewer"></div></td>
 							<td class="text-align-center">
 							<div class="util-butt-box">
 							<input type="hidden" name="replyId" value="${articleReply.id}">
-								<input type="button" value="수정" onclick="window.open('../article/replyModify?id=${articleReply.id}', 'replyModify', 'width=800, height=200')">
+								<input type="button" value="수정" onclick="window.open('../article/replyModify?id=${articleReply.id}', 'replyModify', 'width=600, height=5')">
 								<button class="reply-delete" type="button" value="deleteReply" onclick="location.href='../article/replyDelete?id=${articleReply.id}'">삭제</button>
 							</div>
 							</td>

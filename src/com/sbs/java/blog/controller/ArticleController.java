@@ -66,7 +66,7 @@ public class ArticleController extends Controller {
 		int replyId = Util.getInt(req, "id");
 		String body = Util.getString(req, "body");
 		articleService.modifyReply(replyId, body);
-		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace(history.back())</script>";
+		return "html:<script> alert('댓글이 수정되었습니다.'); window.close();) </script>";
 	}
 
 	private String actionReplyModify() {
@@ -75,6 +75,7 @@ public class ArticleController extends Controller {
 		ArticleReply reply = articleService.getArticleReplyByReplyId(replyId);
 		int replyMemeberId = Integer.parseInt(reply.getMemberId());
 		if (loginedMemberId == replyMemeberId) {
+			req.setAttribute("articleReply", reply);
 			return "articleReply/replyModify.jsp";
 		}
 		return "html:<script> alert('권한이 없습니다.'); location.replace(history.back());</script>";
