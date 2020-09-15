@@ -20,9 +20,18 @@ import com.sbs.java.blog.util.Util;
 public class App {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
+	boolean isDevelServer = true;
+	
+	
 	public App(HttpServletRequest req, HttpServletResponse resp){
 		this.req = req;
 		this.resp = resp;
+		
+		String profilesActive = System.getProperty("spring.profiles.active");
+		
+		if (profilesActive != null && profilesActive.equals("production")) {
+			isDevelServer = false;
+		}
 	}
 	private void loadDbDriver() throws IOException {
 		// DB 커넥터 로딩 시작
@@ -40,13 +49,23 @@ public class App {
 	}
 	
 	private String getDbUrl() {
-		return "jdbc:mysql://site32.iu.gy:3306/site32?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
+		
+		if (isDevelServer) {
+			return "jdbc:mysql://localhost:3306/st_n32_blog?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
+		}
+		return "jdbc:mysql://blog.n32.st.dailyvillains.site:3306/st_n32_blog?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
 	}
 	private String getDbId() {
-		return "site32";
+		if (isDevelServer) {
+			return "sbsst";
+		}
+		return "dvl";
 	}
 	private String getDbPw() {
-		return "sbs123414";
+		if (isDevelServer) {
+			return "sbs123414";
+		}
+		return "DANNYkim5603!";
 	}
 
 	public void start() throws IOException {

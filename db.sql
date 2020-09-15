@@ -1,9 +1,9 @@
 #케릭터 set 설정
 SET NAMES utf8mb4;
 
-DROP DATABASE IF EXISTS site32;
-CREATE DATABASE site32;
-USE site32;
+DROP DATABASE IF EXISTS st_n32_blog;
+CREATE DATABASE st_n32_blog;
+USE st_n32_blog;
 
 #카테고리
 CREATE TABLE cateItem(
