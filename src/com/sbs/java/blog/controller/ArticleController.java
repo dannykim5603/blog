@@ -89,7 +89,7 @@ public class ArticleController extends Controller {
 
 		if (loginedMemberId == replyMemeberId) {
 			articleService.deleteReply(replyId);
-			return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('history.back()')</script>";
+			return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace(history.back())</script>";
 		}
 		return "html:<script> alert('권한이 없습니다.'); location.replace('history.back()')</script>";
 	}

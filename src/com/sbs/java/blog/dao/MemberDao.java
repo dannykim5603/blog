@@ -26,6 +26,7 @@ public class MemberDao extends Dao{
 		secSql.append(", email = ?",email);
 		secSql.append(", name = ?", name);
 		secSql.append(", nickname = ?",nickname);
+		secSql.append(", level = ?",0);
 		
 		
 		return DBUtil.insert(dbConn, secSql);

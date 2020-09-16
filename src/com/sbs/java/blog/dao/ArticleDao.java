@@ -155,6 +155,7 @@ public class ArticleDao extends Dao{
 		secSql.append(", cateItemId = ? ",cateItemId);
 		secSql.append(", title = ? ",title);
 		secSql.append(", body = ? ",body);
+		secSql.append(", hit = ? ",0);
 		secSql.append(", memberId = ? ",loginedMemberId);
 		
 		return DBUtil.insert(dbConn, secSql);

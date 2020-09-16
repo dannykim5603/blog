@@ -18,7 +18,6 @@ public class Member extends Dto {
 		this.updateDate = (String) row.get("updateDate");
 		this.nickname = (String) row.get("nickname");
 		this.email = (String) row.get("email");
-		
 	}
 	
 	@Override

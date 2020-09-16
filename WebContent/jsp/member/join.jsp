@@ -151,9 +151,8 @@
 		<div class="form-row">
 			<div class="label"></div>
 			<div class="input last-box">
-				<input class="submit-box" style="width: 20%; "
-					type="submit" value="회원가입" /> <a
-					style="border: 1px solid #444958;" class="cancel" href="home">취소</a>
+				<input class="submit-box" style="width: 20%;" type="submit" value="회원가입"/>
+				<a style="border: 1px solid #444958;" class="cancel" href="home">취소</a>
 			</div>
 		</div>
 	</form>

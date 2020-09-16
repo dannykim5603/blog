@@ -207,8 +207,9 @@ public class MemberController extends Controller {
 		if (nicknameCheck == true) {
 			return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
 		}
-
 		int memberId = memberService.join(loginId, loginPw, email, name, nickname);
+		System.out.println(memberId);
+		
 		String title = "BLOG DANNYS UNKOWN";
 		String body = name + "님의 회원가입을 환영합니다.\n 아이디 : " + loginId + "\n Email :" + email
 				+ " \n 의 정보로 가입되었습니다. \n 다시한번 회원님의 가입을 환영합니다. ";
